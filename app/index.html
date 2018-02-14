@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <stock-panel></stock-panel>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <!--Services-->
+  <script src="services/services.module.js"></script>
+  <script src="services/order-book.service.js"></script>
+  <script src="services/trades.service.js"></script>
+  <!--Components-->
+  <script src="order-book/order-book.module.js"></script>
+  <script src="order-book/order-book.component.js"></script>
+  <script src="stock-panel/stock-panel.module.js"></script>
+  <script src="stock-panel/stock-panel.component.js"></script>
+</body>
+</html>

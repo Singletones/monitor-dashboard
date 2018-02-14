@@ -1,0 +1,46 @@
+{
+  "GPRO": {
+    "Bid": {
+      "Level1": {
+        "Price": 30.40,
+        "Volume": 200
+      },
+      "Level2": {
+        "Price": 30.39,
+        "Volume": 100
+      }
+    },
+    "Ask": {
+      "Level1": {
+        "Price": 30.44,
+        "Volume": 200
+      },
+      "Level2": {
+        "Price": 30.46,
+        "Volume": 800
+      }
+    }
+  },
+  "GPRE": {
+    "Bid": {
+      "Level1": {
+        "Price": 30.45,
+        "Volume": 300
+      },
+      "Level2": {
+        "Price": 30.59,
+        "Volume": 200
+      }
+    },
+    "Ask": {
+      "Level1": {
+        "Price": 30.14,
+        "Volume": 100
+      },
+      "Level2": {
+        "Price": 30.66,
+        "Volume": 600
+      }
+    }
+  }
+}
