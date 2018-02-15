@@ -8,6 +8,10 @@
       "Level2": {
         "Price": 30.39,
         "Volume": 100
+      },
+      "Level3": {
+        "Price": 30.39,
+        "Volume": 100
       }
     },
     "Ask": {
@@ -18,6 +22,10 @@
       "Level2": {
         "Price": 30.46,
         "Volume": 800
+      },
+      "Level3": {
+        "Price": 30.39,
+        "Volume": 100
       }
     }
   },
@@ -30,6 +38,10 @@
       "Level2": {
         "Price": 30.59,
         "Volume": 200
+      },
+      "Level3": {
+        "Price": 30.39,
+        "Volume": 100
       }
     },
     "Ask": {
@@ -40,6 +52,10 @@
       "Level2": {
         "Price": 30.66,
         "Volume": 600
+      },
+      "Level3": {
+        "Price": 30.39,
+        "Volume": 100
       }
     }
   }

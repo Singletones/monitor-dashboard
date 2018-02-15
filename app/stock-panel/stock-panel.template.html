@@ -1,7 +1,17 @@
-<div>
-    <p>{{$ctrl.symbol}}</p>
-    <p>{{$ctrl.market}}</p>
-    <p>Last update: {{$ctrl.latest_timestamp}}</p>
-
-    <order-book symbol="$ctrl.symbol"></order-book>
+<div class="stock-panel">
+    <div class="stock-info">
+        <div class="headline-wrapper">
+            <div class="symbol-wrapper">
+                <h1>{{$ctrl.stock.getSymbol()}}</h1>
+                <h3>{{$ctrl.stock.getMarket()}}</h3>
+            </div>
+            <div class="update-wrapper">
+                <p>Last update: {{$ctrl.stock.getLastUpdate()}}</p>
+            </div>
+        </div>
+        <div class="plot-wrapper">
+            <div name="plot"></div>
+        </div>
+    </div>
+    <order-book symbol="$ctrl.stock.getSymbol()"></order-book>
 </div>

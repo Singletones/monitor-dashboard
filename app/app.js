@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('dashboardApp', ['stockPanel']);
+angular.module('dashboardApp', ['stockPanelList']);

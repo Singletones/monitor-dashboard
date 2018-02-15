@@ -4,9 +4,9 @@ angular
     .module('services')
     .factory('tradesService', ['$http', function ($http) {
         return {
-            get: function (symbol, callback) {
+            get: function (params, callback) {
                 return $http.get('services/data/trades.json').then(function (response) {
-                    callback(response.data[symbol][0]);
+                    callback(response.data[params.symbol][0]);
                 });
             }
         };
