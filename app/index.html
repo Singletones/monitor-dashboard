@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="dashboardApp">
+
 <head>
     <meta charset="utf-8">
     <title>My AngularJS App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="app.css">
 </head>
+
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">
-                <img src="images/Zululogo.png" height="60px">
-            </a>
+
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">
+            <img src="images/Zululogo.png" height="60px">
+        </a>
+    </div>
+    <div class="row">
+        <div class="input-field col s3 offset-s4">
+            <input id="last_name" type="text">
+            <label for="last_name">Add symbol</label>
         </div>
-    </nav>
+        <div class="input-field col s3">
+            <a class="waves-effect waves-light btn">ADD</a>
+        </div>
+    </div>
+
     <stock-panel-list></stock-panel-list>
+
 
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/plotlyjs/plotly.js"></script>
@@ -43,4 +58,5 @@
     <script src="stock-panel-list/stock-panel-list.module.js"></script>
     <script src="stock-panel-list/stock-panel-list.component.js"></script>
 </body>
+
 </html>
