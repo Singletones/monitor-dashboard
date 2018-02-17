@@ -4,12 +4,12 @@ angular
     .module('stockPanelList')
     .component('stockPanelList', {
         templateUrl: 'stock-panel-list/stock-panel-list.template.html',
-        controller: ['StockModel', function (StockModel) {
+        controller: ['StockModel', function (Stock) {
             var ctrl = this;
 
             this.stocks = [
-                new StockModel('GPRO', 'NASDAQ'),
-                new StockModel('GPRE', 'NASDAQ')
+                new Stock('GPRO', 'NASDAQ'),
+                new Stock('GPRE', 'NASDAQ')
             ];
         }]
     });

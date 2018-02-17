@@ -35,19 +35,19 @@
     flex-grow: 3;
     padding: 4% 0 2% 0;
 }
-.plot-wrapper{
-    display: flex;
-    align-content: stretch;
-    flex: 1;
-    /*height: 100%;*/
-    /*width: 100%;*/
-    padding: 2% 0 2% 4%
-}
-.plot-wrapper>div{
-    display: flex;
-    height: 180%;
-    width: 70%;
-}
+/*.plot-wrapper{*/
+    /*display: flex;*/
+    /*align-content: stretch;*/
+    /*flex: 1;*/
+    /*!*height: 100%;*!*/
+    /*!*width: 100%;*!*/
+    /*padding: 2% 0 2% 4%*/
+/*}*/
+/*.plot-wrapper>div{*/
+    /*display: flex;*/
+    /*height: 180%;*/
+    /*width: 70%;*/
+/*}*/
 .ask-wrapper{
     width: 100%;
     color: red;

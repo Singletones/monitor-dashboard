@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('stockPanel', ['services', 'orderBook']);
+angular.module('stockPanel', ['services', 'orderBook', 'directives']);
