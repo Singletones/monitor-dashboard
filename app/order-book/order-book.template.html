@@ -1,26 +1,46 @@
 <div class="order-book">
-    <div class="ask-wrapper">
-        <p>ask</p>
-        <table cellpadding="10" width="80%" height="100px">
-            <tr ng-repeat="level in $ctrl.data.Ask">
-                <td width="33%">{{level.Price}}</td>
-                <td width="33%">{{level.Volume}}</td>
-                <td width="33%"></td>
-            </tr>
+    <div class="cont-wrap ask-wrapper">
+        <b>ASK</b>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="level in $ctrl.data.Ask">
+                    <td>{{level.Price}}</td>
+                    <td>{{level.Volume}}</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <p>
         <span>{{$ctrl.recentTrade.price}}</span>
         <span>{{$ctrl.recentTrade.size}}</span>
     </p>
-    <div class="bid-wrapper">
-    <table cellpadding="10" width="80%" height="100px">
-        <tr ng-repeat="level in $ctrl.data.Bid">
-            <td width="33%">{{level.Price}}</td>
-            <td width="33%">{{level.Volume}}</td>
-            <td width="33%"></td>
-        </tr>
-    </table>
-    <p>bid</p>
+    <div class="cont-wrap bid-wrapper">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="level in $ctrl.data.Bid">
+                    <td>{{level.Price}}</td>
+                    <td>{{level.Volume}}</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <b>BID</b>
     </div>
 </div>

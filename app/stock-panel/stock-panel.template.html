@@ -1,12 +1,12 @@
-<div class="stock-panel">
+<div class="stock-panel clearfix">
     <div class="stock-info">
         <div class="headline-wrapper">
             <div class="symbol-wrapper">
-                <h1>{{$ctrl.stock.getSymbol()}}</h1>
-                <h3>{{$ctrl.stock.getMarket()}}</h3>
+                <h3>{{$ctrl.stock.getSymbol()}}</h3>
+                <h5>{{$ctrl.stock.getMarket()}}</h5>
             </div>
             <div class="update-wrapper">
-                <p>Last update: {{$ctrl.stock.getLastUpdate()}}</p>
+                <h5>Last update: {{$ctrl.stock.getLastUpdate()}}</h5>
             </div>
         </div>
         <div class="plot-wrapper">
