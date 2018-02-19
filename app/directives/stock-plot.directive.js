@@ -2,15 +2,13 @@
 
 angular
     .module('directives')
-    .directive('stockPlot', function () {
+    .directive('stockPlot', function() {
         return {
             require: '^stockPanel',
-            link: function (scope, element, attr, stockPanel) {
-                // debugger;
+            link: function(scope, element, attr, stockPanel) {
 
                 function updatePlot() {
-                    stockPanel.loadData(function (resolution, data) {
-                        debugger;
+                    stockPanel.loadData(function(resolution, data) {
                         plot(element[0], resolution, data);
                     });
                 }
@@ -29,13 +27,13 @@ function plot(domElement, resolution, data) {
 
         close: [],
 
-        decreasing: {line: {color: '#7F7F7F'}},
+        decreasing: { line: { color: '#7F7F7F' } },
 
         high: [],
 
-        increasing: {line: {color: '#17BECF'}},
+        increasing: { line: { color: '#17BECF' } },
 
-        line: {color: 'rgba(31,119,180,1)'},
+        line: { color: 'rgba(31,119,180,1)' },
 
         low: [],
 
@@ -56,7 +54,7 @@ function plot(domElement, resolution, data) {
         trace1.high.push(data[i].high);
         trace1.low.push(data[i].low);
     }
-    debugger;
+
 
     var layout = {
         dragmode: 'zoom',
@@ -71,7 +69,7 @@ function plot(domElement, resolution, data) {
             autorange: true,
             domain: [0, 1],
             range: [dateToStr(resolution.fromDate), dateToStr(resolution.endDate)],
-            rangeslider: {range: [dateToStr(resolution.fromDate), dateToStr(resolution.endDate)]},
+            rangeslider: { range: [dateToStr(resolution.fromDate), dateToStr(resolution.endDate)] },
             title: 'Date',
             type: 'date'
         },
@@ -87,9 +85,9 @@ function plot(domElement, resolution, data) {
 }
 
 function dateToStr(date) {
-    return date.getFullYear()
-        + '-' + (date.getMonth() + 1)
-        + '-' + date.getDate();
-        // + ' ' + date.getHours()
-        // + ':' + date.getMinutes();
+    return date.getFullYear() +
+        '-' + (date.getMonth() + 1) +
+        '-' + date.getDate();
+    // + ' ' + date.getHours()
+    // + ':' + date.getMinutes();
 }
