@@ -9,8 +9,8 @@ angular
 
             ctrl.resolution = {
                 candleType: '1 min',
-                fromDate: new Date('02.03.2017'),
-                endDate: new Date('02.15.2017')
+                fromDate: moment('02.03.2017', 'MM.DD.YYYY'),
+                endDate: moment('02.15.2017', 'MM.DD.YYYY')
             };
 
             ctrl.loadData = function (callback) {
@@ -19,13 +19,12 @@ angular
                     candleType: ctrl.resolution.candleType,
                     fromDate: ctrl.resolution.fromDate,
                     endDate: ctrl.resolution.endDate
-                }, function (data) {
-                    callback(ctrl.resolution, data);
+                }, function (candleChart) {
+                    callback(candleChart);
                 });
             };
 
             ctrl.print = function () {
-                debugger;
                 console.dir(ctrl.resolution.endDate);
             }
         }],

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('services', []);
+angular.module('services', ['models']);

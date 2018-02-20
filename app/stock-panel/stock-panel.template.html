@@ -8,8 +8,11 @@
             <div class="update-wrapper">
                 <p>{{$ctrl.resolution.fromDate}}</p>
                 <!--<p>Last update: {{$ctrl.stock.getLastUpdate()}}</p>-->
-                <input type="date" ng-model="$ctrl.resolution.fromDate">
-                <input type="date" ng-model="$ctrl.resolution.endDate">
+                <select>
+                    <option value="" disabled selected>Candle resolution</option>
+                    <option value="1">1 min candle</option>
+                    <option value="2">5 min candle</option>
+                </select>
             </div>
         </div>
         <div class="plot-wrapper">
