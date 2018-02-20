@@ -8,12 +8,16 @@
             <div class="update-wrapper">
                 <p>{{$ctrl.resolution.fromDate}}</p>
                 <!--<p>Last update: {{$ctrl.stock.getLastUpdate()}}</p>-->
-                <select>
-                    <option value="" disabled selected>Candle resolution</option>
-                    <option value="1">1 min candle</option>
-                    <option value="2">5 min candle</option>
-                </select>
+                <div  class="input-field col s5">
+                    <select>
+                        <option value="" disabled selected>Candle resolution</option>
+                        <option value="1">1 min candle</option>
+                        <option value="2">5 min candle</option>
+                    </select>
+                    <label>Candle resolution</label>
+                </div>
             </div>
+
         </div>
         <div class="plot-wrapper">
             <div stock-plot></div>
