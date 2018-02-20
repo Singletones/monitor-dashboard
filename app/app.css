@@ -43,6 +43,40 @@ h5 {
     padding: 2% 0 0;
 }
 
+
+/* label focus color */
+
+.input-field input:focus+label {
+    color: rgba(33, 33, 33, .4) !important;
+}
+
+.input-field input+label {
+    color: rgba(33, 33, 33, .4) !important;
+}
+
+
+/* label underline focus color */
+
+.input-field input {
+    border-bottom: 1px solid #212121 !important;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #212121 !important;
+    box-shadow: 0 1px 0 0 #212121 !important
+}
+
+
+/* Tabels hover-effect color */
+
+table.highlight>tbody>tr:hover {
+    background-color: rgba(255, 255, 255, .2)
+}
+
+thead {
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
 .stock-panel-list {
     width: 100%;
     height: auto;
