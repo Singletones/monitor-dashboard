@@ -2,10 +2,11 @@
 
 angular
     .module('directives')
-    .directive('stockPlot', function () {
+    .directive('stockPlot', function() {
         return {
-            link: function (scope, element, attr) {
-                scope.$on(attr.event, function (event, candleChart) {
+            link: function(scope, element, attr) {
+                $('select').material_select();
+                scope.$on(attr.event, function(event, candleChart) {
                     plot(element[0], candleChart);
                 });
             }
@@ -23,9 +24,9 @@ function plot(domElement, candleChart) {
         low: candleChart.unpack('low'),
 
 
-        decreasing: {line: {color: '#7F7F7F'}},
-        increasing: {line: {color: '#17BECF'}},
-        line: {color: 'rgba(31,119,180,1)'},
+        decreasing: { line: { color: '#7F7F7F' } },
+        increasing: { line: { color: '#17BECF' } },
+        line: { color: 'rgba(31,119,180,1)' },
 
         type: 'candlestick',
         xaxis: 'x',
@@ -45,7 +46,7 @@ function plot(domElement, candleChart) {
             autorange: true,
             domain: [0, 1],
             range: candleChart.getRange(),
-            rangeslider: {range: candleChart.getRange()},
+            rangeslider: { range: candleChart.getRange() },
             title: 'Date',
             type: 'date'
         },

@@ -4,7 +4,7 @@ angular
     .module('stockPanel')
     .component('stockPanel', {
         templateUrl: 'stock-panel/stock-panel.template.html',
-        controller: ['candlesService', '$scope', function (candlesService, $scope) {
+        controller: ['candlesService', '$scope', function(candlesService, $scope) {
 
             var ctrl = this;
 
@@ -28,31 +28,30 @@ angular
                 { label: '10 day candle', value: '10 day' }
             ];
 
-            ctrl.selectedLookback = ctrl.lookbacks[0];
-            ctrl.selectedResolution = ctrl.resolutions[0];
-            $scope.$watch('$ctrl.selectedLookback', function () {
+            ctrl.selectedLookback = ctrl.lookbacks[3];
+            ctrl.selectedResolution = ctrl.resolutions[2];
+            $scope.$watch('$ctrl.selectedLookback', function() {
                 ctrl.loadData();
             });
-            $scope.$watch('$ctrl.selectedResolution', function () {
+            $scope.$watch('$ctrl.selectedResolution', function() {
                 ctrl.loadData();
             });
 
-            ctrl.loadData = function () {
+            ctrl.loadData = function() {
                 candlesService.get({
                     symbol: ctrl.stock.getSymbol(),
                     candleType: ctrl.selectedResolution.value,
                     fromDate: moment().subtract(ctrl.selectedLookback.value, 'days'),
                     endDate: moment()
-                }, function (candleChart) {
+                }, function(candleChart) {
                     ctrl.stock.updateLatestTimestamp();
                     debugger;
                     $scope.$emit('replot', candleChart);
                 });
             };
 
-            ctrl.print = function () {
+            ctrl.print = function() {
                 // debugger;
-                $('select').material_select();
                 // console.dir(ctrl);
             }
         }],

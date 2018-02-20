@@ -47,11 +47,11 @@ h5 {
 /* label focus color */
 
 .input-field input:focus+label {
-    color: rgba(33, 33, 33, .4) !important;
+    color: rgba(33, 33, 33, .6) !important;
 }
 
 .input-field input+label {
-    color: rgba(33, 33, 33, .4) !important;
+    color: rgba(33, 33, 33, .6) !important;
 }
 
 
@@ -103,12 +103,24 @@ thead {
 
 .symbol-wrapper {
     flex-direction: row;
-    padding: 3% 10% 1% 3%;
+    padding: 3% 8% 1% 3%;
 }
 
 .update-wrapper {
     text-align: left;
-    padding: 7% 0 1% 0;
+    padding: 6% 0 1% 0;
+}
+
+.input-field {
+    width: 45%;
+}
+
+.first-field {
+    float: left;
+}
+
+.second-field {
+    float: right;
 }
 
 .plot-wrapper {
@@ -193,6 +205,14 @@ thead {
         width: 100%;
         padding-right: 3%;
     }
+    .headline-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .update-wrapper {
+        flex-direction: row;
+        padding: 5% 0 1% 0;
+    }
     .trades-wrapper {
         width: 50%;
         padding: 0.7% 1% 3% 1%;
@@ -224,5 +244,33 @@ thead {
     }
     .small-screen {
         display: block;
+    }
+}
+
+@media (max-width: 600px) {
+    .symbol-wrapper {
+        padding: 10% 1% 1% 3%;
+    }
+    .input-field {
+        width: 100%;
+    }
+    .first-field {
+        float: none;
+    }
+    .second-field {
+        float: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .headline-wrapper {
+        flex-direction: column;
+    }
+    .symbol-wrapper {
+        text-align: center;
+    }
+    .update-wrapper {
+        text-align: center;
+        padding: 5% 2% 1% 4%;
     }
 }
