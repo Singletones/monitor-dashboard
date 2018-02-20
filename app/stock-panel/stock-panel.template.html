@@ -6,13 +6,16 @@
                 <h3>{{$ctrl.stock.getMarket()}}</h3>
             </div>
             <div class="update-wrapper">
-                <p>{{$ctrl.resolution.fromDate}}</p>
-                <!--<p>Last update: {{$ctrl.stock.getLastUpdate()}}</p>-->
+                <p>Last update: {{$ctrl.stock.getLastUpdate()}}</p>
                 <div  class="input-field col s5">
-                    <select>
-                        <option value="" disabled selected>Candle resolution</option>
-                        <option value="1">1 min candle</option>
-                        <option value="2">5 min candle</option>
+                    <select ng-model="$ctrl.selectedLookback"
+                        ng-options="item.label for item in $ctrl.lookbacks">
+                    </select>
+                    <label>Lookback</label>
+                </div>
+                <div  class="input-field col s5">
+                    <select ng-model="$ctrl.selectedResolution"
+                            ng-options="item.label for item in $ctrl.resolutions">
                     </select>
                     <label>Candle resolution</label>
                 </div>
@@ -20,7 +23,7 @@
 
         </div>
         <div class="plot-wrapper">
-            <div stock-plot></div>
+            <div stock-plot event="replot"></div>
         </div>
     </div>
     <div class="for-reverse">

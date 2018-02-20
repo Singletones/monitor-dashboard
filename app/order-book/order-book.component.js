@@ -16,7 +16,7 @@ angular
             tradesService.get({
                 symbol: ctrl.symbol
             }, function (data) {
-                ctrl.recentTrade = data;
+                ctrl.recentTrade = data[0];
             });
         }],
         bindings: {

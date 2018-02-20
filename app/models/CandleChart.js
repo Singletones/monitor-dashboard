@@ -21,19 +21,19 @@ angular
         Object.assign(CandleChart.prototype, {
 
             unpack: function (property) {
-                var res = [];
-                for (var i = 0; i < this.candles.length; i++) {
-                    res.push(this.candles[i][property]);
-                }
-                return res;
+                return this.candles.map(function (candle) {
+                    return candle[property];
+                });
             },
 
             unpackXaxis: function () {
-                var res = [];
-                for (var m = moment(this.fromDate); m.isSameOrBefore(this.endDate); m.add(1, 'day')) {
-                    res.push(m.format('YYYY-MM-DD'));
-                }
-                return res;
+                return this.candles.map(function (candle) {
+                    return candle.getTimestamp().format('YYYY-MM-DD HH:mm:ss');
+                });
+            },
+
+            getRange: function () {
+                return [this.fromDate.format('YYYY-MM-DD HH:mm:ss'), this.endDate.format('YYYY-MM-DD HH:mm:ss')]
             },
 
             getCandlesResolution: function () {

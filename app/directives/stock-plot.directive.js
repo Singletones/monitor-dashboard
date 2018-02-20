@@ -5,16 +5,9 @@ angular
     .directive('stockPlot', function () {
         return {
             link: function (scope, element, attr) {
-
-                function updatePlot() {
-                    scope.$ctrl.loadData(function (candleChart) {
-                        debugger;
-                        plot(element[0], candleChart);
-                    });
-                }
-
-                scope.$watch('$ctrl.resolution.fromDate', updatePlot);
-                scope.$watch('$ctrl.resolution.endDate', updatePlot);
+                scope.$on(attr.event, function (event, candleChart) {
+                    plot(element[0], candleChart);
+                });
             }
         };
     });
@@ -51,8 +44,8 @@ function plot(domElement, candleChart) {
         xaxis: {
             autorange: true,
             domain: [0, 1],
-            range: [candleChart.fromDate.format('YYYY-MM-DD HH:MM'), candleChart.endDate.format('YYYY-MM-DD HH:MM')],
-            rangeslider: {range: [candleChart.fromDate.format('YYYY-MM-DD HH:MM'), candleChart.endDate.format('YYYY-MM-DD HH:MM')]},
+            range: candleChart.getRange(),
+            rangeslider: {range: candleChart.getRange()},
             title: 'Date',
             type: 'date'
         },

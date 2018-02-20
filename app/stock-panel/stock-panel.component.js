@@ -4,28 +4,56 @@ angular
     .module('stockPanel')
     .component('stockPanel', {
         templateUrl: 'stock-panel/stock-panel.template.html',
-        controller: ['candlesService', function (candlesService) {
+        controller: ['candlesService', '$scope', function (candlesService, $scope) {
+
             var ctrl = this;
 
-            ctrl.resolution = {
-                candleType: '1 min',
-                fromDate: moment('02.03.2017', 'MM.DD.YYYY'),
-                endDate: moment('02.15.2017', 'MM.DD.YYYY')
-            };
+            ctrl.lookbacks = [
+                { label: '1 day (lookback)', value: 1 },
+                { label: '2 days (lookback)', value: 2 },
+                { label: '3 days (lookback)', value: 3 },
+                { label: '4 days (lookback)', value: 4 },
+                { label: '5 days (lookback)', value: 5 },
+                { label: '6 days (lookback)', value: 6 },
+                { label: '7 days (lookback)', value: 7 },
+                { label: '8 days (lookback)', value: 8 }
+            ];
+            ctrl.resolutions = [
+                { label: '30 min candle', value: '30 min' },
+                { label: '1 hour candle', value: '1 hour' },
+                { label: '5 hours candle', value: '5 hours' },
+                { label: '10 hours candle', value: '10 hours' },
+                { label: '1 day candle', value: '1 day' },
+                { label: '5 day candle', value: '5 day' },
+                { label: '10 day candle', value: '10 day' }
+            ];
 
-            ctrl.loadData = function (callback) {
+            ctrl.selectedLookback = ctrl.lookbacks[0];
+            ctrl.selectedResolution = ctrl.resolutions[0];
+            $scope.$watch('$ctrl.selectedLookback', function () {
+                ctrl.loadData();
+            });
+            $scope.$watch('$ctrl.selectedResolution', function () {
+                ctrl.loadData();
+            });
+
+            ctrl.loadData = function () {
                 candlesService.get({
                     symbol: ctrl.stock.getSymbol(),
-                    candleType: ctrl.resolution.candleType,
-                    fromDate: ctrl.resolution.fromDate,
-                    endDate: ctrl.resolution.endDate
+                    candleType: ctrl.selectedResolution.value,
+                    fromDate: moment().subtract(ctrl.selectedLookback.value, 'days'),
+                    endDate: moment()
                 }, function (candleChart) {
-                    callback(candleChart);
+                    ctrl.stock.updateLatestTimestamp();
+                    debugger;
+                    $scope.$emit('replot', candleChart);
                 });
             };
 
             ctrl.print = function () {
-                console.dir(ctrl.resolution.endDate);
+                // debugger;
+                $('select').material_select();
+                // console.dir(ctrl);
             }
         }],
         bindings: {
