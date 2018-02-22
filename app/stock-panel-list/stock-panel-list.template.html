@@ -1,3 +1,41 @@
+<div class="row wide-screen">
+    <div class="input-field col s3 offset-s4">
+        <input id="last_name_ws" ng-model="$ctrl.newSymbol" type="text">
+        <label for="last_name_ws">Add symbol</label>
+    </div>
+    <div ng-click="$ctrl.addSymbol()" class="input-field col s3">
+        <a class="waves-effect waves-light btn grey darken-4">ADD</a>
+    </div>
+</div>
+
+<div class="row small-screen">
+    <div class="input-field col s6 offset-s2">
+        <input id="last_name_ss" type="text">
+        <label for="last_name_ss">Add symbol</label>
+    </div>
+    <div class="input-field col s4">
+        <a class="waves-effect waves-light btn grey darken-4">ADD</a>
+    </div>
+</div>
+
+<div class="pagination-wrapper">
+    <ul class="pagination">
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
+
 <div class="stock-panel-list">
     <stock-panel ng-repeat="stock in $ctrl.stocks" stock="stock"></stock-panel>
+</div>
+
+<div class="pagination-wrapper bottom">
+    <ul class="pagination">
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
 </div>
