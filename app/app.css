@@ -39,6 +39,18 @@ h5 {
     padding-top: 7px;
 }
 
+.pagination-wrapper {
+    text-align: center;
+}
+
+.pagination-wrapper.bottom {
+    padding-bottom: 2%;
+}
+
+.pagination li.active {
+    background-color: #212121;
+}
+
 .row {
     padding: 2% 0 0;
 }

@@ -45,13 +45,13 @@ angular
                     endDate: moment()
                 }, function(candleChart) {
                     ctrl.stock.updateLatestTimestamp();
-                    debugger;
+
                     $scope.$emit('replot', candleChart);
                 });
             };
 
             ctrl.print = function() {
-                // debugger;
+
                 // console.dir(ctrl);
             }
         }],
