@@ -14,7 +14,7 @@ angular
                 ctrl.print = function() {
                     // debugger;
                     // console.dir(ctrl);
-                }
+                };
 
                 ctrl.loadData = function() {
                     candlesService.get({

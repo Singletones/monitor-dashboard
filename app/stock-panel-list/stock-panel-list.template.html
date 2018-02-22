@@ -20,22 +20,24 @@
 
 <div class="pagination-wrapper">
     <ul class="pagination">
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect"><a ng-click="$ctrl.switchPage(-1)"><i class="material-icons">chevron_left</i></a></li>
+        <li ng-repeat="i in Array($ctrl.pagesAmount) track by $index" ng-class="$ctrl.isActivePage(i)">
+            <a ng-click="$ctrl.switchPageTo(i)">{{i}}</a>
+        </li>
+        <li class="waves-effect"><a ng-click="$ctrl.switchPage(1)"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </div>
 
 <div class="stock-panel-list">
-    <stock-panel ng-repeat="stock in $ctrl.stocks" stock="stock"></stock-panel>
+    <stock-panel ng-repeat="stock in $ctrl.currentPage" stock="stock"></stock-panel>
 </div>
 
 <div class="pagination-wrapper bottom">
     <ul class="pagination">
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect"><a ng-click="$ctrl.switchPage(-1)"><i class="material-icons">chevron_left</i></a></li>
+        <li ng-repeat="i in Array($ctrl.pagesAmount) track by $index" ng-class="$ctrl.isActivePage($index)">
+            <a ng-click="$ctrl.switchPageTo($index)">{{$index}}</a>
+        </li>
+        <li class="waves-effect"><a ng-click="$ctrl.switchPage(1)"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </div>
