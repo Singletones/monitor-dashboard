@@ -13,7 +13,7 @@ angular
             this.candlesResolution = params.candleType;
             this.candles = [];
             for (var i = 0; i < candles.length; i++) {
-                candles[i].resolution = this.candlesResolution;
+                //candles[i].resolution = this.candlesResolution;
                 this.candles.push(new Candle(candles[i]));
             }
         }

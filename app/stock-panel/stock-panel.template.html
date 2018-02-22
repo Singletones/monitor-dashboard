@@ -6,14 +6,16 @@
                 <h3>{{$ctrl.stock.getMarket()}}</h3>
             </div>
             <div class="update-wrapper">
-                <h5>Last update: {{$ctrl.stock.getLastUpdate()}}</h5>
+                <h5>Last update: {{$ctrl.stock.getLastUpdate().format('YYYY-MM-DD[T]HH:mm:ss')}}</h5>
                 <div class="input-field first-field">
                     <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
                     </select>
+                    <label style="color: black">Lookback</label>
                 </div>
                 <div class="input-field second-field">
                     <select ng-model="$ctrl.selectedResolution" ng-options="item.label for item in $ctrl.resolutions">
                     </select>
+                    <label style="color: black">Candle resolution</label>
                 </div>
             </div>
 
@@ -23,7 +25,7 @@
         </div>
     </div>
     <div class="for-reverse">
-        <trades></trades>
+        <stock-trades></stock-trades>
         <order-book symbol="$ctrl.stock.getSymbol()"></order-book>
     </div>
 </div>

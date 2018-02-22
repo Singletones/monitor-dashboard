@@ -7,7 +7,7 @@ angular
         function Candle(args) {
             Object.call(this);
 
-            this.resolution = args.resolution;
+            //this.resolution = args.resolution;
 
             this.open = args.open;
             this.close = args.close;

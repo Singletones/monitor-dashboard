@@ -7,27 +7,27 @@ angular
         function Stock(symbol, market) {
             Object.call(this);
 
-            this.symbol = symbol;
-            this.market = market;
-            this.latest_timestamp = moment();
+            this._symbol = symbol;
+            this._market = market;
+            this._latest_timestamp = moment();
         }
 
         Object.assign(Stock.prototype, {
 
             getSymbol: function () {
-                return this.symbol;
+                return this._symbol;
             },
 
             getMarket: function () {
-                return this.market;
+                return this._market;
             },
 
             getLastUpdate: function () {
-                return this.latest_timestamp.format('YYYY-MM-DD[T]HH:mm:ss');
+                return moment(this._latest_timestamp);
             },
 
             updateLatestTimestamp: function () {
-                this.latest_timestamp = moment();
+                this._latest_timestamp = moment();
             }
 
         });

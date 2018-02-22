@@ -4,58 +4,97 @@ angular
     .module('stockPanel')
     .component('stockPanel', {
         templateUrl: 'stock-panel/stock-panel.template.html',
-        controller: ['candlesService', '$scope', function(candlesService, $scope) {
+        controller: [
+            'candlesService',
+            '$scope',
+            '$interval',
+            function(candlesService, $scope, $interval) {
+                var ctrl = this;
 
-            var ctrl = this;
+                ctrl.print = function() {
+                    // debugger;
+                    // console.dir(ctrl);
+                }
 
-            ctrl.lookbacks = [
-                { label: '1 day (lookback)', value: 1 },
-                { label: '2 days (lookback)', value: 2 },
-                { label: '3 days (lookback)', value: 3 },
-                { label: '4 days (lookback)', value: 4 },
-                { label: '5 days (lookback)', value: 5 },
-                { label: '6 days (lookback)', value: 6 },
-                { label: '7 days (lookback)', value: 7 },
-                { label: '8 days (lookback)', value: 8 }
-            ];
-            ctrl.resolutions = [
-                { label: '30 min candle', value: '30 min' },
-                { label: '1 hour candle', value: '1 hour' },
-                { label: '5 hours candle', value: '5 hours' },
-                { label: '10 hours candle', value: '10 hours' },
-                { label: '1 day candle', value: '1 day' },
-                { label: '5 day candle', value: '5 day' },
-                { label: '10 day candle', value: '10 day' }
-            ];
+                ctrl.loadData = function() {
+                    candlesService.get({
+                        symbol: ctrl.stock.getSymbol(),
+                        candleType: ctrl.selectedResolution.duration,
+                        fromDate: moment().subtract(ctrl.selectedLookback.duration),
+                        endDate: moment()
+                    }, function(candleChart) {
+                        ctrl.stock.updateLatestTimestamp();
+                        $scope.$emit('replot', candleChart);
+                    });
+                };
+                ctrl.update = function () {
+                    if (ctrl.timeoutId) {
+                        $interval.cancel(ctrl.timeoutId);
+                    }
 
-            ctrl.selectedLookback = ctrl.lookbacks[3];
-            ctrl.selectedResolution = ctrl.resolutions[2];
-            $scope.$watch('$ctrl.selectedLookback', function() {
-                ctrl.loadData();
-            });
-            $scope.$watch('$ctrl.selectedResolution', function() {
-                ctrl.loadData();
-            });
+                    var updateInterval = ctrl.selectedResolution.duration;
+                    ctrl.timeoutId = $interval(ctrl.loadData, updateInterval.asMilliseconds());
 
-            ctrl.loadData = function() {
-                candlesService.get({
-                    symbol: ctrl.stock.getSymbol(),
-                    candleType: ctrl.selectedResolution.value,
-                    fromDate: moment().subtract(ctrl.selectedLookback.value, 'days'),
-                    endDate: moment()
-                }, function(candleChart) {
-                    ctrl.stock.updateLatestTimestamp();
-                    debugger;
-                    $scope.$emit('replot', candleChart);
-                });
-            };
 
-            ctrl.print = function() {
-                // debugger;
-                // console.dir(ctrl);
+                    ctrl.loadData();
+                };
+
+                ctrl.lookbacks = [
+                    new DropdownItem(moment.duration(1, 'minutes')),
+                    new DropdownItem(moment.duration(5, 'minutes')),
+                    new DropdownItem(moment.duration(15, 'minutes')),
+                    new DropdownItem(moment.duration(30, 'minutes')),
+                    new DropdownItem(moment.duration(1, 'hours')),
+                    new DropdownItem(moment.duration(2, 'hours')),
+                    new DropdownItem(moment.duration(6, 'hours')),
+                    new DropdownItem(moment.duration(12, 'hours')),
+                    new DropdownItem(moment.duration(1, 'days')),
+                    new DropdownItem(moment.duration(2, 'days')),
+                    new DropdownItem(moment.duration(3, 'days')),
+                    new DropdownItem(moment.duration(4, 'days')),
+                    new DropdownItem(moment.duration(5, 'days')),
+                    new DropdownItem(moment.duration(6, 'days')),
+                    new DropdownItem(moment.duration(7, 'days')),
+                    new DropdownItem(moment.duration(8, 'days'))
+                ];
+                ctrl.resolutions = [
+                    new DropdownItem(moment.duration(1, 'seconds')),
+                    new DropdownItem(moment.duration(5, 'seconds')),
+                    new DropdownItem(moment.duration(10, 'seconds')),
+                    new DropdownItem(moment.duration(30, 'seconds')),
+                    new DropdownItem(moment.duration(1, 'minutes')),
+                    new DropdownItem(moment.duration(5, 'minutes')),
+                    new DropdownItem(moment.duration(15, 'minutes')),
+                    new DropdownItem(moment.duration(30, 'minutes')),
+                    new DropdownItem(moment.duration(1, 'hour')),
+                    new DropdownItem(moment.duration(2, 'hour')),
+                    new DropdownItem(moment.duration(5, 'hour')),
+                    new DropdownItem(moment.duration(10, 'hour')),
+                    new DropdownItem(moment.duration(1, 'days')),
+                    new DropdownItem(moment.duration(5, 'days'))
+                ];
+
+                ctrl.selectedLookback = ctrl.lookbacks[0];
+                ctrl.selectedResolution = ctrl.resolutions[0];
+                $scope.$watch('$ctrl.selectedLookback', ctrl.update);
+                $scope.$watch('$ctrl.selectedResolution', ctrl.update);
+                ctrl.update();
             }
-        }],
+        ],
         bindings: {
             stock: '<'
         }
     });
+
+function DropdownItem(duration) {
+    Object.call(this);
+
+    this.label = duration.humanize();
+    this.duration = duration;
+}
+
+// Object.assign(DropdownItem.prototype, {
+//     toString: function () {
+//
+//     }
+// });

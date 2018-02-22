@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="app.css">
 </head>
 
-<body>
+<body ng-controller="dashboardApp">
+
+    <input type="button" value="singIn" ng-click="signIn()">
 
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">
@@ -42,6 +44,7 @@
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
+    <script src="https://apis.google.com/js/api.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -55,16 +58,18 @@
     <script src="models/Candle.js"></script>
     <script src="models/CandleChart.js"></script>
     <!--Services-->
+    <script src="utils/utils.module.js"></script>
     <script src="services/services.module.js"></script>
     <script src="services/order-book.service.js"></script>
     <script src="services/trades.service.js"></script>
     <script src="services/candles.service.js"></script>
+    <script src="services/authorization.service.js"></script>
     <!--Directives-->
     <script src="directives/directives.module.js"></script>
     <script src="directives/stock-plot.directive.js"></script>
     <!--Components-->
-    <script src="trades/trades.module.js"></script>
-    <script src="trades/trades.component.js"></script>
+    <script src="stock-trades/stock-trades.module.js"></script>
+    <script src="stock-trades/stock-trades.component.js"></script>
     <script src="order-book/order-book.module.js"></script>
     <script src="order-book/order-book.component.js"></script>
     <script src="stock-panel/stock-panel.module.js"></script>
