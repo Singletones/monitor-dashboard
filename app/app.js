@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dashboardApp', ['stockPanelList', 'services'])
+angular.module('dashboardApp', ['authorizationPage', 'stockPanelList', 'services'])
     .controller('dashboardApp', ['$scope', 'authorizationService', function ($scope, auth) {
         $scope.isSignedIn = false;
         auth.init(function listen(isSignedIn) {

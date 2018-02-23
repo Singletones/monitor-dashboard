@@ -13,7 +13,7 @@
 
 <body ng-controller="dashboardApp">
 
-    <input type="button" value="singIn" ng-click="signIn()">
+    <!--<input type="button" value="singIn" ng-click="signIn()">-->
 
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">
@@ -22,6 +22,7 @@
     </div>
 
     <stock-panel-list></stock-panel-list>
+    <!--<authorization-page></authorization-page>-->
 
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -50,6 +51,8 @@
     <script src="directives/directives.module.js"></script>
     <script src="directives/stock-plot.directive.js"></script>
     <!--Components-->
+    <script src="authorization-page/authorization-page.module.js"></script>
+    <script src="authorization-page/authorization-page.component.js"></script>
     <script src="stock-trades/stock-trades.module.js"></script>
     <script src="stock-trades/stock-trades.component.js"></script>
     <script src="order-book/order-book.module.js"></script>
@@ -58,6 +61,7 @@
     <script src="stock-panel/stock-panel.component.js"></script>
     <script src="stock-panel-list/stock-panel-list.module.js"></script>
     <script src="stock-panel-list/stock-panel-list.component.js"></script>
+    <script src="stock-panel-list/navigation-bar/navigation-bar.directive.js"></script>
 </body>
 
 </html>

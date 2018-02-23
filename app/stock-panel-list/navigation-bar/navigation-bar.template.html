@@ -1,0 +1,9 @@
+<div class="pagination-wrapper">
+    <ul class="pagination">
+        <li class="waves-effect"><a ng-click="$ctrl.switchPage(-1)"><i class="material-icons">chevron_left</i></a></li>
+        <li ng-repeat="i in [].constructor($ctrl.pagesAmount) track by $index" ng-class="$ctrl.isActivePage($index)">
+            <a ng-click="$ctrl.switchPageTo($index)">{{$index + 1}}</a>
+        </li>
+        <li class="waves-effect"><a ng-click="$ctrl.switchPage(1)"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>

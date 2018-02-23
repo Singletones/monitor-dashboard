@@ -32,6 +32,22 @@ h5 {
     padding: 0;
 }
 
+.auth-wrapper{
+    width: 60%;
+    padding-left: 40%!important;
+}
+
+.auth-btn{
+    position: absolute;
+    width: 100%!important;
+    text-align: center;
+}
+
+.auth-field{
+    width: 100%!important;
+    text-align: center;
+}
+
 .nav-wrapper {
     background-color: rgba(155, 182, 196, .4);
     height: 70px;
