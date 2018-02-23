@@ -32,18 +32,33 @@ h5 {
     padding: 0;
 }
 
-.auth-wrapper{
-    width: 60%;
-    padding-left: 40%!important;
+.auth-block {
+    margin: auto;
+    height: 400px;
+    width: 25%;
+    background-color: rgba(155, 182, 196, .4);
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
 }
 
-.auth-btn{
-    position: absolute;
+.auth-form {
+    padding-top: 16%;
+}
+
+.auth-wrapper {
+    width: 90%;
+    padding-left: 10%!important;
+}
+
+.auth-btn {
     width: 100%!important;
     text-align: center;
+    padding-top: 10%;
 }
 
-.auth-field{
+.auth-field {
     width: 100%!important;
     text-align: center;
 }
@@ -54,6 +69,14 @@ h5 {
     padding-left: 20px;
     padding-top: 7px;
 }
+
+
+/* .nav-btn {
+    float: right;
+    width: auto!important;
+    margin-top: .7rem!important;
+    padding-right: 2rem!important;
+} */
 
 .pagination-wrapper {
     text-align: center;
@@ -223,10 +246,6 @@ thead {
     padding-top: 6%;
 }
 
-.small-screen {
-    display: none;
-}
-
 @media (max-width: 1450px) {
     .stock-info {
         float: none;
@@ -248,6 +267,9 @@ thead {
     .order-book {
         width: 50%;
     }
+    .auth-block {
+        width: 35%;
+    }
 }
 
 @media (max-width: 900px) {
@@ -264,14 +286,12 @@ thead {
         float: none;
         width: 100%;
     }
-}
-
-@media (max-width: 800px) {
-    .wide-screen {
-        display: none;
+    .auth-row {
+        padding: 25% 0;
     }
-    .small-screen {
-        display: block;
+    .auth-block {
+        height: 360px;
+        width: 50%;
     }
 }
 
@@ -288,6 +308,10 @@ thead {
     .second-field {
         float: none;
     }
+    .auth-block {
+        height: 400px;
+        width: 80%;
+    }
 }
 
 @media (max-width: 400px) {
@@ -300,5 +324,12 @@ thead {
     .update-wrapper {
         text-align: center;
         padding: 5% 2% 1% 4%;
+    }
+    .auth-row {
+        padding: 15% 0;
+    }
+    .auth-block {
+        height: 320px;
+        width: 80%;
     }
 }

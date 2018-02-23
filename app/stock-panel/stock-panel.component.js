@@ -11,10 +11,7 @@ angular
             function(candlesService, $scope, $interval) {
                 var ctrl = this;
 
-                ctrl.print = function() {
-                    // debugger;
-                    // console.dir(ctrl);
-                };
+                ctrl.print = function() {};
 
                 ctrl.loadData = function() {
                     candlesService.get({
@@ -27,7 +24,7 @@ angular
                         $scope.$emit('replot', candleChart);
                     });
                 };
-                ctrl.update = function () {
+                ctrl.update = function() {
                     if (ctrl.timeoutId) {
                         $interval.cancel(ctrl.timeoutId);
                     }

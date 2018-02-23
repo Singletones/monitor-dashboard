@@ -1,16 +1,5 @@
-{
-  "GPRO": [
-    {
-      "timestamp": 1003423,
-      "price": 100.43,
-      "size": 100
-    }
-  ],
-  "GPRE": [
-    {
-      "timestamp": 1003235,
-      "price": 100.13,
-      "size": 200
-    }
-  ]
-}
+[{
+    "timestamp": 1003423,
+    "price": 100.43,
+    "size": 100
+}]
