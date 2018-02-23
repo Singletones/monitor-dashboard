@@ -2,7 +2,7 @@
 
 angular
     .module('models')
-    .factory('CandleModel', function () {
+    .factory('CandleModel', ['utils', function (utils) {
 
         function Candle(args) {
             Object.call(this);
@@ -14,7 +14,7 @@ angular
             this.high = args.high;
             this.low = args.low;
 
-            this.timestamp = moment('01.01.2000 00:00:00', 'DD.MM.YYYY H:m:s').add(args.timestamp, 'seconds')
+            this.timestamp = utils.timestampToMoment(args.timestamp);
         }
 
         Object.assign(Candle.prototype, {
@@ -26,4 +26,4 @@ angular
         });
 
         return Candle;
-    });
+    }]);

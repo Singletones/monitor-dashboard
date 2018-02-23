@@ -21,11 +21,11 @@
 
         </div>
         <div class="plot-wrapper">
-            <div stock-plot event="replot"></div>
+            <div stock-plot event="candleChartUpdate"></div>
         </div>
     </div>
     <div class="for-reverse">
-        <stock-trades></stock-trades>
+        <stock-trades symbol="$ctrl.stock.getSymbol()"></stock-trades>
         <order-book symbol="$ctrl.stock.getSymbol()"></order-book>
     </div>
 </div>

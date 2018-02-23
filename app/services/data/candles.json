@@ -1,76 +1,37 @@
-{
-  "GPRO": [
-    {
-      "timestamp": 10003422,
-      "open": 15.21,
-      "close": 35.15,
-      "high": 55.50,
-      "low": 30.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 55.15,
-      "high": 55.50,
-      "low": 55.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 55.15,
-      "high": 55.50,
-      "low": 55.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 55.15,
-      "high": 55.50,
-      "low": 55.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 55.15,
-      "high": 55.50,
-      "low": 55.01
-    }
-  ],
-  "GPRE": [
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 75.15,
-      "high": 75.50,
-      "low": 45.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 75.15,
-      "high": 75.50,
-      "low": 45.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 75.15,
-      "high": 75.50,
-      "low": 45.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 75.15,
-      "high": 75.50,
-      "low": 45.01
-    },
-    {
-      "timestamp": 10003422,
-      "open": 55.21,
-      "close": 75.15,
-      "high": 75.50,
-      "low": 45.01
-    }
-  ]
-}
+[
+  {
+    "timestamp": 10003422,
+    "open": 15.21,
+    "close": 35.15,
+    "high": 55.50,
+    "low": 30.01
+  },
+  {
+    "timestamp": 10003422,
+    "open": 55.21,
+    "close": 55.15,
+    "high": 55.50,
+    "low": 55.01
+  },
+  {
+    "timestamp": 10003422,
+    "open": 55.21,
+    "close": 55.15,
+    "high": 55.50,
+    "low": 55.01
+  },
+  {
+    "timestamp": 10003422,
+    "open": 55.21,
+    "close": 55.15,
+    "high": 55.50,
+    "low": 55.01
+  },
+  {
+    "timestamp": 10003422,
+    "open": 55.21,
+    "close": 55.15,
+    "high": 55.50,
+    "low": 55.01
+  }
+]

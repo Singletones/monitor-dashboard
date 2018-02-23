@@ -6,10 +6,8 @@ angular
         return {
             get: function (params, callback) {
                 // return $http.get(apiDomain + '/equities/'+params.symbol+'/orderbook').then(function (response) {
-                //     callback(response.data);
-                // });
                 return $http.get('services/data/order-book.json').then(function (response) {
-                    callback(response.data[params.symbol]);
+                    callback(response.data);
                 });
             }
         };

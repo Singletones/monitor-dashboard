@@ -18,10 +18,10 @@
     </div>
 </div>
 
-<navigation-bar></navigation-bar>
+<navigation-bar ng-if="$ctrl.pagesAmount > 1"></navigation-bar>
 
 <div class="stock-panel-list">
     <stock-panel ng-repeat="stock in $ctrl.currentPage" stock="stock"></stock-panel>
 </div>
 
-<navigation-bar></navigation-bar>
+<navigation-bar ng-if="$ctrl.pagesAmount > 1"></navigation-bar>

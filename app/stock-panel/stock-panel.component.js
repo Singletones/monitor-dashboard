@@ -14,6 +14,12 @@ angular
                 ctrl.print = function() {
                     // debugger;
                     // console.dir(ctrl);
+                    $('select').material_select();
+
+                };
+
+                ctrl.$postLink = function () {
+                    $('select').material_select();
                 };
 
                 ctrl.loadData = function() {
@@ -24,7 +30,7 @@ angular
                         endDate: moment()
                     }, function(candleChart) {
                         ctrl.stock.updateLatestTimestamp();
-                        $scope.$emit('replot', candleChart);
+                        $scope.$broadcast('candleChartUpdate', candleChart);
                     });
                 };
                 ctrl.update = function () {
@@ -74,8 +80,8 @@ angular
                     new DropdownItem(moment.duration(5, 'days'))
                 ];
 
-                ctrl.selectedLookback = ctrl.lookbacks[0];
-                ctrl.selectedResolution = ctrl.resolutions[0];
+                ctrl.selectedLookback = ctrl.lookbacks[4];
+                ctrl.selectedResolution = ctrl.resolutions[4];
                 $scope.$watch('$ctrl.selectedLookback', ctrl.update);
                 $scope.$watch('$ctrl.selectedResolution', ctrl.update);
                 ctrl.update();

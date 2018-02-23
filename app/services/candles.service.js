@@ -10,7 +10,7 @@ angular
 
             function candlyCosine(params) {
 
-                var timeFrame = moment('01.01.2000 00:00:00', 'DD.MM.YYYY H:m:s'),
+                var timeFrame = moment('01.01.2000 00:00:00', 'DD.MM.YYYY HH:mm:ss'),
                     scale = 0.1;
 
                 function normalizeFrame(x) {
@@ -45,7 +45,7 @@ angular
                 get: function (params, callback) {
                     return callback(candlyCosine(params));
                     // return $http.get('services/data/candles.json').then(function (response) {
-                    //     callback(new CandleChart(response.data[params.symbol], params));
+                    //     callback(new CandleChart(response.data, params));
                     // });
                 }
             };

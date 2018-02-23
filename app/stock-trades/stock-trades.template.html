@@ -12,29 +12,11 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                <tr ng-repeat="trade in $ctrl.trades">
+                    <td>{{trade.getTimestamp().format('MM-DD-YY h:mm A')}}</td>
+                    <td>{{trade.getPrice()}}</td>
+                    <td>{{trade.getVolume()}}</td>
+                    <td>{{trade.getCode()}}</td>
                 </tr>
             </tbody>
         </table>
@@ -42,11 +24,11 @@
 
     <div class="trades-levels-wrapper">
         <h5>Trade levels</h5>
-
+        <div stock-plot event="tradeLevelsUpdate"></div>
     </div>
 
     <div class="trades-frequencies-wrapper">
         <h5>Level frequencies</h5>
-
+        <div stock-plot event="levelFrequenciesUpdate"></div>
     </div>
 </div>

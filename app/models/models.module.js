@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('models', []);
+angular.module('models', ['utils']);

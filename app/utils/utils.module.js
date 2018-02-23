@@ -9,6 +9,10 @@ angular.module('utils', [])
                     candleRes,
                     durationStr[(candleRes + '').length + 1]
                 );
+            },
+
+            timestampToMoment: function (timestamp) {
+                return moment('01.01.2000 00:00:00', 'DD.MM.YYYY HH:mm:ss').add(timestamp, 'seconds');
             }
         };
     });

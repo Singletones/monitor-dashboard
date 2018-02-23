@@ -16,7 +16,6 @@ angular
             this.pagesAmount = 1;
 
             this.updateCurrentPage = function () {
-                debugger;
                 var frame = this.activePage*stocksPerPage;
                 this.currentPage = this.stocks.slice(frame, frame + stocksPerPage);
             };
@@ -44,7 +43,7 @@ angular
             };
 
             this.isActivePage = function (index) {
-                if (index == this.activePage) {
+                if (index === this.activePage) {
                     return "active";
                 }
                 return "waves-effect";

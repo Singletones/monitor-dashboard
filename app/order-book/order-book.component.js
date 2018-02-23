@@ -14,9 +14,12 @@ angular
             });
 
             tradesService.get({
-                symbol: ctrl.symbol
-            }, function (data) {
-                ctrl.recentTrade = data[0];
+                symbol: ctrl.symbol,
+                fromDate: moment(),
+                endDate: moment(),
+                limit: 0
+            }, function (trades) {
+                ctrl.recentTrade = trades[0];
             });
         }],
         bindings: {
