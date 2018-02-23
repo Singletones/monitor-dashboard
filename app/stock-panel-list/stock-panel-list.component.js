@@ -6,6 +6,16 @@ angular
         templateUrl: 'stock-panel-list/stock-panel-list.template.html',
         controller: ['StockModel', 'stocksPerPage', function(Stock, stocksPerPage) {
             var ctrl = this;
+            this.$postLink = function toggleClass() {
+                if ($(window).width() < 800 && $(window).width() > 600) {
+                    debugger;
+                    $('#toggle-input').removeClass('input-field col s3 offset-s4').addClass('input-field col s6 offset-s2');
+                    $('#toggle-btn').removeClass('input-field col s3').addClass('input-field col s4');
+                } else if ($(window).width() < 600) {
+                    $('#toggle-input').removeClass('input-field col s3 offset-s4').addClass('input-field col s6 offset-s1');
+                    $('#toggle-btn').removeClass('input-field col s3').addClass('input-field col s5');
+                }
+            };
 
             this.stocks = [
                 new Stock('GPRO', 'NASDAQ')
@@ -29,6 +39,7 @@ angular
                     this.pagesAmount += 1;
                 }
                 this.updateCurrentPage();
+                this.switchPageTo(0);
             };
 
             this.switchPageTo = function (newPage) {
