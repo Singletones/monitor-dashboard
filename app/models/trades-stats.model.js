@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('models')
-    .factory('TradesStatsModel', function () {
+    .factory('TradesStatsModel', function() {
         function TradesStats(stats) {
             Object.call(this);
 
@@ -11,10 +11,10 @@ angular.module('models')
             this.aboveAsk = stats.aboveAsk || 0;
             this.between = stats.between || 0;
         }
-        
+
         Object.assign(TradesStats.prototype, {
 
-            values: function () {
+            values: function() {
                 return [
                     this.between,
                     this.bid,
@@ -24,7 +24,7 @@ angular.module('models')
                 ];
             },
 
-            labels: function () {
+            labels: function() {
                 return [
                     'Between Bid/Ask',
                     'At Bid',
@@ -33,8 +33,8 @@ angular.module('models')
                     'Above Ask'
                 ];
             },
-            
-            plot: function (domElement) {
+
+            plot: function(domElement) {
                 var data = [{
                     values: this.values(),
                     labels: this.labels(),
@@ -42,14 +42,23 @@ angular.module('models')
                 }];
 
                 var layout = {
-                    height: 400,
-                    width: 500
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    margin: {
+                        l: 10,
+                        r: 10,
+                        b: 30,
+                        t: 10,
+                        pad: 0
+                    },
+                    height: 300
                 };
+
 
                 Plotly.newPlot(domElement, data, layout);
             }
-            
+
         });
-        
+
         return TradesStats;
     });
