@@ -14,19 +14,30 @@
 <body ng-controller="dashboardApp">
 
 
+    <nav>
+        <header class="nav-wrapper light-blue">
 
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">
-            <img src="images/Zululogo.png" height="60px">
-        </a>
-        <!-- <input class="nav-btn" type="button" value="singIn" ng-click="signIn()"> -->
-        <!-- <div class="input-field nav-btn" ng-click="signIn()">
+            <a href="#" class="brand-logo">
+                <img src="images/Zululogo-w-shadow2.png" class="brand-logo-img">
+            </a>
+            <!-- <input class="nav-btn" type="button" value="singIn" ng-click="signIn()"> -->
+            <!-- <div class="input-field nav-btn" ng-click="signIn()">
             <a class="waves-effect waves-light btn grey darken-4">Sign In</a>
         </div> -->
-    </div>
+
+        </header>
+    </nav>
 
     <stock-panel-list></stock-panel-list>
     <!-- <authorization-page></authorization-page> -->
+    <footer class="page-footer light-blue">
+
+        <div class="footer-text">
+            Property of Zulu Quant for monitoring trades, market movements, and research.
+        </div>
+
+    </footer>
+
 
     <div style="display: none">
         <!-- In production use:
