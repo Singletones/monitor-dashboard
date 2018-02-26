@@ -240,7 +240,7 @@ thead {
 /*----------------------------*/
 
 .order-book {
-    padding: 2% 0%;
+    padding: 2% 1% 0 0;
     width: 20%;
     float: right;
 }
@@ -322,7 +322,7 @@ thead {
     }
     .trades-levels-wrapper,
     .trades-frequencies-wrapper {
-        padding: 1% 0%;
+        padding: 5% 0%;
     }
     .trades-wrapper>h5 {
         padding-left: 0%;
