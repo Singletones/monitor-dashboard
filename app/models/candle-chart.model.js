@@ -49,8 +49,8 @@ angular
                     low: this.unpack('low'),
 
 
-                    decreasing: { line: { color: '#7F7F7F' } },
-                    increasing: { line: { color: '#17BECF' } },
+                    decreasing: { line: { color: '#f44336' } },
+                    increasing: { line: { color: '#4caf50' } },
                     line: { color: 'rgba(31,119,180,1)' },
 
                     type: 'candlestick',

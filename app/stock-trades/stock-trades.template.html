@@ -1,34 +1,40 @@
 <div class="trades-wrapper">
-    <h5>Trades</h5>
-    <div class="trades-table-wrapper">
-        <table class="highlight">
-            <thead>
-                <tr>
-                    <th>Datetime</th>
-                    <th>Price</th>
-                    <th>Volume</th>
-                    <th>Code</th>
-                </tr>
-            </thead>
+    <div class="trades-card">
+        <h5>Trades</h5>
+        <div class="trades-table-wrapper">
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>Datetime</th>
+                        <th>Price</th>
+                        <th>Volume</th>
+                        <th>Code</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr ng-repeat="trade in $ctrl.trades">
-                    <td>{{trade.getTimestamp().format('MM-DD-YY h:mm A')}}</td>
-                    <td>{{trade.getPrice()}}</td>
-                    <td>{{trade.getVolume()}}</td>
-                    <td>{{trade.getCode()}}</td>
-                </tr>
-            </tbody>
-        </table>
+                <tbody>
+                    <tr ng-repeat="trade in $ctrl.trades">
+                        <td>{{trade.getTimestamp().format('MM-DD-YY h:mm A')}}</td>
+                        <td>{{trade.getPrice()}}</td>
+                        <td>{{trade.getVolume()}}</td>
+                        <td>{{trade.getCode()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="trades-levels-wrapper">
-        <h5>Trade levels</h5>
-        <div stock-plot event="tradeLevelsUpdate"></div>
+        <div class="trades-levels-card">
+            <h5>Trade levels</h5>
+            <div stock-plot event="tradeLevelsUpdate"></div>
+        </div>
     </div>
 
     <div class="trades-frequencies-wrapper">
-        <h5>Level frequencies</h5>
-        <div stock-plot event="levelFrequenciesUpdate"></div>
+        <div class="trades-frequencies-card">
+            <h5>Level frequencies</h5>
+            <div stock-plot event="levelFrequenciesUpdate"></div>
+        </div>
     </div>
 </div>

@@ -38,7 +38,10 @@ angular.module('models')
                 var data = [{
                     values: this.values(),
                     labels: this.labels(),
-                    type: 'pie'
+                    type: 'pie',
+                    marker: {
+                        color: 'red'
+                    }
                 }];
 
                 var layout = {
@@ -54,8 +57,15 @@ angular.module('models')
                     height: 300
                 };
 
+                var restyle = {
+                    'marker.colors': [
+                        ['#ffeb3b', '#ff80ab ', '#2196f3', '#fff59d', '#ff9800']
+                    ]
+                }
+
 
                 Plotly.newPlot(domElement, data, layout);
+                Plotly.restyle(domElement, restyle);
             }
 
         });

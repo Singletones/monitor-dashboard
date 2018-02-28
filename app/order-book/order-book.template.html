@@ -1,46 +1,48 @@
 <div class="order-book">
-    <div class="cont-wrap ask-wrapper">
-        <b>ASK</b>
-        <table class="highlight">
-            <thead>
-                <tr>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+    <div class="order-card">
+        <div class="cont-wrap ask-wrapper">
+            <b>ASK</b>
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr ng-repeat="level in $ctrl.data.Ask">
-                    <td>{{level.Price}}</td>
-                    <td>{{level.Volume}}</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <p>
-        <span>{{$ctrl.recentTrade.getPrice()}}</span>
-        <span>{{$ctrl.recentTrade.getVolume()}}</span>
-    </p>
-    <div class="cont-wrap bid-wrapper">
-        <table class="highlight">
-            <thead>
-                <tr>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+                <tbody>
+                    <tr ng-repeat="level in $ctrl.data.Ask">
+                        <td>{{level.Price}}</td>
+                        <td>{{level.Volume}}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            <span>{{$ctrl.recentTrade.getPrice()}}</span>
+            <span>{{$ctrl.recentTrade.getVolume()}}</span>
+        </p>
+        <div class="cont-wrap bid-wrapper">
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr ng-repeat="level in $ctrl.data.Bid">
-                    <td>{{level.Price}}</td>
-                    <td>{{level.Volume}}</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </tbody>
-        </table>
-        <b>BID</b>
+                <tbody>
+                    <tr ng-repeat="level in $ctrl.data.Bid">
+                        <td>{{level.Price}}</td>
+                        <td>{{level.Volume}}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <b>BID</b>
+        </div>
     </div>
 </div>

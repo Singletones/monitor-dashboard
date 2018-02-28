@@ -12,7 +12,7 @@
 }
 
 body {
-    background: #fafafa;
+    background: #eeeeee;
 }
 
 h1,
@@ -123,8 +123,24 @@ ul.dropdown-content.select-dropdown li span {
 
 /* Tabels hover-effect color */
 
+
+/* table {
+    border-collapse: collapse;
+} */
+
 table.highlight>tbody>tr:hover {
     background-color: rgba(3, 169, 244, 0.2)
+}
+
+tr {
+    border: solid 1px #03a9f4;
+}
+
+td,
+th {
+    border-right: solid 1px #03a9f4;
+    border-left: solid 1px #03a9f4;
+    padding: 5px 5px;
 }
 
 thead {
@@ -137,12 +153,9 @@ thead {
 }
 
 .stock-panel {
-    background-color: #eeeeee;
+    background-color: #fafafa;
     margin: 0% 2% 2% 2%;
     border-radius: 10px;
-    /* -webkit-box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75); */
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
     -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
@@ -165,7 +178,7 @@ thead {
 
 .update-wrapper {
     text-align: left;
-    padding: 7.3% 0 1% 0;
+    padding: 4.5% 0 1% 0;
 }
 
 .input-field {
@@ -178,6 +191,24 @@ thead {
 
 .second-field {
     float: right;
+}
+
+
+/*Panel's card style*/
+
+.trades-levels-card,
+.trades-frequencies-card,
+.trades-card,
+.order-card {
+    border-radius: 10px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding: .4rem;
+}
+
+.trades-card {
+    padding: 0 .4rem .8rem .4rem;
 }
 
 
@@ -213,21 +244,22 @@ thead {
     padding: 1%;
 }
 
-.trades-wrapper>h5 {
+.trades-card>h5 {
     margin-top: 1.9%;
+    padding-bottom: .4%;
 }
 
 .trades-levels-wrapper {
     padding-top: 7%;
     float: left;
-    width: 50%;
+    width: 49.5%;
     height: auto;
 }
 
 .trades-frequencies-wrapper {
     padding-top: 7%;
     float: right;
-    width: 50%;
+    width: 49.5%;
     height: auto;
 }
 
@@ -240,7 +272,7 @@ thead {
 /*----------------------------*/
 
 .order-book {
-    padding: 2% 1% 0 0;
+    padding: 1.8% 1% 0 0;
     width: 20%;
     float: right;
 }
@@ -262,14 +294,23 @@ thead {
     padding-top: 6%;
 }
 
-.page-footer {
-    padding: 1rem 0 1rem 0;
+.page-footer * {
+    padding-top: 0!important;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.page-footer>.container {
+    padding: 1rem 0 3rem 1rem;
+}
+
+.footer-copyright {
+    padding: 1rem!important;
 }
 
 .footer-text {
-    text-align: center;
     font-style: italic;
-    padding-bottom: 2 rem;
 }
 
 @media (max-width: 1450px) {
@@ -288,22 +329,25 @@ thead {
     }
     .trades-wrapper {
         width: 50%;
-        padding: .8% 1% 1% 0%;
+        padding: .8% 1% 1% 1%;
     }
-    .trades-wrapper>h5 {
+    /* .trades-wrapper>h5 {
         padding-left: 3%;
         margin-top: 1.7%;
+    } */
+    .trades-card {
+        margin-left: 1%;
     }
     .trades-levels-wrapper,
     .trades-frequencies-wrapper {
-        padding: 5% 3% 1% 3%;
+        padding: 5% 0% 1% 1%;
     }
-    .trades-table-wrapper {
+    /* .trades-table-wrapper {
         padding-left: 4%;
-    }
+    } */
     .order-book {
         width: 50%;
-        padding: 2% 2% 0% 1%;
+        padding: 1.8% 1.5% 0% 1%;
     }
     .auth-block {
         width: 35%;
@@ -319,6 +363,9 @@ thead {
         width: 100%;
         padding: 1% 2% 3% 2%;
         float: left;
+    }
+    .trades-card {
+        margin-left: 0;
     }
     .trades-levels-wrapper,
     .trades-frequencies-wrapper {
@@ -364,7 +411,7 @@ thead {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .headline-wrapper {
         flex-direction: column;
     }
@@ -381,5 +428,13 @@ thead {
     .auth-block {
         height: 320px;
         width: 80%;
+    }
+    .trades-levels-wrapper,
+    .trades-frequencies-wrapper {
+        width: 100%;
+    }
+    .trades-frequencies-wrapper {
+        float: none;
+        clear: both;
     }
 }
