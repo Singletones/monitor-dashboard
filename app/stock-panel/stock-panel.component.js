@@ -8,19 +8,9 @@ angular
             'candlesService',
             '$scope',
             '$interval',
-            function(candlesService, $scope, $interval) {
+            'authorizationService',
+            function(candlesService, $scope, $interval, auth) {
                 var ctrl = this;
-
-                ctrl.print = function() {
-                    // debugger;
-                    // console.dir(ctrl);
-                    $('select').material_select();
-
-                };
-
-                ctrl.$postLink = function () {
-                    $('select').material_select();
-                };
 
                 ctrl.loadData = function() {
                     candlesService.get({
@@ -80,11 +70,29 @@ angular
                     new DropdownItem(moment.duration(5, 'days'))
                 ];
 
-                ctrl.selectedLookback = ctrl.lookbacks[4];
-                ctrl.selectedResolution = ctrl.resolutions[4];
                 $scope.$watch('$ctrl.selectedLookback', ctrl.update);
                 $scope.$watch('$ctrl.selectedResolution', ctrl.update);
-                ctrl.update();
+
+                ctrl.$postLink = function () {
+                    ctrl.selectedLookback = ctrl.lookbacks[4];
+                    ctrl.selectedResolution = ctrl.resolutions[4];
+                    $scope.$applyAsync(function () {
+                        $('select').material_select();
+                    });
+                };
+
+                ctrl.print = function() {
+                    // debugger;
+                    // console.dir(ctrl);
+                    // $('select').material_select();
+                    if (auth.isAuthorized) {
+                        console.dir(auth.getUser().getHostedDomain());
+                    }
+                    else {
+                        console.log('Nobody is authorized');
+                    }
+
+                };
             }
         ],
         bindings: {
@@ -95,12 +103,8 @@ angular
 function DropdownItem(duration) {
     Object.call(this);
 
-    this.label = duration.humanize();
+    this.label = duration.format('d [days] h [hours] m [minutes] s [seconds]', {
+        trim: 'both'
+    });
     this.duration = duration;
 }
-
-// Object.assign(DropdownItem.prototype, {
-//     toString: function () {
-//
-//     }
-// });

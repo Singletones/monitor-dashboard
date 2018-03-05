@@ -3,11 +3,9 @@
 angular
     .module('services')
     .factory('authorizationService', [
-        'apiKey',
         'clientId',
-        'scope',
-        'discoveryDocs',
-        function (apiKey, clientId, scope, discoveryDocs) {
+        'GSuiteDomain',
+        function (clientId, GSuiteDomain) {
 
             return {
                 authInstance: null,
@@ -16,16 +14,13 @@ angular
                 init: function (callback) {
                     var self = this;
 
-                    gapi.load('client:auth2', function () {
-                        gapi.client.init({
-                            // 'apiKey': apiKey,
+                    gapi.load('auth2', function () {
+                        gapi.auth2.init({
                             'clientId': clientId,
-                            'scope': scope
-                            // 'discoveryDocs': discoveryDocs
+                            'hosted_domain': GSuiteDomain
                         }).then(function () {
                             self.authInstance = gapi.auth2.getAuthInstance();
 
-                            // Listen for sign-in state changes.
                             function listener(isSignedIn) {
                                 self.isAuthorized = !!isSignedIn;
                                 callback(isSignedIn);
@@ -39,6 +34,10 @@ angular
 
                 getInstance: function () {
                     return this.authInstance;
+                },
+
+                getUser: function () {
+                    return this.authInstance.currentUser.get();
                 }
             };
         }

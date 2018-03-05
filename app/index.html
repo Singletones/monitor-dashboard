@@ -13,20 +13,17 @@
 
 <body ng-controller="dashboardApp">
 
-
-
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">
             <img src="images/Zululogo.png" height="60px">
         </a>
-        <!-- <input class="nav-btn" type="button" value="singIn" ng-click="signIn()"> -->
-        <!-- <div class="input-field nav-btn" ng-click="signIn()">
-            <a class="waves-effect waves-light btn grey darken-4">Sign In</a>
-        </div> -->
+        <div class="input-field nav-btn" ng-click="signIn()">
+            <a class="waves-effect waves-light btn grey darken-4">{{promt}}</a>
+        </div>
     </div>
 
-    <stock-panel-list></stock-panel-list>
-    <!-- <authorization-page></authorization-page> -->
+    <authorization-page ng-if="!isSignedIn"></authorization-page>
+    <stock-panel-list ng-if="isSignedIn"></stock-panel-list>
 
     <div style="display: none">
         <!-- In production use:
@@ -39,6 +36,7 @@
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/plotlyjs/plotly.js"></script>
         <script src="bower_components/moment/min/moment.min.js"></script>
+        <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
         <script src="app.js"></script>
         <!--Models-->
         <script src="models/models.module.js"></script>
