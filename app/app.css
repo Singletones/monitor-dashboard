@@ -66,13 +66,50 @@ h5 {
     height: 4rem;
 }
 
-
- .nav-btn {
+.nav-btn {
     float: right;
     width: auto!important;
-    margin-top: .7rem!important;
+    margin-top: -.1rem!important;
     padding-right: 2rem!important;
-} 
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around;
+    align-content: center; */
+    align-items: center;
+}
+
+.modal-content>h1 {
+    margin-top: 6%;
+}
+
+.modal-content>.nav-btn {
+    /* display: block;
+    width: 50%;
+    margin: auto!important;
+    height: 30%;
+    margin: 5rem 2rem 2rem !important; */
+    margin: 0 auto 2rem;
+    width: 100%;
+    padding-top: 3rem;
+    padding-right: 0!important;
+}
+
+.modal-content>h4 {
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.modal-content>.btn>p {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.modal-content>.btn>p>span {
+    text-transform: lowercase;
+}
 
 .pagination-wrapper {
     text-align: center;
@@ -174,11 +211,13 @@ thead {
 .symbol-wrapper {
     flex-direction: row;
     padding: 3% 1% 1% 3%;
+    flex-grow: 3;
 }
 
 .update-wrapper {
     text-align: left;
     padding: 4.5% 0 1% 0;
+    flex-grow: 1;
 }
 
 .input-field {
@@ -294,14 +333,29 @@ thead {
     padding-top: 6%;
 }
 
-.page-footer * {
+.auth-page-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 20px;
+    color: #fff;
+}
+
+.page-footer {
+    position: relative;
+    width: 100%;
+}
+
+.page-footer *,
+.auth-page-footer * {
     padding-top: 0!important;
     padding: 0;
     margin: 0;
     width: 100%;
 }
 
-.page-footer>.container {
+.page-footer>.container,
+.auth-page-footer>.container {
     padding: 1rem 0 3rem 1rem;
 }
 

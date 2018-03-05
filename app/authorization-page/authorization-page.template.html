@@ -1,21 +1,41 @@
+<!-- <nav>
+    <header class="nav-wrapper light-blue">
+
+        <a href="#" class="brand-logo">
+            <img src="images/Zululogo-w-shadow2.png" class="brand-logo-img">
+        </a>
+        <div id="singButton" class="input-field nav-btn" ng-click="signIn()" style="display: none">
+            <a class="waves-effect waves-light btn grey darken-4">{{promt}}</a>
+        </div>
+
+    </header>
+</nav> -->
 <div class="authorization-page">
-    <div class="row auth-row">
-        <div class="auth-block">
-            <form class="auth-form">
-                <div class="auth-wrapper">
-                    <div class="input-field auth-field">
-                        <input id="email" type="email" class="validate">
-                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                    </div>
-                    <div class="input-field auth-field">
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
+
+    <div class="login-wrapper">
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Please authorize via your zulu quant g-suite account</h4>
+                <div id="signButton" class="input-field nav-btn" ng-click="$ctrl.signIn()">
+                    <a class="waves-effect waves-light light-blue btn">Sign In</a>
                 </div>
-                <div class="input-field auth-btn">
-                    <a class="waves-effect waves-light btn grey darken-4">Log In</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+
+    <footer class="auth-page-footer grey darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p class="footer-text">Property of Zulu Quant for monitoring trades, market movements, and research.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <p>© 2018 Zulu quant</p>
+            </div>
+        </div>
+    </footer>
+
 </div>
