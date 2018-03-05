@@ -2,11 +2,11 @@
     <div class="stock-info">
         <div class="headline-wrapper">
             <div class="symbol-wrapper">
-                <h1 ng-click="$ctrl.print()">{{$ctrl.stock.getSymbol()}}</h1>
-                <h3>{{$ctrl.stock.getMarket()}}</h3>
+                <h2 ng-click="$ctrl.print()">{{$ctrl.stock.getSymbol()}}</h2>
+                <h6>{{$ctrl.stock.getMarket()}}</h6>
+                <h6>Last update: {{$ctrl.stock.getLastUpdate().format('YYYY-MM-DD[T]HH:mm:ss')}}</h6>
             </div>
             <div class="update-wrapper">
-                <h5>Last update: {{$ctrl.stock.getLastUpdate().format('YYYY-MM-DD[T]HH:mm:ss')}}</h5>
                 <div class="input-field first-field">
                     <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
                     </select>

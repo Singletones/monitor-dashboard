@@ -12,15 +12,7 @@
 }
 
 body {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7f7f7f+0,7a8c87+15,98baa1+36,c0d3a5+53,c0d3a5+69,c0d3a5+87,7db9e8+100 */
-    background: -moz-linear-gradient(top, #7f7f7f 0%, #7a8c87 15%, #98baa1 36%, #c0d3a5 53%, #98baa1 69%, #7a8c87 87%, #7f7f7f 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #7f7f7f 0%, #7a8c87 15%, #98baa1 36%, #c0d3a5 53%, #98baa1 69%, #7a8c87 87%, #7f7f7f 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #7f7f7f 0%, #7a8c87 15%, #98baa1 36%, #c0d3a5 53%, #98baa1 69%, #7a8c87 87%, #7f7f7f 100%)!important;
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#7db9e8', GradientType=0);
-    /* IE6-9 */
+    background: #eeeeee;
 }
 
 h1,
@@ -64,10 +56,14 @@ h5 {
 }
 
 .nav-wrapper {
-    background-color: rgba(155, 182, 196, .4);
+    /* background-color: rgba(155, 182, 196, .4); */
     height: 70px;
-    padding-left: 20px;
-    padding-top: 7px;
+    padding-left: .7rem;
+    padding-top: .1rem;
+}
+
+.brand-logo-img {
+    height: 4rem;
 }
 
 
@@ -99,34 +95,56 @@ h5 {
 /* label focus color */
 
 .input-field input:focus+label {
-    color: rgba(33, 33, 33, .6) !important;
+    color: rgba(0, 0, 0, 0.3) !important;
+    font-family: 'Roboto', sans-serif;
 }
 
 .input-field input+label {
-    color: rgba(33, 33, 33, .6) !important;
+    color: rgba(0, 0, 0, 0.3) !important;
+    font-family: 'Roboto-thin', sans-serif;
 }
 
 
 /* label underline focus color */
 
 .input-field input {
-    border-bottom: 1px solid #212121 !important;
+    border-bottom: 1px solid #03a9f4 !important;
 }
 
 .input-field input:focus {
-    border-bottom: 1px solid #212121 !important;
-    box-shadow: 0 1px 0 0 #212121 !important
+    border-bottom: 1px solid #03a9f4!important;
+    box-shadow: 0 1px 0 0 #03a9f4 !important
+}
+
+ul.dropdown-content.select-dropdown li span {
+    color: #03a9f4;
 }
 
 
 /* Tabels hover-effect color */
 
+
+/* table {
+    border-collapse: collapse;
+} */
+
 table.highlight>tbody>tr:hover {
-    background-color: rgba(255, 255, 255, .2)
+    background-color: rgba(3, 169, 244, 0.2)
+}
+
+tr {
+    border: solid 1px #03a9f4;
+}
+
+td,
+th {
+    border-right: solid 1px #03a9f4;
+    border-left: solid 1px #03a9f4;
+    padding: 5px 5px;
 }
 
 thead {
-    border-bottom: 1px solid rgba(255, 255, 255, .3);
+    border-bottom: 1px solid rgba(3, 169, 244, 1)
 }
 
 .stock-panel-list {
@@ -135,12 +153,12 @@ thead {
 }
 
 .stock-panel {
-    background-color: rgba(155, 182, 196, .4);
+    background-color: #fafafa;
     margin: 0% 2% 2% 2%;
     border-radius: 10px;
-    -webkit-box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 6px 29px -7px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .stock-info {
@@ -155,12 +173,12 @@ thead {
 
 .symbol-wrapper {
     flex-direction: row;
-    padding: 3% 8% 1% 3%;
+    padding: 3% 1% 1% 3%;
 }
 
 .update-wrapper {
     text-align: left;
-    padding: 6% 0 1% 0;
+    padding: 4.5% 0 1% 0;
 }
 
 .input-field {
@@ -173,6 +191,24 @@ thead {
 
 .second-field {
     float: right;
+}
+
+
+/*Panel's card style*/
+
+.trades-levels-card,
+.trades-frequencies-card,
+.trades-card,
+.order-card {
+    border-radius: 10px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding: .4rem;
+}
+
+.trades-card {
+    padding: 0 .4rem .8rem .4rem;
 }
 
 
@@ -205,24 +241,25 @@ thead {
 .trades-wrapper {
     float: left;
     width: 40%;
-    padding: 1% 1% 3% 1%;
+    padding: 1%;
 }
 
-.trades-wrapper>h5 {
+.trades-card>h5 {
     margin-top: 1.9%;
+    padding-bottom: .4%;
 }
 
 .trades-levels-wrapper {
-    padding-top: 2%;
+    padding-top: 7%;
     float: left;
-    width: 50%;
+    width: 49.5%;
     height: auto;
 }
 
 .trades-frequencies-wrapper {
-    padding-top: 2%;
+    padding-top: 7%;
     float: right;
-    width: 50%;
+    width: 49.5%;
     height: auto;
 }
 
@@ -235,7 +272,7 @@ thead {
 /*----------------------------*/
 
 .order-book {
-    padding: 2% 0%;
+    padding: 1.8% 1% 0 0;
     width: 20%;
     float: right;
 }
@@ -257,6 +294,25 @@ thead {
     padding-top: 6%;
 }
 
+.page-footer * {
+    padding-top: 0!important;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.page-footer>.container {
+    padding: 1rem 0 3rem 1rem;
+}
+
+.footer-copyright {
+    padding: 1rem!important;
+}
+
+.footer-text {
+    font-style: italic;
+}
+
 @media (max-width: 1450px) {
     .stock-info {
         float: none;
@@ -273,18 +329,25 @@ thead {
     }
     .trades-wrapper {
         width: 50%;
-        padding: 0.7% 0% 3% 0%;
+        padding: .8% 1% 1% 1%;
     }
-    .trades-wrapper>h5 {
+    /* .trades-wrapper>h5 {
         padding-left: 3%;
         margin-top: 1.7%;
+    } */
+    .trades-card {
+        margin-left: 1%;
     }
     .trades-levels-wrapper,
     .trades-frequencies-wrapper {
-        padding: 1% 3%;
+        padding: 5% 0% 1% 1%;
     }
+    /* .trades-table-wrapper {
+        padding-left: 4%;
+    } */
     .order-book {
         width: 50%;
+        padding: 1.8% 1.5% 0% 1%;
     }
     .auth-block {
         width: 35%;
@@ -298,18 +361,27 @@ thead {
     }
     .trades-wrapper {
         width: 100%;
-        padding: 1% 0% 3% 0%;
+        padding: 1% 2% 3% 2%;
         float: left;
     }
-    .trades-levels-wrapper {
-        padding: 1% 3%;
+    .trades-card {
+        margin-left: 0;
     }
+    .trades-levels-wrapper,
     .trades-frequencies-wrapper {
-        padding: 1% 3%;
+        padding: 5% 0%;
+    }
+    .trades-wrapper>h5 {
+        padding-left: 0%;
+        margin-top: 1.7%;
+    }
+    .trades-table-wrapper {
+        padding-left: 0%;
     }
     .order-book {
         float: none;
         width: 100%;
+        padding: 2% 2% 0% 2%;
     }
     .auth-row {
         padding: 25% 0;
@@ -339,7 +411,7 @@ thead {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .headline-wrapper {
         flex-direction: column;
     }
@@ -356,5 +428,13 @@ thead {
     .auth-block {
         height: 320px;
         width: 80%;
+    }
+    .trades-levels-wrapper,
+    .trades-frequencies-wrapper {
+        width: 100%;
+    }
+    .trades-frequencies-wrapper {
+        float: none;
+        clear: both;
     }
 }
