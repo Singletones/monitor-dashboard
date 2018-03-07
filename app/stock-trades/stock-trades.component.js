@@ -9,26 +9,25 @@ angular
             'tradesService',
             'tradesStatsService',
             function($scope, tradesService, tradesStatsService) {
-                var ctrl = this;
+                var $ctrl = this;
 
                 this.trades = [];
 
                 tradesStatsService.get({
-                    symbol: ctrl.symbol,
-                    startDate: moment(),
-                    endDate: moment()
+                    symbol: $ctrl.symbol,
+                    from_date: moment.utc().subtract(1, 'day'),
+                    to_date: moment.utc()
                 }, function(tradesStats) {
                     $scope.$broadcast('tradeLevelsUpdate', tradesStats);
                 });
 
-                tradesService.get({
-                    symbol: ctrl.symbol,
-                    fromDate: moment(),
-                    endDate: moment(),
-                    limit: 0
-                }, function(trades) {
-                    ctrl.trades = trades;
-                });
+                // tradesService.getList({
+                //     symbol: $ctrl.symbol,
+                //     from_date: moment.utc().subtract(1, 'day'),
+                //     to_date: moment.utc()
+                // }, function(trades) {
+                //     $ctrl.trades = trades;
+                // });
 
                 this.$postLink = function() {
                     $scope.$broadcast('levelFrequenciesUpdate', {
@@ -53,7 +52,7 @@ angular
                                     pad: 0
                                 },
                                 height: 300
-                            }
+                            };
 
                             var data = [{
                                 x: x,

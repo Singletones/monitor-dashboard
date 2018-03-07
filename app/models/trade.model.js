@@ -13,7 +13,7 @@ angular.module('models')
         Object.assign(Trade.prototype, {
 
             getTimestamp: function () {
-                return moment(this._timestamp);
+                return moment.utc(this._timestamp);
             },
 
             getPrice: function () {

@@ -10,32 +10,32 @@ angular
             '$interval',
             'authorizationService',
             function(candlesService, $scope, $interval, auth) {
-                var ctrl = this;
+                var $ctrl = this;
 
-                ctrl.loadData = function() {
+                $ctrl.loadData = function() {
                     candlesService.get({
-                        symbol: ctrl.stock.getSymbol(),
-                        candleType: ctrl.selectedResolution.duration,
-                        fromDate: moment().subtract(ctrl.selectedLookback.duration),
-                        endDate: moment()
+                        symbol: $ctrl.stock.getSymbol(),
+                        candle_type: $ctrl.selectedResolution.duration,
+                        from_date: moment.utc().subtract($ctrl.selectedLookback.duration),
+                        to_date: moment.utc()
                     }, function(candleChart) {
-                        ctrl.stock.updateLatestTimestamp();
+                        $ctrl.stock.updateLatestTimestamp();
                         $scope.$broadcast('candleChartUpdate', candleChart);
                     });
                 };
-                ctrl.update = function () {
-                    if (ctrl.timeoutId) {
-                        $interval.cancel(ctrl.timeoutId);
+                $ctrl.update = function () {
+                    if ($ctrl.timeoutId) {
+                        $interval.cancel($ctrl.timeoutId);
                     }
 
-                    var updateInterval = ctrl.selectedResolution.duration;
-                    ctrl.timeoutId = $interval(ctrl.loadData, updateInterval.asMilliseconds());
+                    var updateInterval = $ctrl.selectedResolution.duration;
+                    $ctrl.timeoutId = $interval($ctrl.loadData, updateInterval.asMilliseconds());
 
 
-                    ctrl.loadData();
+                    $ctrl.loadData();
                 };
 
-                ctrl.lookbacks = [
+                $ctrl.lookbacks = [
                     new DropdownItem(moment.duration(1, 'minutes')),
                     new DropdownItem(moment.duration(5, 'minutes')),
                     new DropdownItem(moment.duration(15, 'minutes')),
@@ -53,7 +53,7 @@ angular
                     new DropdownItem(moment.duration(7, 'days')),
                     new DropdownItem(moment.duration(8, 'days'))
                 ];
-                ctrl.resolutions = [
+                $ctrl.resolutions = [
                     new DropdownItem(moment.duration(1, 'seconds')),
                     new DropdownItem(moment.duration(5, 'seconds')),
                     new DropdownItem(moment.duration(10, 'seconds')),
@@ -70,28 +70,15 @@ angular
                     new DropdownItem(moment.duration(5, 'days'))
                 ];
 
-                $scope.$watch('$ctrl.selectedLookback', ctrl.update);
-                $scope.$watch('$ctrl.selectedResolution', ctrl.update);
+                $scope.$watch('$ctrl.selectedLookback', $ctrl.update);
+                $scope.$watch('$ctrl.selectedResolution', $ctrl.update);
 
-                ctrl.$postLink = function () {
-                    ctrl.selectedLookback = ctrl.lookbacks[4];
-                    ctrl.selectedResolution = ctrl.resolutions[4];
+                $ctrl.$postLink = function () {
+                    $ctrl.selectedLookback = $ctrl.lookbacks[4];
+                    $ctrl.selectedResolution = $ctrl.resolutions[4];
                     $scope.$applyAsync(function () {
                         $('select').material_select();
                     });
-                };
-
-                ctrl.print = function() {
-                    // debugger;
-                    // console.dir(ctrl);
-                    // $('select').material_select();
-                    if (auth.isAuthorized) {
-                        console.dir(auth.getUser().getHostedDomain());
-                    }
-                    else {
-                        console.log('Nobody is authorized');
-                    }
-
                 };
             }
         ],
@@ -103,8 +90,8 @@ angular
 function DropdownItem(duration) {
     Object.call(this);
 
-    this.label = duration.format('d [days] h [hours] m [minutes] s [seconds]', {
+    this.duration = duration;
+    this.label = duration.format('d [day] h [hour] m [minute] s [second]', {
         trim: 'both'
     });
-    this.duration = duration;
 }

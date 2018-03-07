@@ -7,13 +7,11 @@ angular
         function CandleChart(candles, params) {
             Object.call(this);
 
-            this.fromDate = moment(params.fromDate);
-            this.endDate = moment(params.endDate);
+            this.fromDate = moment(params.from_date);
+            this.endDate = moment(params.to_date);
 
-            this.candlesResolution = params.candleType;
-            this.candles = candles.map(function(candle) {
-                return new Candle(candle);
-            });
+            this.candlesResolution = params.candle_type;
+            this.candles = candles;
         }
 
         Object.assign(CandleChart.prototype, {
@@ -26,7 +24,7 @@ angular
 
             unpackXaxis: function() {
                 return this.candles.map(function(candle) {
-                    return candle.getTimestamp().format('YYYY-MM-DD HH:mm:ss');
+                    return candle.timestamp.format('YYYY-MM-DD HH:mm:ss');
                 });
             },
 
@@ -35,7 +33,7 @@ angular
             },
 
             getCandlesResolution: function() {
-                return this.candlesResolution;
+                return moment.duration(this.candlesResolution);
             },
 
             plot: function plot(domElement) {

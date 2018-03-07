@@ -5,11 +5,11 @@ angular.module('models')
         function TradesStats(stats) {
             Object.call(this);
 
-            this.bid = stats.bid || 0;
-            this.belowBid = stats.belowBid || 0;
-            this.ask = stats.ask || 0;
-            this.aboveAsk = stats.aboveAsk || 0;
-            this.between = stats.between || 0;
+            this.bid = stats.bid || 1;
+            this.belowBid = stats.belowBid || 1;
+            this.ask = stats.ask || 1;
+            this.aboveAsk = stats.aboveAsk || 1;
+            this.between = stats.between || 1;
         }
 
         Object.assign(TradesStats.prototype, {
@@ -61,7 +61,7 @@ angular.module('models')
                     'marker.colors': [
                         ['#ffeb3b', '#ff80ab ', '#2196f3', '#fff59d', '#ff9800']
                     ]
-                }
+                };
 
 
                 Plotly.newPlot(domElement, data, layout);

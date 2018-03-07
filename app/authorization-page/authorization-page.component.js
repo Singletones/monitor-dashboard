@@ -3,12 +3,10 @@
 angular.module('authorizationPage')
     .component('authorizationPage', {
         templateUrl: 'authorization-page/authorization-page.template.html',
-        controller: ['$scope', function($scope) {
+        controller: [function() {
             var $ctrl = this;
 
             $ctrl.$onInit = function() {
-                console.dir($ctrl.onSignIn);
-                console.dir($ctrl);
                 $('.modal').modal();
                 $('.modal').modal({
                     dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -16,7 +14,7 @@ angular.module('authorizationPage')
                     inDuration: 300, // Transition in duration
                     outDuration: 200, // Transition out duration
                     startingTop: '35%', // Starting top style attribute
-                    endingTop: '20%', // Ending top style attribute
+                    endingTop: '20%' // Ending top style attribute
 
                 });
                 $('.modal').css('width', '25%');

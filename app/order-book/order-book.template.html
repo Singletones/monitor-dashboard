@@ -12,7 +12,7 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="level in $ctrl.data.Ask">
+                    <tr ng-repeat="level in $ctrl.orderbook.getAsk()">
                         <td>{{level.Price}}</td>
                         <td>{{level.Volume}}</td>
                         <td>&nbsp;</td>
@@ -35,7 +35,7 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="level in $ctrl.data.Bid">
+                    <tr ng-repeat="level in $ctrl.orderbook.getBid()">
                         <td>{{level.Price}}</td>
                         <td>{{level.Volume}}</td>
                         <td>&nbsp;</td>

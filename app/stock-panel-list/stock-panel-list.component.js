@@ -5,7 +5,7 @@ angular
     .component('stockPanelList', {
         templateUrl: 'stock-panel-list/stock-panel-list.template.html',
         controller: ['StockModel', 'stocksPerPage', function(Stock, stocksPerPage) {
-            var ctrl = this;
+            var $ctrl = this;
             this.$postLink = function toggleClass() {
                 if ($(window).width() < 800 && $(window).width() > 600) {
                     $('#toggle-input').removeClass('input-field col s3 offset-s4').addClass('input-field col s6 offset-s2');

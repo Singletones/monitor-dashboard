@@ -5,12 +5,21 @@ angular.module('models')
         function OrderBook(args) {
             Object.call(this);
 
-            this.Aks = {}
+            this.Ask = args.Ask;
+            this.Bid = args.Bid;
+
+            this.datetime = args.datetime;
         }
 
         Object.assign(OrderBook.prototype, {
 
+            getAsk: function () {
+                return this.Ask;
+            },
 
+            getBid: function () {
+                return this.Bid;
+            }
 
         });
 

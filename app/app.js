@@ -7,8 +7,6 @@ angular.module('dashboardApp', ['authorizationPage', 'stockPanelList', 'services
             $scope.isSignedIn = false;
 
             auth.init(function listen(isSignedIn) {
-                console.log('mainCtrl: ' + isSignedIn);
-
                 $scope.$apply(function(scope) {
                     scope.isSignedIn = isSignedIn;
                 });
@@ -22,11 +20,5 @@ angular.module('dashboardApp', ['authorizationPage', 'stockPanelList', 'services
                     auth.getInstance().signIn();
                 }
             };
-
-            // this.$onInit = function() {
-            //     $('#signButton').css({
-            //         display: 'block'
-            //     });
-            // };
         }
     ]);

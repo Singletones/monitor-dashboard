@@ -9,7 +9,7 @@ angular
 
             this._symbol = symbol;
             this._market = market;
-            this._latest_timestamp = moment();
+            this._latest_timestamp = moment.utc();
         }
 
         Object.assign(Stock.prototype, {
@@ -23,11 +23,11 @@ angular
             },
 
             getLastUpdate: function () {
-                return moment(this._latest_timestamp);
+                return moment.utc(this._latest_timestamp);
             },
 
             updateLatestTimestamp: function () {
-                this._latest_timestamp = moment();
+                this._latest_timestamp = moment.utc();
             }
 
         });

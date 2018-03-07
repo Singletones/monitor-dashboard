@@ -5,23 +5,20 @@ angular
     .component('orderBook', {
         templateUrl: 'order-book/order-book.template.html',
         controller: ['orderBookService', 'tradesService', function (orderBookService, tradesService) {
-            var ctrl = this;
+            var $ctrl = this;
 
-            orderBookService.get({
-                symbol: ctrl.symbol,
-                from_date: moment('2018-2-13', 'YYYY-MM-DD'),
-                to_date: moment('2018-2-20', 'YYYY-MM-DD')
-            }, function (data) {
-                ctrl.data = data;
+            orderBookService.getRecent({
+                symbol: $ctrl.symbol,
+                amount: 1
+            }, function (orderbooks) {
+                $ctrl.orderbook = orderbooks[0];
             });
 
-            tradesService.get({
-                symbol: ctrl.symbol,
-                from_date: moment(),
-                to_date: moment(),
-                limit: 0
+            tradesService.getRecent({
+                symbol: $ctrl.symbol,
+                amount: 1
             }, function (trades) {
-                ctrl.recentTrade = trades[0];
+                $ctrl.recentTrade = trades[0];
             });
         }],
         bindings: {
