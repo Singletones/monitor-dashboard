@@ -13,12 +13,12 @@ angular
 
                 content.hide();
 
-                scope.$on(attr.onLoaded, function () {
+                scope.$on(attr.onLoaded, function() {
                     preloader.hide();
                     content.show();
                 });
 
-                scope.$on(attr.onPreLoad, function () {
+                scope.$on(attr.onPreLoad, function() {
                     content.hide();
                     preloader.show();
                 });

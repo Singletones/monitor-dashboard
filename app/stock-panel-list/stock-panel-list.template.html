@@ -1,9 +1,26 @@
 <div class="row wide-screen">
+    <div class="time-panel col s3">
+        <i class="small material-icons">access_time</i>
+        <div class="pst">
+            <h5>11:53 AM</h5>
+            <p>pst</p>
+        </div>
+        <div class="vl"></div>
+        <div class="est">
+            <h5>2:53 PM</h5>
+            <p>est</p>
+        </div>
+        <div class="vl"></div>
+        <div class="utc">
+            <h5>7:53 PM</h5>
+            <p>utc</p>
+        </div>
+    </div>
     <div id="toggle-input" class="input-field col s3 offset-s4">
         <input id="last_name_ws" ng-model="$ctrl.newSymbol" type="text">
         <label for="last_name_ws">Add symbol</label>
     </div>
-    <div ng-click="$ctrl.addSymbol()" id="toggle-btn" class="input-field col s3">
+    <div ng-click="$ctrl.addSymbol()" id="toggle-btn" class="input-field col s1">
         <a class="waves-effect waves-light btn light blue">ADD</a>
     </div>
 </div>

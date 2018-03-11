@@ -1,17 +1,17 @@
 <div class="order-book">
     <div class="order-card">
-        <div class="cont-wrap ask-wrapper">
-            <b>ASK</b>
-            <table class="highlight">
-                <thead>
-                    <tr>
-                        <th>Price</th>
-                        <th>Amount</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
+        <preloader on-pre-load="orderBookLoading" on-loaded="orderBookLoaded">
+            <div class="cont-wrap ask-wrapper">
+                <b>ASK</b>
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
 
-                <preloader on-pre-load="orderBookLoading" on-loaded="orderBookLoaded">
                     <tbody>
                         <tr ng-repeat="level in $ctrl.orderbook.getAsk()">
                             <td>{{level.Price}}</td>
@@ -19,26 +19,24 @@
                             <td>&nbsp;</td>
                         </tr>
                     </tbody>
-                </preloader>
-            </table>
-        </div>
-        <preloader on-pre-load="recentTradeLoading" on-loaded="recentTradeLoaded">
-            <p>
-                <span>{{$ctrl.recentTrade.getPrice()}}</span>
-                <span>{{$ctrl.recentTrade.getVolume()}}</span>
-            </p>
-        </preloader>
-        <div class="cont-wrap bid-wrapper">
-            <table class="highlight">
-                <thead>
-                    <tr>
-                        <th>Price</th>
-                        <th>Amount</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
+                </table>
+            </div>
+            <preloader on-pre-load="recentTradeLoading" on-loaded="recentTradeLoaded">
+                <p>
+                    <span>{{$ctrl.recentTrade.getPrice()}}</span>
+                    <span>{{$ctrl.recentTrade.getVolume()}}</span>
+                </p>
+            </preloader>
+            <div class="cont-wrap bid-wrapper">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
 
-                <preloader on-pre-load="orderBookLoading" on-loaded="orderBookLoaded">
                     <tbody>
                         <tr ng-repeat="level in $ctrl.orderbook.getBid()">
                             <td>{{level.Price}}</td>
@@ -46,9 +44,10 @@
                             <td>&nbsp;</td>
                         </tr>
                     </tbody>
-                </preloader>
-            </table>
-            <b>BID</b>
-        </div>
+                </table>
+                <b>BID</b>
+            </div>
+
+        </preloader>
     </div>
 </div>
