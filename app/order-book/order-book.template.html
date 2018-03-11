@@ -11,19 +11,23 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr ng-repeat="level in $ctrl.orderbook.getAsk()">
-                        <td>{{level.Price}}</td>
-                        <td>{{level.Volume}}</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </tbody>
+                <preloader on-pre-load="orderBookLoading" on-loaded="orderBookLoaded">
+                    <tbody>
+                        <tr ng-repeat="level in $ctrl.orderbook.getAsk()">
+                            <td>{{level.Price}}</td>
+                            <td>{{level.Volume}}</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </preloader>
             </table>
         </div>
-        <p>
-            <span>{{$ctrl.recentTrade.getPrice()}}</span>
-            <span>{{$ctrl.recentTrade.getVolume()}}</span>
-        </p>
+        <preloader on-pre-load="recentTradeLoading" on-loaded="recentTradeLoaded">
+            <p>
+                <span>{{$ctrl.recentTrade.getPrice()}}</span>
+                <span>{{$ctrl.recentTrade.getVolume()}}</span>
+            </p>
+        </preloader>
         <div class="cont-wrap bid-wrapper">
             <table class="highlight">
                 <thead>
@@ -34,13 +38,15 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr ng-repeat="level in $ctrl.orderbook.getBid()">
-                        <td>{{level.Price}}</td>
-                        <td>{{level.Volume}}</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </tbody>
+                <preloader on-pre-load="orderBookLoading" on-loaded="orderBookLoaded">
+                    <tbody>
+                        <tr ng-repeat="level in $ctrl.orderbook.getBid()">
+                            <td>{{level.Price}}</td>
+                            <td>{{level.Volume}}</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </preloader>
             </table>
             <b>BID</b>
         </div>

@@ -1,27 +1,36 @@
 <div class="trades-wrapper">
     <div class="trades-card">
         <h5>Trades</h5>
-        <div class="trades-table-wrapper">
-            <table class="highlight">
-                <thead>
-                    <tr>
-                        <th>Datetime</th>
-                        <th>Price</th>
-                        <th>Volume</th>
-                        <th>Code</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    <tr ng-repeat="trade in $ctrl.trades">
-                        <td>{{trade.getTimestamp().format('MM-DD-YY h:mm A')}}</td>
-                        <td>{{trade.getPrice()}}</td>
-                        <td>{{trade.getVolume()}}</td>
-                        <td>{{trade.getCode()}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="input-field first-field">
+            <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
+            </select>
+            <label style="color: black">Lookback</label>
         </div>
+
+        <preloader on-pre-load="tradesLoading" on-loaded="tradesLoaded">
+            <div class="trades-table-wrapper">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Datetime</th>
+                            <th>Price</th>
+                            <th>Volume</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="trade in $ctrl.trades">
+                            <td>{{trade.getTimestamp().format('MM-DD-YY h:mm A')}}</td>
+                            <td>{{trade.getPrice()}}</td>
+                            <td>{{trade.getVolume()}}</td>
+                            <td>{{trade.getCode()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </preloader>
     </div>
 
     <div class="trades-levels-wrapper">

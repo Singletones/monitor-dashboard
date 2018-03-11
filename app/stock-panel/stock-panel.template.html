@@ -21,7 +21,9 @@
 
         </div>
         <div class="plot-wrapper">
-            <div stock-plot event="candleChartUpdate"></div>
+            <preloader on-loaded="candleChartLoaded" on-pre-load="candleChartLoading">
+                <div stock-plot event="candlePlotUpdate"></div>
+            </preloader>
         </div>
     </div>
     <div class="for-reverse">

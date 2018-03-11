@@ -13,6 +13,8 @@ angular
                 var $ctrl = this;
 
                 $ctrl.loadData = function() {
+                    $scope.$broadcast('candleChartLoading');
+
                     candlesService.get({
                         symbol: $ctrl.stock.getSymbol(),
                         candle_type: $ctrl.selectedResolution.duration,
@@ -20,7 +22,8 @@ angular
                         to_date: moment.utc()
                     }, function(candleChart) {
                         $ctrl.stock.updateLatestTimestamp();
-                        $scope.$broadcast('candleChartUpdate', candleChart);
+                        $scope.$broadcast('candleChartLoaded');
+                        $scope.$broadcast('candlePlotUpdate', candleChart);
                     });
                 };
                 $ctrl.update = function () {

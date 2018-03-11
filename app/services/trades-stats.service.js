@@ -9,7 +9,7 @@ angular.module('services')
         function ($http, apiDomain, apiVersion, TradesStats) {
             return {
                 get: function (params, callback) {
-                    return $http.get(apiDomain + '/equities/statistics/tradepercentages', {
+                    return $http.get(apiDomain + '/equities/statistics/historica/tradepercentages', {
                         params: {
                             symbol: params.symbol,
                             version: apiVersion,

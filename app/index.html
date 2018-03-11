@@ -27,19 +27,19 @@
         </header>
     </nav>
 
-    <!-- <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
-            <div class="circle-clipper left">
-                <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-                <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-        </div>
-    </div> -->
+    <!--<div class="preloader-wrapper big active">-->
+        <!--<div class="spinner-layer spinner-blue-only">-->
+            <!--<div class="circle-clipper left">-->
+                <!--<div class="circle"></div>-->
+            <!--</div>-->
+            <!--<div class="gap-patch">-->
+                <!--<div class="circle"></div>-->
+            <!--</div>-->
+            <!--<div class="circle-clipper right">-->
+                <!--<div class="circle"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <authorization-page ng-if="!isSignedIn" on-sign-in="signIn()">
     </authorization-page>
@@ -84,6 +84,7 @@
         <!--Directives-->
         <script src="directives/directives.module.js"></script>
         <script src="directives/stock-plot.directive.js"></script>
+        <script src="directives/preloader/preloader.directive.js"></script>
         <!--Components-->
         <script src="authorization-page/authorization-page.module.js"></script>
         <script src="authorization-page/authorization-page.component.js"></script>
