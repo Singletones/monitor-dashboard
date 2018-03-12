@@ -15,8 +15,8 @@ angular.module('services')
                             version: apiVersion,
                             from_date: params.from_date.format('YYYY-MM-DD'),
                             to_date: params.to_date.format('YYYY-MM-DD'),
-                            // from_time: params.from_date.format('HH:mm:ss'),
-                            // to_time: params.to_date.format('HH:mm:ss')
+                            from_time: params.from_date.format('HH:mm:ss'),
+                            to_time: params.to_date.format('HH:mm:ss')
                         }
                     }).then(function (response) {
                         var stats = response.data;

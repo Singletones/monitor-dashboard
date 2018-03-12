@@ -27,20 +27,6 @@
         </header>
     </nav>
 
-    <!--<div class="preloader-wrapper big active">-->
-    <!--<div class="spinner-layer spinner-blue-only">-->
-    <!--<div class="circle-clipper left">-->
-    <!--<div class="circle"></div>-->
-    <!--</div>-->
-    <!--<div class="gap-patch">-->
-    <!--<div class="circle"></div>-->
-    <!--</div>-->
-    <!--<div class="circle-clipper right">-->
-    <!--<div class="circle"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <authorization-page ng-if="!isSignedIn" on-sign-in="signIn()">
     </authorization-page>
     <stock-panel-list ng-if="isSignedIn"></stock-panel-list>
@@ -63,6 +49,7 @@
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/plotlyjs/plotly.js"></script>
         <script src="bower_components/moment/min/moment.min.js"></script>
+        <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
         <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
         <script src="app.js"></script>
         <!--Models-->
