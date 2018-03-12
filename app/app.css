@@ -145,13 +145,17 @@ h5 {
 }
 
 .row {
-    padding: 2% 0 0;
+    padding: 2% 0 0 2%;
 }
 
 .time-panel {
-    margin: 1% 0% 0% 2%!important;
+    /* margin: 1% 0% 0% 2%!important; */
     display: flex;
     justify-content: space-between;
+}
+
+.time-panel>.material-icons {
+    padding-top: .4rem;
 }
 
 .vl {
@@ -212,7 +216,7 @@ td,
 th {
     border-right: solid 1px #03a9f4;
     border-left: solid 1px #03a9f4;
-    padding: 5px 5px;
+    padding: 0 .2rem;
 }
 
 thead {
@@ -319,7 +323,7 @@ thead {
 }
 
 .trades-table-wrapper {
-    height: 25rem;
+    height: 17rem;
     width: 100%;
     overflow-y: scroll;
 }
@@ -377,12 +381,16 @@ loader {
     text-align: center;
 }
 
+.cont-wrap>table>tbody>td {
+    padding: 0px!important;
+}
+
 .ask-wrapper {
-    padding-bottom: 6%;
+    padding-bottom: 3%;
 }
 
 .bid-wrapper {
-    padding-top: 6%;
+    padding-top: 3%;
 }
 
 .auth-page-footer {
@@ -436,6 +444,12 @@ loader {
     .trades-wrapper {
         width: 50%;
         padding: .8% 1% 1% 1%;
+    }
+    .ask-wrapper {
+        padding-bottom: 1.5%;
+    }
+    .bid-wrapper {
+        padding-top: 1.5%;
     }
     /* .trades-wrapper>h5 {
         padding-left: 3%;
