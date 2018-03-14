@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('stockTrades', ['services', 'directives']);
+angular.module('stockTrades', ['services', 'directives', 'models']);

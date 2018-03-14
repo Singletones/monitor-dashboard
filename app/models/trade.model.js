@@ -8,6 +8,8 @@ angular.module('models')
             this._timestamp = args.timestamp;
             this._price = args.price;
             this._volume = args.volume;
+            this._code = args.tradeCode;
+            this._level = args.executionLevel;
         }
 
         Object.assign(Trade.prototype, {
@@ -25,7 +27,11 @@ angular.module('models')
             },
 
             getCode: function () {
-                return 'A+';
+                return this._code;
+            },
+
+            getExecutionLevel: function () {
+                return this._level;
             }
 
         });

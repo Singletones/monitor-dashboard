@@ -36,14 +36,18 @@
     <div class="trades-levels-wrapper">
         <div class="trades-levels-card">
             <h5>Trade levels</h5>
-            <div stock-plot event="tradeLevelsUpdate"></div>
+            <preloader on-pre-load="tradeLevelsLoading" on-loaded="tradeLevelsLoaded">
+                <div stock-plot event="tradeLevelsUpdate"></div>
+            </preloader>
         </div>
     </div>
 
     <div class="trades-frequencies-wrapper">
         <div class="trades-frequencies-card">
             <h5>Level frequencies</h5>
-            <div stock-plot event="levelFrequenciesUpdate"></div>
+            <preloader on-pre-load="levelFrequenciesLoading" on-loaded="levelFrequenciesLoaded">
+                <div stock-plot event="levelFrequenciesUpdate"></div>
+            </preloader>
         </div>
     </div>
 </div>

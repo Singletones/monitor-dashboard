@@ -6,9 +6,10 @@ angular
         templateUrl: 'stock-trades/stock-trades.template.html',
         controller: [
             '$scope',
+            'LevelFrequenciesModel',
             'tradesService',
             'tradesStatsService',
-            function($scope, tradesService, tradesStatsService) {
+            function($scope, LevelFrequencies, tradesService, tradesStatsService) {
                 var $ctrl = this;
 
                 $ctrl.$onInit = function () {
@@ -21,20 +22,25 @@ angular
                     ];
                     $scope.$watch('$ctrl.selectedLookback', function (newVal) {
                         $scope.$broadcast('tradesLoading');
+                        $scope.$broadcast('levelFrequenciesLoading');
                         tradesService.getRecent({
                             symbol: $ctrl.symbol,
                             amount: newVal.value
                         }, function (trades) {
                             $scope.$broadcast('tradesLoaded');
+                            $scope.$broadcast('levelFrequenciesLoaded');
                             $ctrl.trades = trades;
+                            $scope.$broadcast('levelFrequenciesUpdate', new LevelFrequencies(trades));
                         });
                     });
 
-                    tradesStatsService.get({
+                    $scope.$broadcast('tradeLevelsLoading');
+                    tradesStatsService.getTradeLevels({
                         symbol: $ctrl.symbol,
                         from_date: moment.utc().subtract(1, 'day'),
                         to_date: moment.utc()
                     }, function(tradesStats) {
+                        $scope.$broadcast('tradeLevelsLoaded');
                         $scope.$broadcast('tradeLevelsUpdate', tradesStats);
                     });
                 };
@@ -43,40 +49,6 @@ angular
                     $ctrl.selectedLookback = $ctrl.lookbacks[0];
                     $scope.$applyAsync(function () {
                         $('select').material_select();
-                    });
-
-                    $scope.$broadcast('levelFrequenciesUpdate', {
-                        plot: function(domElement) {
-                            var x = [],
-                                y = [];
-
-
-                            for (var i = 66; i <= 79; i++) {
-                                x[i] = '' + i;
-                                y[i] = Math.random();
-                            }
-
-                            var layout = {
-                                paper_bgcolor: 'rgba(0,0,0,0)',
-                                plot_bgcolor: 'rgba(0,0,0,0)',
-                                margin: {
-                                    l: 10,
-                                    r: 10,
-                                    b: 30,
-                                    t: 10,
-                                    pad: 0
-                                },
-                                height: 300
-                            };
-
-                            var data = [{
-                                x: x,
-                                y: y,
-                                type: 'bar'
-                            }];
-
-                            Plotly.newPlot(domElement, data, layout);
-                        }
                     });
                 };
             }

@@ -13,7 +13,9 @@ angular
                 return new Trade({
                     timestamp: moment.utc(tradeJSON['Datetime'], 'YYYY-MM-DD[T]HH:mm:ssZ'),
                     price: tradeJSON['Trade_Price'],
-                    volume: tradeJSON['Trade_Volume']
+                    volume: tradeJSON['Trade_Volume'],
+                    tradeCode: tradeJSON['Trade_Code'],
+                    executionLevel: tradeJSON['Execution_Level']
                 });
             }
 
