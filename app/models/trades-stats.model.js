@@ -5,14 +5,48 @@ angular.module('models')
         function TradesStats(stats) {
             Object.call(this);
 
-            this.bid = stats.bid || 1;
-            this.belowBid = stats.belowBid || 1;
-            this.ask = stats.ask || 1;
-            this.aboveAsk = stats.aboveAsk || 1;
-            this.between = stats.between || 1;
+            stats = stats || {};
+
+            this.bid = stats.bid || 0;
+            this.belowBid = stats.belowBid || 0;
+            this.ask = stats.ask || 0;
+            this.aboveAsk = stats.aboveAsk || 0;
+            this.between = stats.between || 0;
         }
 
         Object.assign(TradesStats.prototype, {
+
+            fromTrades: function (trades) {
+
+                this.bid = 0;
+                this.belowBid = 0;
+                this.ask = 0;
+                this.aboveAsk = 0;
+                this.between = 0;
+
+                trades.map(function (trade) {
+                    var code = trade.getCode();
+                    switch (code) {
+                        case 'A':
+                            this.ask++;
+                            break;
+                        case 'A+':
+                            this.aboveAsk++;
+                            break;
+                        case 'B':
+                            this.bid++;
+                            break;
+                        case 'B-':
+                            this.belowBid++;
+                            break;
+                        case 'BTW':
+                            this.between++;
+                            break;
+                    }
+                }, this);
+
+                return this;
+            },
 
             values: function() {
                 return [

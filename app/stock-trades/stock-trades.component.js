@@ -7,9 +7,10 @@ angular
         controller: [
             '$scope',
             'LevelFrequenciesModel',
+            'TradesStatsModel',
             'tradesService',
             'tradesStatsService',
-            function($scope, LevelFrequencies, tradesService, tradesStatsService) {
+            function($scope, LevelFrequencies, TradesStats, tradesService, tradesStatsService) {
                 var $ctrl = this;
 
                 $ctrl.$onInit = function () {
@@ -22,26 +23,19 @@ angular
                     ];
                     $scope.$watch('$ctrl.selectedLookback', function (newVal) {
                         $scope.$broadcast('tradesLoading');
+                        $scope.$broadcast('tradeLevelsLoading');
                         $scope.$broadcast('levelFrequenciesLoading');
                         tradesService.getRecent({
                             symbol: $ctrl.symbol,
                             amount: newVal.value
                         }, function (trades) {
                             $scope.$broadcast('tradesLoaded');
+                            $scope.$broadcast('tradeLevelsLoaded');
                             $scope.$broadcast('levelFrequenciesLoaded');
                             $ctrl.trades = trades;
+                            $scope.$broadcast('tradeLevelsUpdate', new TradesStats().fromTrades(trades));
                             $scope.$broadcast('levelFrequenciesUpdate', new LevelFrequencies(trades));
                         });
-                    });
-
-                    $scope.$broadcast('tradeLevelsLoading');
-                    tradesStatsService.getTradeLevels({
-                        symbol: $ctrl.symbol,
-                        from_date: moment.utc().subtract(1, 'day'),
-                        to_date: moment.utc()
-                    }, function(tradesStats) {
-                        $scope.$broadcast('tradeLevelsLoaded');
-                        $scope.$broadcast('tradeLevelsUpdate', tradesStats);
                     });
                 };
 
