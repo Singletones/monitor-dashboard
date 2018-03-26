@@ -1,5 +1,47 @@
-var gulp = require('gulp');
+const gulp = require('gulp'),
+    babel = require('gulp-babel'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    angularOrder = require('gulp-angular-order'),
+    ngTemplate = require('gulp-ng-template'),
+    es = require('event-stream');
 
-gulp.task('default', function() {
-    // place code for your default task here
+gulp.task('html', function () {
+    return gulp.src('./src/index.html').pipe(gulp.dest('./bin'));
+});
+
+gulp.task('css', function () {
+    // TODO: implement this task !important
+    return gulp.src('./src/app.css').pipe(gulp.dest('./bin'));
+});
+
+gulp.task('js', function () {
+    return es.merge(
+        gulp.src([
+            './src/**/*.html',
+            '!./src/index.html'
+        ])
+        .pipe(ngTemplate({
+            module: 'genTemplates',
+            standalone: true
+        })),
+        gulp.src('./src/**/*.js')
+        .pipe(babel({
+            presets: ['env']
+        }))
+    )
+    .pipe(angularOrder({
+        types: ['module', 'routes', 'config', 'component', 'model', 'service', 'controller', 'directive', 'filter']
+    }))
+    .pipe(concat('bin.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./bin'));
+});
+
+gulp.task('img', function () {
+    return gulp.src('./src/images/**').pipe(gulp.dest('./bin/images'));
+});
+
+gulp.task('build', function () {
+    gulp.start(['html', 'css', 'js', 'img']);
 });

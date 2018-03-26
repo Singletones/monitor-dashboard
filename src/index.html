@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Monitor Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body ng-controller="dashboardApp">
+
+
+    <nav>
+        <header class="nav-wrapper light-blue">
+
+            <a href="#" class="brand-logo">
+                <img src="images/Zululogo-w-shadow2.png" class="brand-logo-img">
+            </a>
+            <div ng-if="isSignedIn" class="input-field nav-btn" ng-click="signIn()">
+                <a class="waves-effect waves-light btn grey darken-4">Sign Out</a>
+            </div>
+
+        </header>
+    </nav>
+
+    <authorization-page ng-if="!isSignedIn" on-sign-in="signIn()">
+    </authorization-page>
+    <stock-panel-list ng-if="isSignedIn"></stock-panel-list>
+
+    <!-- <footer class="page-footer light-blue">
+
+        <div class="footer-text">
+            Property of Zulu Quant for monitoring trades, market movements, and research.
+        </div>
+
+         -->
+    <div style="display: none">
+        <script src="https://apis.google.com/js/api.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!--<script src="bower_components/angular/angular.js"></script>-->
+        <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+        <!-- In production use: -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="bower_components/plotlyjs/plotly.js"></script>
+        <script src="bower_components/moment/min/moment.min.js"></script>
+        <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+        <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
+        <script src="bin.js"></script>
+    </div>
+</body>
+
+</html>

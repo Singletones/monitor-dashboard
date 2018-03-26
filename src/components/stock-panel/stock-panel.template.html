@@ -1,0 +1,33 @@
+<div class="stock-panel clearfix">
+    <div class="stock-info">
+        <div class="headline-wrapper">
+            <div class="symbol-wrapper">
+                <h2>{{$ctrl.stock.getSymbol()}}</h2>
+                <h6>{{$ctrl.stock.getMarket()}}</h6>
+                <h6>Last update: {{$ctrl.stock.getLastUpdate().format('YYYY-MM-DD[T]HH:mm:ss')}}</h6>
+            </div>
+            <div class="update-wrapper">
+                <div class="input-field first-field">
+                    <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
+                    </select>
+                    <label style="color: black">Lookback</label>
+                </div>
+                <div class="input-field second-field">
+                    <select ng-model="$ctrl.selectedResolution" ng-options="item.label for item in $ctrl.resolutions">
+                    </select>
+                    <label style="color: black">Candle resolution</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="plot-wrapper">
+            <preloader on-loaded="candleChartLoaded" on-pre-load="candleChartLoading">
+                <div stock-plot event="candlePlotUpdate"></div>
+            </preloader>
+        </div>
+    </div>
+    <div class="for-reverse">
+        <stock-trades stock="$ctrl.stock"></stock-trades>
+        <order-book stock="$ctrl.stock"></order-book>
+    </div>
+</div>

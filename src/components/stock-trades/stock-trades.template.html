@@ -1,0 +1,55 @@
+<div class="trades-wrapper">
+    <div class="trades-card">
+        <h5>Trades</h5>
+
+        <div class="input-field">
+            <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
+            </select>
+            <label style="color: black">Lookback</label>
+        </div>
+
+        <preloader on-pre-load="tradesLoading" on-loaded="tradesLoaded">
+            <div class="trades-table-wrapper">
+                <table class="highlight">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Price</th>
+                        <th>Volume</th>
+                        <th>Code</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="trade in $ctrl.stock.getTrades()">
+                        <td>{{trade.getTimestamp().format('MM-DD-YY')}}</td>
+                        <td>{{trade.getTimestamp().format('h:mm A')}}</td>
+                        <td>{{trade.getPrice()}}</td>
+                        <td>{{trade.getVolume()}}</td>
+                        <td>{{trade.getCode()}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </preloader>
+    </div>
+
+    <div class="trades-levels-wrapper">
+        <div class="trades-levels-card">
+            <h5>Trade Classification</h5>
+            <preloader on-pre-load="tradeLevelsLoading" on-loaded="tradeLevelsLoaded">
+                <div stock-plot event="tradeLevelsUpdate"></div>
+            </preloader>
+        </div>
+    </div>
+
+    <div class="trades-frequencies-wrapper">
+        <div class="trades-frequencies-card">
+            <h5>Trade Level Count</h5>
+            <preloader on-pre-load="levelFrequenciesLoading" on-loaded="levelFrequenciesLoaded">
+                <div stock-plot event="levelFrequenciesUpdate"></div>
+            </preloader>
+        </div>
+    </div>
+</div>
