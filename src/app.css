@@ -189,7 +189,7 @@ h5 {
 
 .input-field input:focus {
     border-bottom: 1px solid #03a9f4!important;
-    box-shadow: 0 1px 0 0 #03a9f4 !important
+    box-shadow: 0 1px 0 0 #03a9f4 !important;
 }
 
 ul.dropdown-content.select-dropdown li span {
@@ -205,11 +205,38 @@ ul.dropdown-content.select-dropdown li span {
 } */
 
 table.highlight>tbody>tr:hover {
-    background-color: rgba(3, 169, 244, 0.2)
+    background-color: rgba(92, 183, 196, 0.2);
 }
 
 tr {
     border: solid 1px #03a9f4;
+}
+
+tr.higher{
+    background-color: #0fa200;
+}
+
+tr.lower{
+    background-color: #c41116;
+}
+
+tr.similar{
+    background-color: #03a9f4;
+}
+
+td.higher{
+    color: #0fa200;
+    font-weight: bold;
+}
+
+td.lower{
+    color: #c41116;
+    font-weight: bold;
+}
+
+td.similar{
+    color: #03a9f4;
+    font-weight: bold;
 }
 
 td,
@@ -220,7 +247,7 @@ th {
 }
 
 thead {
-    border-bottom: 1px solid rgba(3, 169, 244, 1)
+    border-bottom: 1px solid rgba(3, 169, 244, 1);
 }
 
 .stock-panel-list {

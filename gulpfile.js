@@ -4,44 +4,78 @@ const gulp = require('gulp'),
     concat = require('gulp-concat'),
     angularOrder = require('gulp-angular-order'),
     ngTemplate = require('gulp-ng-template'),
-    es = require('event-stream');
+    es = require('event-stream'),
+    browserSync = require('browser-sync').create();
 
-gulp.task('html', function () {
-    return gulp.src('./src/index.html').pipe(gulp.dest('./bin'));
+gulp.task('html', function() {
+    return gulp.src('./src/index.html')
+        .pipe(gulp.dest('./bin'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
-gulp.task('css', function () {
+gulp.task('css', function() {
     // TODO: implement this task !important
-    return gulp.src('./src/app.css').pipe(gulp.dest('./bin'));
+    return gulp.src('./src/app.css')
+        .pipe(gulp.dest('./bin'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
-gulp.task('js', function () {
+gulp.task('js', function() {
     return es.merge(
-        gulp.src([
-            './src/**/*.html',
-            '!./src/index.html'
-        ])
-        .pipe(ngTemplate({
-            module: 'genTemplates',
-            standalone: true
-        })),
-        gulp.src('./src/**/*.js')
-        .pipe(babel({
-            presets: ['env']
+            gulp.src([
+                './src/**/*.html',
+                '!./src/index.html'
+            ])
+            .pipe(ngTemplate({
+                module: 'genTemplates',
+                standalone: true
+            })),
+            gulp.src('./src/**/*.js')
+            .pipe(babel({
+                presets: ['env']
+            }))
+        )
+        .pipe(angularOrder({
+            types: ['module', 'routes', 'config', 'component', 'model', 'service', 'controller', 'directive', 'filter']
         }))
-    )
-    .pipe(angularOrder({
-        types: ['module', 'routes', 'config', 'component', 'model', 'service', 'controller', 'directive', 'filter']
-    }))
-    .pipe(concat('bin.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./bin'));
+        .pipe(concat('bin.js'))
+        // .pipe(uglify())
+        .pipe(gulp.dest('./bin'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
-gulp.task('img', function () {
-    return gulp.src('./src/images/**').pipe(gulp.dest('./bin/images'));
+gulp.task('img', function() {
+    return gulp.src('./src/images/**')
+        .pipe(gulp.dest('./bin/images'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
-gulp.task('build', function () {
+gulp.task('browser-sync', function() {
+    browserSync.init(null, {
+        open: false,
+        server: {
+            baseDir: 'bin'
+        },
+        port: 8000
+    });
+});
+
+gulp.task('build', function() {
     gulp.start(['html', 'css', 'js', 'img']);
+});
+
+gulp.task('start', function() {
+    gulp.start(['build', 'browser-sync']);
+    gulp.watch(['./src/app.css'], ['css']);
+    gulp.watch(['./src/**/*.html', '!./src/index.html', '.src/**/*.js'], ['js']);
+    gulp.watch(['./src/index.html'], ['html']);
+    gulp.watch(['./src/images/**'], ['img']);
 });

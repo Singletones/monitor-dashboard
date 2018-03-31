@@ -10,7 +10,7 @@
 
         <preloader on-pre-load="tradesLoading" on-loaded="tradesLoaded">
             <div class="trades-table-wrapper">
-                <table class="highlight">
+                <table id="tradesTable" class="highlight">
                     <thead>
                     <tr>
                         <th>Date</th>
@@ -22,10 +22,10 @@
                     </thead>
 
                     <tbody>
-                    <tr ng-repeat="trade in $ctrl.stock.getTrades()">
+                    <tr ng-repeat="trade in $ctrl.stock.getTrades() track by $index">
                         <td>{{trade.getTimestamp().format('MM-DD-YY')}}</td>
                         <td>{{trade.getTimestamp().format('h:mm A')}}</td>
-                        <td>{{trade.getPrice()}}</td>
+                        <td ng-class="$ctrl.colorClass(trade, $index)">{{trade.getPrice()}}</td>
                         <td>{{trade.getVolume()}}</td>
                         <td>{{trade.getCode()}}</td>
                     </tr>
@@ -33,6 +33,7 @@
                 </table>
             </div>
         </preloader>
+        <!--<div ng-init="getColumn('tradesTable', 3)"></div>-->
     </div>
 
     <div class="trades-levels-wrapper">

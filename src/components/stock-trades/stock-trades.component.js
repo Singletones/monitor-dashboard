@@ -39,7 +39,23 @@ angular
                     });
                 };
 
-                this.$postLink = function() {
+                $ctrl.colorClass = function(trade, index){
+                    let prevTrade = $ctrl.stock.getTrades()[index-1];
+                    if (prevTrade) {
+                        let prevPrice = prevTrade.getPrice(),
+                            price = trade.getPrice();
+                        if (price > prevPrice) {
+                            return "higher";
+                        }
+                        else if (price < prevPrice) {
+                            return "lower";
+                        }
+                        return "similar";
+                    }
+                    return "";
+                };
+
+                $ctrl.$postLink = function () {
                     $ctrl.selectedLookback = $ctrl.lookbacks[0];
                     $scope.$applyAsync(function () {
                         $('select').material_select();
