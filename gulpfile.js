@@ -7,7 +7,7 @@ const gulp = require('gulp'),
     es = require('event-stream'),
     browserSync = require('browser-sync').create();
 
-gulp.task('html', function() {
+gulp.task('html', function () {
     return gulp.src('./src/index.html')
         .pipe(gulp.dest('./bin'))
         .pipe(browserSync.reload({
@@ -15,7 +15,7 @@ gulp.task('html', function() {
         }));
 });
 
-gulp.task('css', function() {
+gulp.task('css', function () {
     // TODO: implement this task !important
     return gulp.src('./src/app.css')
         .pipe(gulp.dest('./bin'))
@@ -24,7 +24,7 @@ gulp.task('css', function() {
         }));
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
     return es.merge(
             gulp.src([
                 './src/**/*.html',
@@ -50,7 +50,7 @@ gulp.task('js', function() {
         }));
 });
 
-gulp.task('img', function() {
+gulp.task('img', function () {
     return gulp.src('./src/images/**')
         .pipe(gulp.dest('./bin/images'))
         .pipe(browserSync.reload({
@@ -68,7 +68,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('build', function() {
+gulp.task('build', function () {
     gulp.start(['html', 'css', 'js', 'img']);
 });
 

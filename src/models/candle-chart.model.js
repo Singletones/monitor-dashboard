@@ -2,42 +2,44 @@
 
 angular
     .module('models')
-    .factory('CandleChartModel', ['CandleModel', function(Candle) {
+    .factory('CandleChartModel', [
+        'CandleModel',
+        (Candle) => class {
 
-        function CandleChart(candles, params) {
-            Object.call(this);
+            constructor(candles = [], {
+                from_date = moment.utc(),
+                to_date = moment.utc(),
+                candle_type = moment.duration()
+            } = {}) {
+                this.fromDate = from_date;
+                this.endDate = to_date;
 
-            this.fromDate = moment(params.from_date);
-            this.endDate = moment(params.to_date);
+                this.candlesResolution = candle_type;
+                this.candles = candles;
+            }
 
-            this.candlesResolution = params.candle_type;
-            this.candles = candles;
-        }
-
-        Object.assign(CandleChart.prototype, {
-
-            unpack: function(property) {
+            unpack(property) {
                 return this.candles.map(function(candle) {
                     return candle[property];
                 });
-            },
+            }
 
-            unpackXaxis: function() {
+            unpackXaxis() {
                 return this.candles.map(function(candle) {
                     return candle.timestamp.format('YYYY-MM-DD HH:mm:ss');
                 });
-            },
+            }
 
-            getRange: function() {
+            getRange() {
                 return [this.fromDate.format('YYYY-MM-DD HH:mm:ss'), this.endDate.format('YYYY-MM-DD HH:mm:ss')]
-            },
+            }
 
-            getCandlesResolution: function() {
+            getCandlesResolution() {
                 return moment.duration(this.candlesResolution);
-            },
+            }
 
-            plot: function plot(domElement) {
-                var trace1 = {
+            plot(domElement) {
+                let trace1 = {
 
                     x: this.unpackXaxis(),//.slice(1),
 
@@ -56,7 +58,7 @@ angular
                     yaxis: 'y'
                 };
 
-                var layout = {
+                let layout = {
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     dragmode: 'zoom',
@@ -86,7 +88,5 @@ angular
                 Plotly.newPlot(domElement, [trace1], layout);
             }
 
-        });
-
-        return CandleChart;
-    }]);
+        }
+    ]);

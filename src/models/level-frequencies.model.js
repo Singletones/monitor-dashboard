@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('models')
-    .factory('LevelFrequenciesModel', function() {
+    .factory('LevelFrequenciesModel', function () {
         function uniq(array) {
-            var seen = {};
+            let seen = {};
             return array.filter(function(item) {
                 return seen.hasOwnProperty(item) ? false : (seen[item] = true);
             });
@@ -33,34 +33,32 @@ angular.module('models')
             'A-10': 'A10'
         };
 
-        function LevelFrequencies(trades) {
-            Object.call(this);
+        return class {
 
-            let tradeLevels = {};
-            this._x = ['B10', 'B9', 'B8', 'B7', 'B6', 'B5', 'B4', 'B3', 'B2', 'B1', 'BA', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'];
-            this._y = [];
+            constructor(trades = []) {
+                let tradeLevels = {};
+                this._x = ['B10', 'B9', 'B8', 'B7', 'B6', 'B5', 'B4', 'B3', 'B2', 'B1', 'BA', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'];
+                this._y = [];
 
-            trades.map(function(trade) {
+                trades.map(function(trade) {
 
-                var execLevel = labelMapping[trade.getExecutionLevel()];
-                if (tradeLevels.hasOwnProperty(execLevel)) {
-                    tradeLevels[execLevel]++;
-                }
-                else {
-                    tradeLevels[execLevel] = 1;
-                }
-                // this._x.push(execLevel);
-            }, this);
+                    let execLevel = labelMapping[trade.getExecutionLevel()];
+                    if (tradeLevels.hasOwnProperty(execLevel)) {
+                        tradeLevels[execLevel]++;
+                    }
+                    else {
+                        tradeLevels[execLevel] = 1;
+                    }
+                    // this._x.push(execLevel);
+                }, this);
 
-            this._x.map(function(execLevel) {
-                this._y.push(tradeLevels[execLevel]||0);
-            }, this);
-        }
+                this._x.map(function(execLevel) {
+                    this._y.push(tradeLevels[execLevel]||0);
+                }, this);
+            }
 
-        Object.assign(LevelFrequencies.prototype, {
-
-            plot: function(domElement) {
-                var layout = {
+            plot(domElement) {
+                let layout = {
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     margin: {
@@ -73,7 +71,7 @@ angular.module('models')
                     height: 300
                 };
 
-                var data = [{
+                let data = [{
                     x: this._x,
                     y: this._y,
                     type: 'bar'
@@ -82,7 +80,5 @@ angular.module('models')
                 Plotly.newPlot(domElement, data, layout);
             }
 
-        });
-
-        return LevelFrequencies;
+        };
     });

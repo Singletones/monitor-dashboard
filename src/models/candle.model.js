@@ -2,27 +2,25 @@
 
 angular
     .module('models')
-    .factory('CandleModel', [function () {
+    .factory('CandleModel', [
+        () => class Candle{
+            constructor({
+                open = 0,
+                close = 0,
+                high = 0,
+                low = 0,
+                timestamp = moment.utc()
+            } = {}) {
+                this.open = open;
+                this.close = close;
+                this.high = high;
+                this.low = low;
 
-        function Candle(args) {
-
-            Object.call(this);
-
-            this.open = args.open;
-            this.close = args.close;
-            this.high = args.high;
-            this.low = args.low;
-
-            this.timestamp = args.timestamp;
-        }
-
-        Object.assign(Candle.prototype, {
-
-            getTimestamp: function () {
-                return moment.utc(this.timestamp);
+                this.timestamp = moment.utc(timestamp);
             }
 
-        });
-
-        return Candle;
-    }]);
+            getTimestamp() {
+                return moment.utc(this.timestamp);
+            }
+        }
+    ]);
