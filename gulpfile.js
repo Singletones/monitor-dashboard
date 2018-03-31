@@ -34,7 +34,7 @@ gulp.task('js', function () {
         types: ['module', 'routes', 'config', 'component', 'model', 'service', 'controller', 'directive', 'filter']
     }))
     .pipe(concat('bin.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('./bin'));
 });
 

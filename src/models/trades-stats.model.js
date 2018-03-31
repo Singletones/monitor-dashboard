@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('models')
-    .factory('TradesStatsModel', function() {
-        function TradesStats(stats) {
-            Object.call(this);
+    .factory('TradesStatsModel', [
+        () => class {
 
-            stats = stats || {};
+            constructor({
+                bid = 0,
+                belowBid = 0,
+                ask = 0,
+                aboveAsk = 0,
+                between = 0
+            } = {}) {
+                this.bid = bid;
+                this.belowBid = belowBid;
+                this.ask = ask;
+                this.aboveAsk = aboveAsk;
+                this.between = between;
+            }
 
-            this.bid = stats.bid || 0;
-            this.belowBid = stats.belowBid || 0;
-            this.ask = stats.ask || 0;
-            this.aboveAsk = stats.aboveAsk || 0;
-            this.between = stats.between || 0;
-        }
-
-        Object.assign(TradesStats.prototype, {
-
-            fromTrades: function (trades) {
+            fromTrades(trades) {
 
                 this.bid = 0;
                 this.belowBid = 0;
@@ -25,7 +27,7 @@ angular.module('models')
                 this.between = 0;
 
                 trades.map(function (trade) {
-                    var code = trade.getCode();
+                    let code = trade.getCode();
                     switch (code) {
                         case 'A':
                             this.ask++;
@@ -46,9 +48,9 @@ angular.module('models')
                 }, this);
 
                 return this;
-            },
+            }
 
-            values: function() {
+            values() {
                 return [
                     this.between,
                     this.bid,
@@ -56,9 +58,9 @@ angular.module('models')
                     this.belowBid,
                     this.aboveAsk
                 ];
-            },
+            }
 
-            labels: function() {
+            labels() {
                 return [
                     'Between Bid/Ask',
                     'At Bid',
@@ -66,10 +68,10 @@ angular.module('models')
                     'Below Bid',
                     'Above Ask'
                 ];
-            },
+            }
 
-            plot: function(domElement) {
-                var data = [{
+            plot(domElement) {
+                let data = [{
                     values: this.values(),
                     labels: this.labels(),
                     type: 'pie',
@@ -78,7 +80,7 @@ angular.module('models')
                     }
                 }];
 
-                var layout = {
+                let layout = {
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     margin: {
@@ -92,7 +94,7 @@ angular.module('models')
                     showlegend: false
                 };
 
-                var restyle = {
+                let restyle = {
                     'marker.colors': [
                         ['#ffeb3b', '#ff80ab ', '#2196f3', '#fff59d', '#ff9800']
                     ]
@@ -103,7 +105,5 @@ angular.module('models')
                 Plotly.restyle(domElement, restyle);
             }
 
-        });
-
-        return TradesStats;
-    });
+        }
+    ]);

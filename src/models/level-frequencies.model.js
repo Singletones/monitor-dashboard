@@ -3,39 +3,37 @@
 angular.module('models')
     .factory('LevelFrequenciesModel', function () {
         function uniq(array) {
-            var seen = {};
+            let seen = {};
             return array.filter(function(item) {
                 return seen.hasOwnProperty(item) ? false : (seen[item] = true);
             });
         }
 
-        function LevelFrequencies(trades) {
-            Object.call(this);
+        return class {
 
-            this._tradeLevels = {};
-            this._x = [];
-            this._y = [];
+            constructor(trades = []) {
+                this._tradeLevels = {};
+                this._x = [];
+                this._y = [];
 
-            trades.map(function (trade) {
-                var execLevel = trade.getExecutionLevel();
-                if (this._tradeLevels.hasOwnProperty(execLevel)) {
-                    this._tradeLevels[execLevel]++;
-                }
-                else {
-                    this._x.push(execLevel);
-                    this._tradeLevels[execLevel] = 1;
-                }
-            }, this);
+                trades.map(function (trade) {
+                    let execLevel = trade.getExecutionLevel();
+                    if (this._tradeLevels.hasOwnProperty(execLevel)) {
+                        this._tradeLevels[execLevel]++;
+                    }
+                    else {
+                        this._x.push(execLevel);
+                        this._tradeLevels[execLevel] = 1;
+                    }
+                }, this);
 
-            this._x.map(function (execLevel) {
-                this._y.push(this._tradeLevels[execLevel]);
-            }, this);
-        }
+                this._x.map(function (execLevel) {
+                    this._y.push(this._tradeLevels[execLevel]);
+                }, this);
+            }
 
-        Object.assign(LevelFrequencies.prototype, {
-
-            plot: function (domElement) {
-                var layout = {
+            plot(domElement) {
+                let layout = {
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     margin: {
@@ -48,7 +46,7 @@ angular.module('models')
                     height: 300
                 };
 
-                var data = [{
+                let data = [{
                     x: this._x,
                     y: this._y,
                     type: 'bar'
@@ -57,7 +55,5 @@ angular.module('models')
                 Plotly.newPlot(domElement, data, layout);
             }
 
-        });
-
-        return LevelFrequencies;
+        };
     });

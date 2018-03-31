@@ -7,81 +7,73 @@ angular
         'OrderBookModel',
         'TradesStatsModel',
         'LevelFrequenciesModel',
-        function (CandleChart, OrderBook, TradesStats, LevelFrequencies) {
+        (CandleChart, OrderBook, TradesStats, LevelFrequencies) => class {
 
-            function Stock(symbol, market) {
-                Object.call(this);
-
+            constructor(symbol, market) {
                 this._symbol = symbol;
                 this._market = market;
                 this._latest_timestamp = moment.utc();
 
-                this._candleChart = null;
-                this._orderBooks = null;
-                this._trades = null;
-                this._stats = null;
-                this._levels = null;
-
+                this._candleChart = new CandleChart();
+                this._orderBooks = [];
+                this._trades = [];
+                this._stats = new TradesStats();
+                this._levels = new LevelFrequencies();
             }
 
-            Object.assign(Stock.prototype, {
+            getSymbol() {
+                return this._symbol;
+            }
 
-                getSymbol: function () {
-                    return this._symbol;
-                },
+            getMarket() {
+                return this._market;
+            }
 
-                getMarket: function () {
-                    return this._market;
-                },
+            getLastUpdate() {
+                return moment.utc(this._latest_timestamp);
+            }
 
-                getLastUpdate: function () {
-                    return moment.utc(this._latest_timestamp);
-                },
+            updateLatestTimestamp() {
+                this._latest_timestamp = moment.utc();
+            }
 
-                updateLatestTimestamp: function () {
-                    this._latest_timestamp = moment.utc();
-                },
+            setCandlesData(candles) {
+                this._candleChart = new CandleChart(candles);
+            }
 
-                setCandlesData: function (candles) {
-                    this._candleChart = new CandleChart(candles);
-                },
+            getCandleChart(candles) {
+                return this._candleChart;
+            }
 
-                getCandleChart: function (candles) {
-                    return this._candleChart;
-                },
+            setOrderBooksData(orderbooks) {
+                this._orderBooks = orderbooks;
+            }
 
-                setOrderBooksData: function (orderbooks) {
-                    this._orderBooks = orderbooks;
-                },
+            getRecentOrderBook() {
+                return this._orderBooks[0];
+            }
 
-                getRecentOrderBook: function () {
-                    return this._orderBooks[0];
-                },
+            setTradesData(trades) {
+                this._trades = trades;
+                this._stats = new TradesStats().fromTrades(trades);
+                this._levels = new LevelFrequencies(trades);
+            }
 
-                setTradesData: function (trades) {
-                    this._trades = trades;
-                    this._stats = new TradesStats().fromTrades(trades);
-                    this._levels = new LevelFrequencies(trades);
-                },
+            getTrades() {
+                return this._trades;
+            }
 
-                getTrades: function () {
-                    return this._trades;
-                },
+            getRecentTrade() {
+                return this._trades[this._trades.length - 1];
+            }
 
-                getRecentTrade: function () {
-                    return this._trades[this._trades.length - 1];
-                },
+            getTradesStats() {
+                return this._stats;
+            }
 
-                getTradesStats: function () {
-                    return this._stats;
-                },
+            getLevelFrequencies() {
+                return this._levels;
+            }
 
-                getLevelFrequencies: function () {
-                    return this._levels;
-                }
-
-            });
-
-            return Stock;
         }
     ]);

@@ -1,27 +1,25 @@
 'use strict';
 
 angular.module('models')
-    .factory('OrderBookModel', function () {
-        function OrderBook(args) {
-            Object.call(this);
+    .factory('OrderBookModel', [
+        () => class {
+            constructor({
+                Ask,
+                Bid,
+                datetime
+            } = {}) {
+                this.ask = Ask;
+                this.bid = Bid;
 
-            this.Ask = args.Ask;
-            this.Bid = args.Bid;
-
-            this.datetime = args.datetime;
-        }
-
-        Object.assign(OrderBook.prototype, {
-
-            getAsk: function () {
-                return this.Ask;
-            },
-
-            getBid: function () {
-                return this.Bid;
+                this.datetime = datetime;
             }
 
-        });
+            getAsk() {
+                return this.ask;
+            }
 
-        return OrderBook;
-    });
+            getBid() {
+                return this.bid;
+            }
+        }
+    ]);

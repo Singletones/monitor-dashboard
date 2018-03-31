@@ -8,14 +8,12 @@ angular
             '$scope',
             'utils',
             'orderBookService',
-            'tradesService',
-            function ($scope, utils, orderBookService, tradesService) {
-                var $ctrl = this;
+            function ($scope, utils, orderBookService) {
+                let $ctrl = this;
 
                 $ctrl.$onInit = function () {
-
                     $ctrl.levels = [];
-                    for (var i = 1; i <= 10; i++) {
+                    for (let i = 1; i <= 10; i++) {
                         $ctrl.levels.push(new utils.DropdownItem('Level ' + i, i));
                     }
 
@@ -23,20 +21,10 @@ angular
                     orderBookService.getRecent({
                         symbol: $ctrl.stock.getSymbol(),
                         amount: 1
-                    }, function (orderbooks) {
+                    }, (orderbooks) => {
                         $scope.$broadcast('orderBookLoaded');
                         $ctrl.stock.setOrderBooksData(orderbooks);
                     });
-
-                    // $scope.$broadcast('recentTradeLoading');
-                    // tradesService.getRecent({
-                    //     symbol: $ctrl.stock.getSymbol(),
-                    //     amount: 1
-                    // }, function (trades) {
-                    //     $scope.$broadcast('recentTradeLoaded');
-                    //     $ctrl.recentTrade = trades[0];
-                    // });
-
                 };
 
                 $ctrl.$postLink = function () {
@@ -44,7 +32,7 @@ angular
                     $scope.$applyAsync(function () {
                         $('select').material_select();
                     });
-                };
+                }
             }
         ],
         bindings: {

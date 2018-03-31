@@ -3,7 +3,7 @@
 angular.module('stockPanel', [
     'stockTrades',
     'orderBook',
-    'services',
+    'dataSources',
     'directives',
     'utils'
 ]);

@@ -6,11 +6,9 @@ angular
         templateUrl: 'components/stock-trades/stock-trades.template.html',
         controller: [
             '$scope',
-            'LevelFrequenciesModel',
-            'TradesStatsModel',
             'tradesService',
             'utils',
-            function($scope, LevelFrequencies, TradesStats, tradesService, utils) {
+            function($scope, tradesService, utils) {
                 var $ctrl = this;
 
                 $ctrl.$onInit = function () {
