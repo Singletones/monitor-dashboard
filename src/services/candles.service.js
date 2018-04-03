@@ -72,8 +72,8 @@ angular
                             candle_length,
                             from_date: from_date.format('YYYY-MM-DD'),
                             to_date: to_date.format('YYYY-MM-DD'),
-                            from_time: from_date.format('HH:mm:ss'),
-                            to_time: to_date.format('HH:mm:ss')
+                            // from_time: from_date.format('HH:mm:ss'),
+                            // to_time: to_date.format('HH:mm:ss')
                         }
                     }).then(function (response) {
                         callback(response.data.map(function (candle) {

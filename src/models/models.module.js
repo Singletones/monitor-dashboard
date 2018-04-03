@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('models', ['utils']);
+angular.module('models', ['utils', 'settings']);

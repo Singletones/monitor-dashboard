@@ -40,8 +40,7 @@ angular.module('models')
                 this._x = ['B10', 'B9', 'B8', 'B7', 'B6', 'B5', 'B4', 'B3', 'B2', 'B1', 'BA', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'];
                 this._y = [];
 
-                trades.map(function(trade) {
-
+                for (let trade of trades) {
                     let execLevel = labelMapping[trade.getExecutionLevel()];
                     if (tradeLevels.hasOwnProperty(execLevel)) {
                         tradeLevels[execLevel]++;
@@ -50,11 +49,11 @@ angular.module('models')
                         tradeLevels[execLevel] = 1;
                     }
                     // this._x.push(execLevel);
-                }, this);
+                }
 
-                this._x.map(function(execLevel) {
+                for (let execLevel of this._x) {
                     this._y.push(tradeLevels[execLevel]||0);
-                }, this);
+                }
             }
 
             plot(domElement) {

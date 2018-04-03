@@ -9,7 +9,7 @@ angular
             'StockModel',
             'stocksPerPage',
             function($interval, Stock, stocksPerPage) {
-                var $ctrl = this;
+                let $ctrl = this;
 
                 $ctrl.$postLink = function toggleClass() {
                     if ($(window).width() < 1550 && $(window).width() > 1200) {
@@ -66,13 +66,13 @@ angular
 
 
                 $ctrl.updateCurrentPage = function() {
-                    var frame = $ctrl.activePage * stocksPerPage;
+                    let frame = $ctrl.activePage * stocksPerPage;
                     $ctrl.currentPage = $ctrl.stocks.slice(frame, frame + stocksPerPage);
                 };
 
                 $ctrl.addSymbol = function() {
                     $ctrl.stocks.unshift(new Stock($ctrl.newSymbol, 'NASDAQ'));
-                    var ratio = $ctrl.stocks.length / stocksPerPage;
+                    let ratio = $ctrl.stocks.length / stocksPerPage;
                     $ctrl.pagesAmount = Math.floor(ratio);
                     if ($ctrl.pagesAmount < ratio) {
                         $ctrl.pagesAmount += 1;

@@ -8,7 +8,7 @@
             <label style="color: black">Lookback</label>
         </div>
 
-        <preloader on-pre-load="tradesLoading" on-loaded="tradesLoaded">
+        <preloader name="trades">
             <div class="trades-table-wrapper">
                 <table id="tradesTable" class="highlight">
                     <thead>
@@ -24,8 +24,8 @@
                     <tbody>
                     <tr ng-repeat="trade in $ctrl.stock.getTrades() track by $index">
                         <td>{{trade.getTimestamp().format('MM-DD-YY')}}</td>
-                        <td>{{trade.getTimestamp().format('h:mm A')}}</td>
-                        <td ng-class="$ctrl.colorClass(trade, $index)">{{trade.getPrice()}}</td>
+                        <td>{{trade.getTimestamp().format('h:mm:ss A')}}</td>
+                        <td ng-class="$ctrl.tradeColor(trade, $index)">{{trade.getPrice()}}</td>
                         <td>{{trade.getVolume()}}</td>
                         <td>{{trade.getCode()}}</td>
                     </tr>
@@ -39,8 +39,8 @@
     <div class="trades-levels-wrapper">
         <div class="trades-levels-card">
             <h5>Trade Classification</h5>
-            <preloader on-pre-load="tradeLevelsLoading" on-loaded="tradeLevelsLoaded">
-                <div stock-plot event="tradeLevelsUpdate"></div>
+            <preloader name="tradeLevels">
+                <div stock-plot="tradeLevels"></div>
             </preloader>
         </div>
     </div>
@@ -48,8 +48,8 @@
     <div class="trades-frequencies-wrapper">
         <div class="trades-frequencies-card">
             <h5>Trade Level Count</h5>
-            <preloader on-pre-load="levelFrequenciesLoading" on-loaded="levelFrequenciesLoaded">
-                <div stock-plot event="levelFrequenciesUpdate"></div>
+            <preloader name="levelFrequencies">
+                <div stock-plot="levelFrequencies"></div>
             </preloader>
         </div>
     </div>

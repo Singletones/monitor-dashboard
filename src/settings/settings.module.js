@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('settings', [])
-    .value('1', 1)
-    .value('2', 2);
+    .value('orderBookRefreshRate', moment.duration(30, 'seconds'))
+    .value('tradesRefreshRate', moment.duration(30, 'seconds'))
+    .value('orderBookMaxPeriods', 10);

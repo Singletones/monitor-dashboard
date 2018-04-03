@@ -16,6 +16,7 @@ angular
 
                 $ctrl.$onInit = function () {
                     candlesSource = new CandlesSource($ctrl.stock);
+                    let autoRefresher = new utils.AutoRefresher($ctrl.loadData);
 
                     $ctrl.lookbacks = [
                         new utils.DropdownItem(label, moment.duration(30, 'minutes')),
@@ -44,8 +45,8 @@ angular
                         new utils.DropdownItem(label, moment.duration(1, 'day'))
                     ];
 
-                    $scope.$watch('$ctrl.selectedLookback', $ctrl.update);
-                    $scope.$watch('$ctrl.selectedResolution', $ctrl.update);
+                    $scope.$watch('$ctrl.selectedLookback', _ => autoRefresher.refresh());
+                    $scope.$watch('$ctrl.selectedResolution', interval => autoRefresher.setInterval(interval.value.asMilliseconds()));
                 };
 
                 $ctrl.$postLink = function () {
@@ -57,7 +58,7 @@ angular
                 };
 
                 $ctrl.loadData = function() {
-                    $scope.$broadcast('candleChartLoading');
+                    $scope.$broadcast('candleChart_loading');
 
                     candlesSource.get({
                         candle_type: $ctrl.selectedResolution.value,
@@ -65,21 +66,11 @@ angular
                         to_date: moment.utc()
                     }, function(candleChart) {
                         $ctrl.stock.updateLatestTimestamp();
-                        $scope.$broadcast('candleChartLoaded');
-                        $scope.$broadcast('candlePlotUpdate', candleChart);
+                        $scope.$broadcast('candleChart_loaded');
+                        $scope.$broadcast('candleChart_plot', candleChart);
                     });
                 };
-                $ctrl.update = function () {
-                    if ($ctrl.timeoutId) {
-                        $interval.cancel($ctrl.timeoutId);
-                    }
 
-                    let updateInterval = $ctrl.selectedResolution.value;
-                    $ctrl.timeoutId = $interval($ctrl.loadData, updateInterval.asMilliseconds());
-
-
-                    $ctrl.loadData();
-                };
             }
         ],
         bindings: {

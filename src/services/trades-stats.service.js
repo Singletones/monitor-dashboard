@@ -19,7 +19,7 @@ angular.module('services')
                             // to_time: params.to_date.format('HH:mm:ss')
                         }
                     }).then(function (response) {
-                        var stats = response.data;
+                        let stats = response.data;
                         callback(new TradesStats({
                             bid: stats['bid']*stats['total trades'],
                             belowBid: stats['below bid']*stats['total trades'],

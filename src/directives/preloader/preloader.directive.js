@@ -8,17 +8,17 @@ angular
             scope: {},
             templateUrl: 'directives/preloader/preloader.template.html',
             link: function(scope, element, attr) {
-                var preloader = element.children('.preloader-wrapper'),
+                let preloader = element.children('.preloader-wrapper'),
                     content = element.children('.preloader-content');
 
                 content.hide();
 
-                scope.$on(attr.onLoaded, function() {
+                scope.$on(attr.name + '_loaded', function() {
                     preloader.hide();
                     content.show();
                 });
 
-                scope.$on(attr.onPreLoad, function() {
+                scope.$on(attr.name + '_loading', function() {
                     content.hide();
                     preloader.show();
                 });
