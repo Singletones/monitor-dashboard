@@ -18,8 +18,8 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="level in $ctrl.stock.getRecentOrderBook().getAsk()">
-                            <td>{{level.Price}}</td>
+                        <tr ng-repeat="level in $ctrl.stock.getRecentOrderBook().getAsk() track by $index">
+                            <td ng-style="$ctrl.askPriceColor($index)">{{level.Price}}</td>
                             <td>{{level.Volume}}</td>
                             <td>&nbsp;</td>
                         </tr>
@@ -43,8 +43,8 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="level in $ctrl.stock.getRecentOrderBook().getBid()">
-                            <td>{{level.Price}}</td>
+                        <tr ng-repeat="level in $ctrl.stock.getRecentOrderBook().getBid() track by $index">
+                            <td ng-style="$ctrl.bidPriceColor($index)">{{level.Price}}</td>
                             <td>{{level.Volume}}</td>
                             <td>&nbsp;</td>
                         </tr>
