@@ -38,11 +38,11 @@ angular
                 this._latest_timestamp = moment.utc();
             }
 
-            setCandlesData(candles) {
-                this._candleChart = new CandleChart(candles);
+            setCandlesData(candleChart) {
+                this._candleChart = candleChart;
             }
 
-            getCandleChart(candles) {
+            getCandleChart() {
                 return this._candleChart;
             }
 

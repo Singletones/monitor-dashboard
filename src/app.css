@@ -199,11 +199,6 @@ ul.dropdown-content.select-dropdown li span {
 
 /* Tabels hover-effect color */
 
-
-/* table {
-    border-collapse: collapse;
-} */
-
 table.highlight>tbody>tr:hover {
     background-color: rgba(67, 181, 247, 0.2);
 }
@@ -250,6 +245,8 @@ thead {
     border-bottom: 1px solid rgba(3, 169, 244, 1);
 }
 
+/*-----------------------*/
+
 .stock-panel-list {
     width: 100%;
     height: auto;
@@ -262,6 +259,19 @@ thead {
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
     -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.expandButton>img{
+    width: 1.1rem;
+    margin-left: 1.2em;
+    z-index: 9999;
+    cursor: pointer;
+}
+.expadnButton{
+    z-index: 10;
+}
+.expandButton>div{
+    z-index: 1;
 }
 
 .stock-info {
@@ -322,6 +332,10 @@ thead {
 .plot-wrapper {
     width: 100%;
     padding-left: 3%;
+}
+
+.js-plotly-plot{
+    width: 100%;
 }
 
 .svg-container:nth-child(odd),

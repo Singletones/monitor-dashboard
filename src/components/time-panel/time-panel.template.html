@@ -1,0 +1,17 @@
+<div id="toggle-panel" class="time-panel col s3">
+    <i class="small material-icons">access_time</i>
+    <div class="pst">
+        <h5>{{$ctrl.getTime('America/Los_Angeles').format('h:mm A')}}</h5>
+        <p>pst</p>
+    </div>
+    <div class="vl"></div>
+    <div class="est">
+        <h5>{{$ctrl.getTime('America/New_York').format('h:mm A')}}</h5>
+        <p>est</p>
+    </div>
+    <div class="vl"></div>
+    <div class="utc">
+        <h5>{{$ctrl.getTime().format('h:mm A')}}</h5>
+        <p>utc</p>
+    </div>
+</div>

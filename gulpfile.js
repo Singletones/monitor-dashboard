@@ -58,6 +58,14 @@ gulp.task('img', function () {
         }));
 });
 
+gulp.task('sounds', function () {
+    return gulp.src('./src/sounds/**')
+        .pipe(gulp.dest('./bin/sounds'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
+});
+
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
         open: false,
@@ -69,7 +77,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('build', function () {
-    gulp.start(['html', 'css', 'js', 'img']);
+    gulp.start(['html', 'css', 'js', 'img', 'sounds']);
 });
 
 gulp.task('start', function() {
@@ -78,4 +86,5 @@ gulp.task('start', function() {
     gulp.watch(['./src/**/*.html', '!./src/index.html', '.src/**/*.js'], ['js']);
     gulp.watch(['./src/index.html'], ['html']);
     gulp.watch(['./src/images/**'], ['img']);
+    gulp.watch(['./src/sounds/**'], ['mp3', 'wav']);
 });

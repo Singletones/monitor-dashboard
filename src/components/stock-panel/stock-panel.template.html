@@ -22,6 +22,16 @@
         </div>
         <div class="plot-wrapper">
             <preloader name="candleChart">
+                <div ng-click="$ctrl.expandPlot()" class="expandButton">
+                    <div class="fullScreenMode">
+                        <div ng-attr-id="{{'modal'+$ctrl.stock.getSymbol()}}" class="modal">
+                            <div class="modal-content">
+                                <div stock-plot="candleChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="images/expandButton.svg">
+                </div>
                 <div stock-plot="candleChart"></div>
             </preloader>
         </div>
