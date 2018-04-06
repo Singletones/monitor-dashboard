@@ -1,21 +1,5 @@
 <div class="row wide-screen">
-    <div id="toggle-panel" class="time-panel col s3">
-        <i class="small material-icons">access_time</i>
-        <div class="pst">
-            <h5>{{$ctrl.getTime('America/Los_Angeles').format('h:mm A')}}</h5>
-            <p>pst</p>
-        </div>
-        <div class="vl"></div>
-        <div class="est">
-            <h5>{{$ctrl.getTime('America/New_York').format('h:mm A')}}</h5>
-            <p>est</p>
-        </div>
-        <div class="vl"></div>
-        <div class="utc">
-            <h5>{{$ctrl.getTime().format('h:mm A')}}</h5>
-            <p>utc</p>
-        </div>
-    </div>
+    <time-panel></time-panel>
     <div id="toggle-input" class="input-field col s3 offset-s4">
         <input id="last_name_ws" ng-model="$ctrl.newSymbol" type="text">
         <label for="last_name_ws">Add symbol</label>

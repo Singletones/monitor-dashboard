@@ -53,15 +53,6 @@ angular
                     $ctrl.pagesAmount = 1;
 
                     $ctrl.updateCurrentPage();
-
-                    $ctrl.currentTime = moment.utc();
-                    $interval(function () {
-                        $ctrl.currentTime = moment.utc();
-                    }, 30000);
-                };
-
-                $ctrl.getTime = function(timeZone) {
-                    return timeZone ? moment.tz($ctrl.currentTime, timeZone) : $ctrl.currentTime;
                 };
 
 

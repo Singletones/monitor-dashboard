@@ -64,7 +64,7 @@ angular
 
                 $ctrl.colorPrices = function(){
                     let colors = shuffle(["#CCD34F","#03a9f4","#c41116","#0fa200","#0033CC","#CC0099","#FC9516",
-                        "#2D5B71","#712D60","#37898A","#BABC8E","#908EBC","#C194A3","#86711C","#3A1C86","#861C1C",
+                        "#2D5B71","#712D60","#37898A","#A7A88E","#908EBC","#C194A3","#86711C","#3A1C86","#861C1C",
                         "#64C3BE","#7C64C3","#29BC5C","#650A44"]);
 
                     let trades = $ctrl.stock.getRecentOrderBook().getAsk().concat($ctrl.stock.getRecentOrderBook().getBid());

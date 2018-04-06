@@ -69,9 +69,27 @@ angular
                         if (manual === true) {
                             $scope.$broadcast('candleChart_loaded');
                         }
+                        $ctrl.stock.setCandlesData(candleChart);
                         $ctrl.stock.updateLatestTimestamp();
                         $scope.$broadcast('candleChart_plot', candleChart);
                     });
+                };
+
+                $ctrl.expandPlot = function(){
+                    var stockName = $ctrl.stock.getSymbol();
+                    $('.modal').modal();
+                    $('.modal').modal({
+                        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                        opacity: .5, // Opacity of modal background
+                        inDuration: 300, // Transition in duration
+                        outDuration: 200, // Transition out duration
+                        startingTop: '30%', // Starting top style attribute
+                        endingTop: '15%' // Ending top style attribute
+
+                    });
+                    $('.modal').css('width', '95%');
+                    $('#modal'+ stockName).modal('open');
+                    $scope.$broadcast('candleChart_plot', $ctrl.stock.getCandleChart());
                 };
 
             }
