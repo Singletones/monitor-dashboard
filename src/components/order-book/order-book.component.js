@@ -117,13 +117,24 @@ angular
                                 y: [],
                                 type: 'scatter'
                             };
+                            let layout = {
+                                paper_bgcolor: 'rgba(0,0,0,0)',
+                                plot_bgcolor: 'rgba(0,0,0,0)',
+                                dragmode: 'zoom',
+                                margin: {
+                                    r: 0,
+                                    t: 10,
+                                    b: 20,
+                                    l: 18
+                                }
+                            };
 
                             for (let {x, y} of this.graphic) {
                                 trace1.x.push(x);
                                 trace1.y.push(y);
                             }
 
-                            Plotly.newPlot(domElement, [trace1]);
+                            Plotly.newPlot(domElement, [trace1], layout);
                         }
                     });
                 };

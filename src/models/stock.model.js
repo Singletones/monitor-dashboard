@@ -97,6 +97,11 @@ angular
                 return this._trades[this._trades.length - 1];
             }
 
+            getRecentTrades(amount) {
+                let from = this._trades.length - amount;
+                return this._trades.slice(from < 0 ? 0 : from, -1);
+            }
+
             getTradesStats() {
                 return this._stats;
             }
