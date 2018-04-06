@@ -57,16 +57,19 @@ angular
                     });
                 };
 
-                $ctrl.loadData = function() {
-                    $scope.$broadcast('candleChart_loading');
-
+                $ctrl.loadData = function(manual) {
+                    if (manual === true) {
+                        $scope.$broadcast('candleChart_loading');
+                    }
                     candlesSource.get({
                         candle_type: $ctrl.selectedResolution.value,
                         from_date: moment.utc().subtract($ctrl.selectedLookback.value),
                         to_date: moment.utc()
                     }, function(candleChart) {
+                        if (manual === true) {
+                            $scope.$broadcast('candleChart_loaded');
+                        }
                         $ctrl.stock.updateLatestTimestamp();
-                        $scope.$broadcast('candleChart_loaded');
                         $scope.$broadcast('candleChart_plot', candleChart);
                     });
                 };

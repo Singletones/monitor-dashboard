@@ -9,6 +9,7 @@
         </div>
 
         <preloader name="trades">
+            <div class="trades-time-interval"><b>Time interval: {{$ctrl.timeIntervalBtwTrades}}</b></div>
             <div class="trades-table-wrapper">
                 <table class="highlight">
                     <thead>
@@ -33,24 +34,28 @@
                 </table>
             </div>
         </preloader>
-        <!--<div ng-init="getColumn('tradesTable', 3)"></div>-->
     </div>
+    <div class="clearfix">
+        <div class="trades-levels-wrapper">
+            <div class="trades-levels-card">
+                <h5>Trade Classification</h5>
+                <preloader name="tradeLevels">
+                    <div stock-plot="tradeLevels"></div>
+                </preloader>
+            </div>
+        </div>
 
-    <div class="trades-levels-wrapper">
-        <div class="trades-levels-card">
-            <h5>Trade Classification</h5>
-            <preloader name="tradeLevels">
-                <div stock-plot="tradeLevels"></div>
-            </preloader>
+        <div class="trades-frequencies-wrapper">
+            <div class="trades-frequencies-card">
+                <h5>Trade Level Count</h5>
+                <preloader name="levelFrequencies">
+                    <div stock-plot="levelFrequencies"></div>
+                </preloader>
+            </div>
         </div>
     </div>
 
-    <div class="trades-frequencies-wrapper">
-        <div class="trades-frequencies-card">
-            <h5>Trade Level Count</h5>
-            <preloader name="levelFrequencies">
-                <div stock-plot="levelFrequencies"></div>
-            </preloader>
-        </div>
+    <div class="total-trades-wrapper">
+        <div stock-plot="totalTrades"></div>
     </div>
 </div>

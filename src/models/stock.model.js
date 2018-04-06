@@ -8,7 +8,15 @@ angular
         'TradesStatsModel',
         'LevelFrequenciesModel',
         'orderBookMaxPeriods',
-        (CandleChart, OrderBook, TradesStats, LevelFrequencies, orderBookMaxPeriods) => class {
+        'tradesMaxPeriods',
+        (
+            CandleChart,
+            OrderBook,
+            TradesStats,
+            LevelFrequencies,
+            orderBookMaxPeriods,
+            tradesMaxPeriods
+        ) => class {
 
             constructor(symbol, market) {
                 this._symbol = symbol;
@@ -57,19 +65,26 @@ angular
                 }
             }
 
+            getOrderBooks() {
+                return this._orderBooks;
+            }
+
             getRecentOrderBook() {
                 return this._orderBooks[this._orderBooks.length - 1];
             }
 
-            getOrderBooksRatioOverTime(levels) {
-                return this._orderBooks.map(orderBook => [
-                    orderBook.getDatetime(),
-                    orderBook.getLevelsRatio(levels)
-                ]);
-            }
-
             setTradesData(trades) {
                 this._trades = trades;
+                this._stats = new TradesStats().fromTrades(trades);
+                this._levels = new LevelFrequencies(trades);
+            }
+
+            updateTradesData(trades) {
+                this._trades.push(...trades);
+                if (this._trades.length > 200) {
+                    this._trades.splice(0, this._trades.length - 200);
+                }
+
                 this._stats = new TradesStats().fromTrades(trades);
                 this._levels = new LevelFrequencies(trades);
             }

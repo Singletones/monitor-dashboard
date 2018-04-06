@@ -1,9 +1,4 @@
 <div class="order-book">
-    <div class="input-field">
-        <select ng-model="$ctrl.selectedLevel" ng-options="item.label for item in $ctrl.levels">
-        </select>
-        <label style="color: black">Analyze up to:</label>
-    </div>
     <div class="order-card">
         <preloader name="orderBook">
             <div class="cont-wrap ask-wrapper">
@@ -56,6 +51,20 @@
         </preloader>
     </div>
     <div class="order-books-plots">
-        <div stock-plot="ratioOverTime"></div>
+        <div class="ratio-over-time-wrapper">
+            <div class="oerder-books-plots-buttons clearfix">
+                <div class="input-field analyze-wrapper">
+                    <select ng-model="$ctrl.selectedLevel" ng-options="item.label for item in $ctrl.levels">
+                    </select>
+                    <label style="color: black">Analyze up to:</label>
+                </div>
+                <div class="input-field lookback-wrapper">
+                    <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
+                    </select>
+                    <label style="color: black">Lookback</label>
+                </div>
+            </div>
+            <div stock-plot="ratioOverTime"></div>
+        </div>
     </div>
 </div>

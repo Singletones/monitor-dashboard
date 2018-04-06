@@ -11,7 +11,7 @@ angular.module('models')
                 this.ask = Ask;
                 this.bid = Bid;
 
-                this.datetime = Datetime;
+                this.timestamp = Datetime;
             }
 
             getAsk() {
@@ -22,8 +22,8 @@ angular.module('models')
                 return this.bid;
             }
 
-            getDatetime() {
-                return this.datetime;
+            getTimestamp() {
+                return this.timestamp;
             }
 
             getLevelsRatio(level) {

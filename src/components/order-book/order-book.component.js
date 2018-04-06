@@ -14,21 +14,34 @@ angular
 
                 $ctrl.$onInit = function () {
                     $ctrl.levels = [];
+                    $ctrl.lookbacks = [];
                     for (let i = 1; i <= 10; i++) {
                         $ctrl.levels.push(new utils.DropdownItem('Level ' + i, i));
+                        $ctrl.lookbacks.push(
+                            new utils.DropdownItem(
+                                i + ' period' + (i > 1 ? 's': ''),
+                                moment.duration(i*30, 'seconds')
+                            )
+                        );
                     }
                     $ctrl.selectedLevel = $ctrl.levels[0];
+                    $ctrl.selectedLookback = $ctrl.lookbacks[$ctrl.lookbacks.length - 1];
                     $scope.$watch('$ctrl.selectedLevel', $ctrl.plotRatioOverTime);
+                    $scope.$watch('$ctrl.selectedLookback', $ctrl.plotRatioOverTime);
 
-                    new utils.AutoRefresher(function () {
-                        $scope.$broadcast('orderBook_loading');
+                    new utils.AutoRefresher(function (manual) {
+                        if (manual === true) {
+                            $scope.$broadcast('orderBook_loading');
+                        }
                         orderBookService.getRecent({
                             symbol: $ctrl.stock.getSymbol(),
                             amount: 1
                             // from_date: moment.utc().subtract(4, 'days'),
                             // to_date: moment.utc()
                         }, (orderBooks) => {
-                            $scope.$broadcast('orderBook_loaded');
+                            if (manual === true) {
+                                $scope.$broadcast('orderBook_loaded');
+                            }
                             $ctrl.stock.updateOrderBooks(orderBooks);
                             $ctrl.colorPrices();
                             $ctrl.plotRatioOverTime();
@@ -59,10 +72,7 @@ angular
                     let index = 0;
                     trades.forEach(function(trade){
 
-                        if (pricesColors.hasOwnProperty(trade.Price)){
-                            // great!;
-                        }
-                        else {
+                        if (!pricesColors.hasOwnProperty(trade.Price)){
                             pricesColors[trade.Price] = colors[index];
                             index++;
                         }
@@ -87,8 +97,20 @@ angular
                 };
 
                 $ctrl.plotRatioOverTime = function () {
-                    let graphic = $ctrl.stock.getOrderBooksRatioOverTime($ctrl.selectedLevel.value);
+                    let now = moment.utc();
+
                     $scope.$broadcast('ratioOverTime_plot', {
+                        graphic: $ctrl.stock.getOrderBooks().reduce((filtered, orderBook) => {
+                            let datetime = orderBook.getTimestamp();
+                            if (now.diff(datetime) < $ctrl.selectedLookback.value.asMilliseconds()) {
+                                filtered.push({
+                                    x: datetime.format('YYYY-MM-DD HH:mm:ss'),
+                                    y: orderBook.getLevelsRatio($ctrl.selectedLevel.value)
+                                });
+                            }
+                            return filtered;
+                        }, []),
+
                         plot: function (domElement) {
                             let trace1 = {
                                 x: [],
@@ -96,8 +118,8 @@ angular
                                 type: 'scatter'
                             };
 
-                            for (let [x, y] of graphic) {
-                                trace1.x.push(x.format('YYYY-MM-DD HH:mm:ss'));
+                            for (let {x, y} of this.graphic) {
+                                trace1.x.push(x);
                                 trace1.y.push(y);
                             }
 

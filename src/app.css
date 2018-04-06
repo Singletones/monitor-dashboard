@@ -304,6 +304,8 @@ thead {
 .trades-levels-card,
 .trades-frequencies-card,
 .trades-card,
+.order-books-plots,
+.total-trades-wrapper,
 .order-card {
     border-radius: 10px;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
@@ -316,8 +318,18 @@ thead {
     padding: 0 .4rem .8rem .4rem;
 }
 
+.analyze-wrapper{
+    float: left;
+}
 
-/* Syles for plots*/
+.lookback-wrapper{
+    float: right;
+}
+
+.order-books-plots{
+    margin-top: 2%;
+}
+/* Styles for plots*/
 
 .plot-wrapper {
     width: 100%;

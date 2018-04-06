@@ -35,7 +35,7 @@ angular.module('utils', [])
                     }
 
                     refresh() {
-                        this._updateFn();
+                        this._updateFn(true);
                     }
 
                     setInterval(updateInterval) {
@@ -46,7 +46,7 @@ angular.module('utils', [])
                         this._timeoutId = $interval(this._updateFn, updateInterval);
 
 
-                        this._updateFn();
+                        this._updateFn(true);
                     }
                 },
 
