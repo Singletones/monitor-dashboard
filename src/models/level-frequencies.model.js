@@ -2,12 +2,6 @@
 
 angular.module('models')
     .factory('LevelFrequenciesModel', function () {
-        function uniq(array) {
-            let seen = {};
-            return array.filter(function(item) {
-                return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-            });
-        }
 
         let labelMapping = {
             'B-10': 'B10',

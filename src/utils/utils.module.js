@@ -50,6 +50,24 @@ angular.module('utils', [])
                     }
                 },
 
+                uniq: function (array, property) {
+                    let seen = {};
+                    let key;
+                    switch (typeof property) {
+                        case 'string':
+                            key = item => item[property];
+                            break;
+                        case 'function':
+                            key = property;
+                            break;
+                        default:
+                            key = item => item;
+                    }
+                    return array.filter(function(item) {
+                        return seen.hasOwnProperty(key(item)) ? false : (seen[key(item)] = true);
+                    });
+                },
+
                 toDuration: function (durationStr) {
                     let candleRes = parseInt(durationStr);
                     return moment.duration(

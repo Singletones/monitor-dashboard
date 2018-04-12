@@ -9,19 +9,27 @@ angular
         'LevelFrequenciesModel',
         'orderBookMaxPeriods',
         'tradesMaxPeriods',
+        'utils',
         (
             CandleChart,
             OrderBook,
             TradesStats,
             LevelFrequencies,
             orderBookMaxPeriods,
-            tradesMaxPeriods
+            tradesMaxPeriods,
+            utils
         ) => class {
 
-            constructor(symbol, market) {
+            constructor({
+                symbol,
+                market,
+                activities
+            } = {}) {
                 this._symbol = symbol;
                 this._market = market;
                 this._latest_timestamp = moment.utc();
+
+                this._activities = activities;
 
                 this._candleChart = new CandleChart();
                 this._orderBooks = [];
@@ -44,6 +52,14 @@ angular
 
             updateLatestTimestamp() {
                 this._latest_timestamp = moment.utc();
+            }
+
+            isInZone() {
+                return !!this._activities;
+            }
+
+            getActivities() {
+                return this._activities;
             }
 
             setCandlesData(candleChart) {
@@ -85,6 +101,11 @@ angular
                     this._trades.splice(0, this._trades.length - 200);
                 }
 
+                this._trades = utils.uniq(this._trades, '_id');
+                this._trades.sort((t1, t2) =>
+                    t1.getTimestamp().diff(t2.getTimestamp())
+                );
+
                 this._stats = new TradesStats().fromTrades(trades);
                 this._levels = new LevelFrequencies(trades);
             }
@@ -95,6 +116,11 @@ angular
 
             getRecentTrade() {
                 return this._trades[this._trades.length - 1];
+            }
+
+            getRecentTrades(amount) {
+                let from = this._trades.length - amount;
+                return this._trades.slice(from < 0 ? 0 : from);
             }
 
             getTradesStats() {

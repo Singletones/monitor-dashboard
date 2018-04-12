@@ -8,13 +8,19 @@ angular.module('models')
                 price,
                 volume,
                 tradeCode,
-                executionLevel
+                executionLevel,
+                ID
             } = {}) {
                 this._timestamp = timestamp;
                 this._price = price;
                 this._volume = volume;
                 this._code = tradeCode;
                 this._level = executionLevel;
+                this._id = ID;
+            }
+
+            getID() {
+                return this._id;
             }
 
             getTimestamp() {

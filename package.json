@@ -12,6 +12,7 @@
         "browser-sync": "^2.23.6",
         "event-stream": "^3.3.4",
         "gulp": "^3.9.1",
+        "gulp-angular-embed-templates": "^2.3.0",
         "gulp-angular-order": "^1.1.0",
         "gulp-babel": "^7.0.1",
         "gulp-concat": "^2.6.1",

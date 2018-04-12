@@ -123,7 +123,11 @@ angular.module('dataSources')
                         this._to_date = to_date.clone();
                         this._candles = candles;
                         this._store();
-                        callback(new CandleChart(candles, params));
+                        callback(new CandleChart(candles, params), {
+                            from_date: this._from_date,
+                            to_date: this._to_date,
+                            candle_type: this._candle_type
+                        });
                     });
                 }
             }

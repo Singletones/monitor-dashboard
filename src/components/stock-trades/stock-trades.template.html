@@ -23,7 +23,7 @@
                     </thead>
 
                     <tbody>
-                    <tr ng-repeat="trade in $ctrl.stock.getTrades() track by $index">
+                    <tr ng-repeat="trade in $ctrl.getRecentTrades() track by $index">
                         <td>{{trade.getTimestamp().format('MM-DD-YY')}}</td>
                         <td>{{trade.getTimestamp().format('h:mm:ss A')}}</td>
                         <td ng-class="$ctrl.tradeColor(trade, $index)">{{trade.getPrice()}}</td>

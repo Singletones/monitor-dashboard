@@ -1,11 +1,13 @@
 <div class="row wide-screen">
     <time-panel></time-panel>
-    <div id="toggle-input" class="input-field col s3 offset-s4">
-        <input id="last_name_ws" ng-model="$ctrl.newSymbol" type="text">
-        <label for="last_name_ws">Add symbol</label>
-    </div>
-    <div ng-click="$ctrl.addSymbol()" id="toggle-btn" class="input-field col s1">
-        <a class="waves-effect waves-light btn light blue">ADD</a>
+    <div class="add-symbol-panel" ng-if="!$ctrl.immutable">
+        <div id="toggle-input" class="input-field col s3 offset-s2">
+            <input id="last_name_ws" ng-model="$ctrl.newSymbol" type="text">
+            <label for="last_name_ws">Add symbol</label>
+        </div>
+        <div ng-click="$ctrl.addSymbol()" id="toggle-btn" class="input-field col s1">
+            <a class="waves-effect waves-light btn light blue">ADD</a>
+        </div>
     </div>
 </div>
 
@@ -16,18 +18,3 @@
 </div>
 
 <navigation-bar ng-if="$ctrl.pagesAmount > 1"></navigation-bar>
-
-<footer class="page-footer grey darken-3">
-    <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <p class="footer-text">Property of Zulu Quant for monitoring trades, market movements, and research.</p>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            <p>© 2018 Zulu quant</p>
-        </div>
-    </div>
-</footer>

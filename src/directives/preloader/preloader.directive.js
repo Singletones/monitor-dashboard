@@ -6,7 +6,7 @@ angular
         return {
             transclude: true,
             scope: {},
-            templateUrl: 'directives/preloader/preloader.template.html',
+            templateUrl: 'preloader.template.html',
             link: function(scope, element, attr) {
                 let preloader = element.children('.preloader-wrapper'),
                     content = element.children('.preloader-content');

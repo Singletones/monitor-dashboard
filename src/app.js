@@ -2,13 +2,14 @@
 
 angular.module('dashboardApp', [
     'authorizationPage',
-    'stockPanelList',
-    'services',
-    'ngTemplates'
+    'stockPanelsTabs',
+    'services'
 ])
     .controller('dashboardApp', [
-        '$scope', 'authorizationService',
+        '$scope',
+        'authorizationService',
         function($scope, auth) {
+
             $scope.isSignedIn = false;
 
             auth.init(function listen(isSignedIn) {

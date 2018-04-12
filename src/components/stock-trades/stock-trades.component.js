@@ -3,7 +3,7 @@
 angular
     .module('stockTrades')
     .component('stockTrades', {
-        templateUrl: 'components/stock-trades/stock-trades.template.html',
+        templateUrl: 'stock-trades.template.html',
         controller: [
             '$scope',
             'tradesService',
@@ -46,15 +46,20 @@ angular
                     $scope.$watch('$ctrl.selectedLookback', _ => autoRefresher.refresh());
                 };
 
+                $ctrl.getRecentTrades = function () {
+                    return $ctrl.stock.getRecentTrades($ctrl.selectedLookback.value);
+                };
+
                 $ctrl.computeTimeIntervalBtwTrades = function () {
-                    let oldestTrade = $ctrl.stock.getTrades()[0].getTimestamp(),
+                    let oldestTrade = $ctrl.getRecentTrades()[0].getTimestamp(),
                         recentTrade = $ctrl.stock.getRecentTrade().getTimestamp();
                     let interval = moment.duration(recentTrade.diff(oldestTrade));
-                    return $ctrl.timeIntervalBtwTrades = interval.format('h [hours] m.ss [minutes]');
+                    let format = interval.asMinutes() < 1 ? 's [seconds]' : 'h [hours] m.ss [minutes]';
+                    return $ctrl.timeIntervalBtwTrades = interval.format(format);
                 };
 
                 $ctrl.tradeColor = function(trade, index) {
-                    let prevTrade = $ctrl.stock.getTrades()[index-1];
+                    let prevTrade = $ctrl.getRecentTrades()[index-1];
                     if (prevTrade) {
                         let prevPrice = prevTrade.getPrice(),
                             price = trade.getPrice();
@@ -77,23 +82,18 @@ angular
 
                 $ctrl.plotTotalTrades = function () {
                     let trades = $ctrl.stock.getTrades();
-                    let timestamp = trades[0].getTimestamp().add(30, 'seconds');
-                    let graphic = trades.reduce((acc, trade) => {
-                        if (trade.getTimestamp().isBefore(timestamp)) {
-                            acc[acc.length - 1].y++;
+                    let t0 = trades[0].getTimestamp(),
+                        t1 = trades[trades.length - 1].getTimestamp();
+                    let graphic = new Array(Math.floor(t1.diff(t0)/30000) + 1);
+                    for (let i = 0; i < graphic.length; i++) {
+                        graphic[i] = {
+                            x: moment.utc(t0).add(30*i, 'seconds').format('YYYY-MM-DD HH:mm:ss'),
+                            y: 0
                         }
-                        else {
-                            timestamp.add(30, 'seconds');
-                            acc.push({
-                                x: timestamp.format('YYYY-MM-DD HH:mm:ss'),
-                                y: 1
-                            });
-                        }
-                        return acc;
-                    }, [{
-                        x: timestamp.format('YYYY-MM-DD HH:mm:ss'),
-                        y: 0
-                    }]);
+                    }
+                    for (let trade of trades) {
+                        graphic[Math.floor(trade.getTimestamp().diff(t0)/30000)].y++;
+                    }
 
                     $scope.$broadcast('totalTrades_plot', {
                         graphic,

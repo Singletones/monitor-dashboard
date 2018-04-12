@@ -2,7 +2,7 @@
 
 angular.module('authorizationPage')
     .component('authorizationPage', {
-        templateUrl: 'components/authorization-page/authorization-page.template.html',
+        templateUrl: 'authorization-page.template.html',
         controller: [function() {
             var $ctrl = this;
 

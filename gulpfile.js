@@ -3,8 +3,9 @@ const gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     angularOrder = require('gulp-angular-order'),
-    ngTemplate = require('gulp-ng-template'),
-    es = require('event-stream'),
+    // ngTemplate = require('gulp-ng-template'),
+    embedTemplates = require('gulp-angular-embed-templates'),
+    // es = require('event-stream'),
     browserSync = require('browser-sync').create();
 
 gulp.task('html', function () {
@@ -25,20 +26,11 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function () {
-    return es.merge(
-            gulp.src([
-                './src/**/*.html',
-                '!./src/index.html'
-            ])
-            .pipe(ngTemplate({
-                module: 'genTemplates',
-                standalone: true
-            })),
-            gulp.src('./src/**/*.js')
-            .pipe(babel({
-                presets: ['env']
-            }))
-        )
+    return gulp.src('./src/**/*.js')
+        .pipe(babel({
+            presets: ['env']
+        }))
+        .pipe(embedTemplates())
         .pipe(angularOrder({
             types: ['module', 'routes', 'config', 'component', 'model', 'service', 'controller', 'directive', 'filter']
         }))

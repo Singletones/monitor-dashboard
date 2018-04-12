@@ -3,7 +3,7 @@
 angular
     .module('orderBook')
     .component('orderBook', {
-        templateUrl: 'components/order-book/order-book.template.html',
+        templateUrl: 'order-book.template.html',
         controller: [
             '$scope',
             'utils',

@@ -24,14 +24,17 @@ angular
                 });
             }
 
-            unpackXaxis() {
+            unpackXaxis(format) {
                 return this.candles.map(function(candle) {
-                    return candle.timestamp.format('YYYY-MM-DD HH:mm:ss');
+                    return candle.timestamp.format(format || 'MM-DD HH:mm:ss');
                 });
             }
 
-            getRange() {
-                return [this.fromDate.format('YYYY-MM-DD HH:mm:ss'), this.endDate.format('YYYY-MM-DD HH:mm:ss')]
+            getRange(format) {
+                return [
+                    this.candles[0].timestamp.format(format || 'MM-DD HH:mm:ss'),
+                    this.candles[this.candles.length - 1].timestamp.format(format || 'MM-DD HH:mm:ss')
+                ];
             }
 
             getCandlesResolution() {
@@ -41,7 +44,7 @@ angular
             plot(domElement) {
                 let trace1 = {
 
-                    x: this.unpackXaxis(),//.slice(1),
+                    x: this.unpackXaxis(),
 
                     open: this.unpack('open'),
                     close: this.unpack('close'),
@@ -54,8 +57,6 @@ angular
                     line: { color: 'rgba(31,119,180,1)' },
 
                     type: 'candlestick',
-                    xaxis: 'x',
-                    yaxis: 'y'
                 };
 
                 let layout = {
@@ -71,7 +72,6 @@ angular
                     showlegend: false,
                     xaxis: {
                         autorange: true,
-                        domain: [0, 1],
                         range: this.getRange(),
                         rangeslider: { range: this.getRange() },
                         title: 'Date',
@@ -79,8 +79,7 @@ angular
                     },
                     yaxis: {
                         autorange: true,
-                        domain: [0, 1],
-                        range: [114.609999778, 137.410004222],
+                        title: 'Price',
                         type: 'linear'
                     }
                 };

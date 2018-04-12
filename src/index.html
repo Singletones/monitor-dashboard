@@ -29,7 +29,7 @@
 
     <authorization-page ng-if="!isSignedIn" on-sign-in="signIn()">
     </authorization-page>
-    <stock-panel-list ng-if="isSignedIn"></stock-panel-list>
+    <stock-panels-tabs ng-if="isSignedIn"></stock-panels-tabs>
 
     <!-- <footer class="page-footer light-blue">
 
@@ -38,20 +38,18 @@
         </div>
 
          -->
-    <div style="display: none">
-        <script src="https://apis.google.com/js/api.js"></script>
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <!--<script src="bower_components/angular/angular.js"></script>-->
-        <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
-        <!-- In production use: -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="bower_components/plotlyjs/plotly.js"></script>
-        <script src="bower_components/moment/min/moment.min.js"></script>
-        <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
-        <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
-        <script src="bin.js"></script>
-    </div>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!--<script src="bower_components/angular/angular.js"></script>-->
+    <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+    <!-- In production use: -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="bower_components/plotlyjs/plotly.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+    <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
+    <script src="bin.js"></script>
 </body>
 
 </html>

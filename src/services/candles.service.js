@@ -53,16 +53,13 @@ angular
                    from_date,
                    to_date,
                 }, callback) {
-                    let candle = candle_type.format(
-                        'd[day]h[hour]m[minute]s[second]',
+                    let [candle_length, candle_units] = candle_type.format(
+                        'd [day]h [hour]m [minute]s [second]',
                         {
                             trim: 'both',
                             usePlural: false
                         }
-                    );
-
-                    let candle_length = parseInt(candle),
-                        candle_units = candle.slice(('' + candle_length).length);
+                    ).split(' ');
 
                     return $http.get(apiDomain + '/equities/candles', {
                         params: {

@@ -15,7 +15,8 @@ angular
                     price: tradeJSON['Trade_Price'],
                     volume: tradeJSON['Trade_Volume'],
                     tradeCode: tradeJSON['Trade_Code'],
-                    executionLevel: tradeJSON['Execution_Level']
+                    executionLevel: tradeJSON['Execution_Level'],
+                    ID: tradeJSON['_id']
                 });
             }
 
