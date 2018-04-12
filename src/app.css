@@ -207,29 +207,29 @@ tr {
     border: solid 1px #03a9f4;
 }
 
-tr.higher{
+tr.higher {
     background-color: #0fa200;
 }
 
-tr.lower{
+tr.lower {
     background-color: #c41116;
 }
 
-tr.similar{
+tr.similar {
     background-color: #03a9f4;
 }
 
-td.higher{
+td.higher {
     color: #0fa200;
     font-weight: bold;
 }
 
-td.lower{
+td.lower {
     color: #c41116;
     font-weight: bold;
 }
 
-td.similar{
+td.similar {
     color: #03a9f4;
     font-weight: bold;
 }
@@ -244,6 +244,7 @@ th {
 thead {
     border-bottom: 1px solid rgba(3, 169, 244, 1);
 }
+
 
 /*-----------------------*/
 
@@ -261,16 +262,18 @@ thead {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-.expandButton>img{
+.expandButton>img {
     width: 1.1rem;
     margin-left: 1.2em;
     z-index: 9999;
     cursor: pointer;
 }
-.expadnButton{
+
+.expandButton {
     z-index: 10;
 }
-.expandButton>div{
+
+.expandButton>div {
     z-index: 1;
 }
 
@@ -328,17 +331,28 @@ thead {
     padding: 0 .4rem .8rem .4rem;
 }
 
-.analyze-wrapper{
+.trade-lookback-wrapper {
     float: left;
 }
 
-.lookback-wrapper{
+.trades-time-interval-wrapper {
+    margin-top: 2rem;
     float: right;
 }
 
-.order-books-plots{
+.analyze-wrapper {
+    float: left;
+}
+
+.lookback-wrapper {
+    float: right;
+}
+
+.order-books-plots {
     margin-top: 2%;
 }
+
+
 /* Styles for plots*/
 
 .plot-wrapper {
@@ -346,7 +360,7 @@ thead {
     padding-left: 3%;
 }
 
-.js-plotly-plot{
+.js-plotly-plot {
     width: 100%;
 }
 

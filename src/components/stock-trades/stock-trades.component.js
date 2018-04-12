@@ -115,13 +115,26 @@ angular
                                 type: 'scatter'
                             };
 
-                            Plotly.newPlot(domElement, [trace1, trace2]);
-                        }
-                    });
-                };
-            }
-        ],
-        bindings: {
-            stock: '<'
-        }
-    });
+                                    let layout = {
+                                        paper_bgcolor: 'rgba(0,0,0,0)',
+                                        plot_bgcolor: 'rgba(0,0,0,0)',
+                                        dragmode: 'zoom',
+                                        margin: {
+                                            r: 0,
+                                            t: 10,
+                                            b: 35,
+                                            l: 20
+                                        },
+                                        showlegend: false
+                                    };
+
+                                        Plotly.newPlot(domElement, [trace1, trace2], layout);
+                                    }
+                                });
+                        };
+                    }
+                ],
+                bindings: {
+                    stock: '<'
+                }
+            });

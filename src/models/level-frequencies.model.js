@@ -55,7 +55,7 @@ angular.module('models')
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     margin: {
-                        l: 20,
+                        l: 28,
                         r: 10,
                         b: 40,
                         t: 10,

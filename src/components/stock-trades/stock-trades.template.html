@@ -1,25 +1,25 @@
 <div class="trades-wrapper">
     <div class="trades-card">
         <h5>Trades</h5>
-
-        <div class="input-field">
-            <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
-            </select>
-            <label style="color: black">Lookback</label>
-        </div>
-
         <preloader name="trades">
-            <div class="trades-time-interval"><b>Time interval: {{$ctrl.timeIntervalBtwTrades}}</b></div>
+            <div class="info-panel clearfix">
+                <div class="input-field trade-lookback-wrapper">
+                    <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
+                    </select>
+                    <label style="color: black">Lookback</label>
+                </div>
+                <div class="trades-time-interval-wrapper"><b>Time interval: {{$ctrl.timeIntervalBtwTrades}}</b></div>
+            </div>
             <div class="trades-table-wrapper">
                 <table class="highlight">
                     <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Price</th>
-                        <th>Volume</th>
-                        <th>Code</th>
-                    </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Volume</th>
+                            <th>Code</th>
+                        </tr>
                     </thead>
 
                     <tbody>
