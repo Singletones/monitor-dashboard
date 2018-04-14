@@ -1,5 +1,5 @@
 <div class="trades-wrapper">
-    <div class="trades-card">
+    <div class="card">
         <h5>Trades</h5>
         <preloader name="trades">
             <div class="info-panel clearfix">
@@ -36,26 +36,27 @@
         </preloader>
     </div>
     <div class="clearfix">
-        <div class="trades-levels-wrapper">
-            <div class="trades-levels-card">
+        <div class="trades-levels-wrapper card">
                 <h5>Trade Classification</h5>
                 <preloader name="tradeLevels">
                     <div stock-plot="tradeLevels"></div>
                 </preloader>
-            </div>
         </div>
 
-        <div class="trades-frequencies-wrapper">
-            <div class="trades-frequencies-card">
+        <div class="trades-frequencies-wrapper card">
                 <h5>Trade Level Count</h5>
                 <preloader name="levelFrequencies">
                     <div stock-plot="levelFrequencies"></div>
                 </preloader>
-            </div>
         </div>
     </div>
 
-    <div class="total-trades-wrapper">
+    <div class="total-trades-wrapper card">
         <div stock-plot="totalTrades"></div>
+    </div>
+
+    <div class="bna-proportions-wrapper card">
+        <h5>Bid and Ask Proportion Over Time</h5>
+        <div stock-plot="bidNAskProportion"></div>
     </div>
 </div>

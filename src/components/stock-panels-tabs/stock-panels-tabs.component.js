@@ -19,8 +19,9 @@ angular.module('stockPanelsTabs')
                     $ctrl.inZoneStocks = [];
 
                     activityService.getZones({
-                        since: moment.utc().subtract(1, 'day')
+                        since: moment.utc().subtract(30, 'seconds')
                     }, stocks => {
+                        debugger;
                         $ctrl.inZoneStocks = stocks;
                     });
 

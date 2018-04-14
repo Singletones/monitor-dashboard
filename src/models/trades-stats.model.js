@@ -16,6 +16,16 @@ angular.module('models')
                 this.ask = ask;
                 this.aboveAsk = aboveAsk;
                 this.between = between;
+
+                this.total = this._total();
+            }
+
+            _total() {
+                return this.bid
+                    + this.ask
+                    + this.belowBid
+                    + this.aboveAsk
+                    + this.between;
             }
 
             fromTrades(trades) {
@@ -47,7 +57,13 @@ angular.module('models')
                     }
                 }, this);
 
+                this.total = this._total();
+
                 return this;
+            }
+
+            getTotal() {
+                return this.total;
             }
 
             values() {

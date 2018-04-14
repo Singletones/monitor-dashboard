@@ -105,6 +105,7 @@ angular
                 };
 
                 $ctrl.plotInZone = function () {
+                    debugger;
                     let activity = $ctrl.stock.getActivities()[0];
 
                     $scope.$broadcast('candleChart_loading');

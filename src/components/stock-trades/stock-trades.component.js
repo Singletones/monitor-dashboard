@@ -6,10 +6,11 @@ angular
         templateUrl: 'stock-trades.template.html',
         controller: [
             '$scope',
+            'TradesStatsModel',
             'tradesService',
             'tradesRefreshRate',
             'utils',
-            function($scope, tradesService, refreshRate, utils) {
+            function($scope, TradesStats, tradesService, refreshRate, utils) {
                 let $ctrl = this;
 
                 $ctrl.$onInit = function () {
@@ -88,12 +89,38 @@ angular
                     for (let i = 0; i < graphic.length; i++) {
                         graphic[i] = {
                             x: moment.utc(t0).add(30*i, 'seconds').format('YYYY-MM-DD HH:mm:ss'),
-                            y: 0
+                            trades: []
                         }
                     }
                     for (let trade of trades) {
-                        graphic[Math.floor(trade.getTimestamp().diff(t0)/30000)].y++;
+                        graphic[Math.floor(trade.getTimestamp().diff(t0)/30000)].trades.push(trade);
                     }
+                    
+                    $scope.$broadcast('bidNAskProportion_plot', {
+                        graphic,
+                        plot: function (domElement) {
+                            let data = [];
+                            for (let trace of new TradesStats().labels()) {
+                                data.push({
+                                    x: [],
+                                    y: [],
+                                    type: 'scatter',
+                                    name: trace,
+                                    connectgaps: true
+                                })
+                            }
+
+                            for (let {x, trades} of this.graphic) {
+                                let stats = new TradesStats().fromTrades(trades);
+                                stats.values().forEach((value, i) => {
+                                    data[i].x.push(x);
+                                    data[i].y.push(value/stats.getTotal());
+                                });
+                            }
+
+                            Plotly.newPlot(domElement, data);
+                        }
+                    });
 
                     $scope.$broadcast('totalTrades_plot', {
                         graphic,
@@ -104,9 +131,9 @@ angular
                                 type: 'bar'
                             };
 
-                            for (let {x, y} of this.graphic) {
+                            for (let {x, trades} of this.graphic) {
                                 trace1.x.push(x);
-                                trace1.y.push(y);
+                                trace1.y.push(trades.length);
                             }
 
                             let trace2 = {
@@ -115,26 +142,26 @@ angular
                                 type: 'scatter'
                             };
 
-                                    let layout = {
-                                        paper_bgcolor: 'rgba(0,0,0,0)',
-                                        plot_bgcolor: 'rgba(0,0,0,0)',
-                                        dragmode: 'zoom',
-                                        margin: {
-                                            r: 0,
-                                            t: 10,
-                                            b: 35,
-                                            l: 20
-                                        },
-                                        showlegend: false
-                                    };
+                            let layout = {
+                                paper_bgcolor: 'rgba(0,0,0,0)',
+                                plot_bgcolor: 'rgba(0,0,0,0)',
+                                dragmode: 'zoom',
+                                margin: {
+                                    r: 0,
+                                    t: 10,
+                                    b: 35,
+                                    l: 20
+                                },
+                                showlegend: false
+                            };
 
-                                        Plotly.newPlot(domElement, [trace1, trace2], layout);
-                                    }
-                                });
-                        };
-                    }
-                ],
-                bindings: {
-                    stock: '<'
-                }
-            });
+                            Plotly.newPlot(domElement, [trace1, trace2], layout);
+                        }
+                    });
+                };
+            }
+        ],
+        bindings: {
+            stock: '<'
+        }
+    });

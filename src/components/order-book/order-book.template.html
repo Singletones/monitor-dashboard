@@ -1,5 +1,5 @@
 <div class="order-book">
-    <div class="order-card">
+    <div class="card">
         <preloader name="orderBook">
             <div class="cont-wrap ask-wrapper">
                 <b>ASK</b>
@@ -50,8 +50,7 @@
 
         </preloader>
     </div>
-    <div class="order-books-plots">
-        <div class="ratio-over-time-wrapper">
+        <div class="ratio-over-time-wrapper card">
             <div class="oerder-books-plots-buttons clearfix">
                 <div class="input-field analyze-wrapper">
                     <select ng-model="$ctrl.selectedLevel" ng-options="item.label for item in $ctrl.levels">
@@ -66,5 +65,4 @@
             </div>
             <div stock-plot="ratioOverTime"></div>
         </div>
-    </div>
 </div>
