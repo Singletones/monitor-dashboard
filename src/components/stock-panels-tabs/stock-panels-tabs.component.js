@@ -21,7 +21,6 @@ angular.module('stockPanelsTabs')
                     activityService.getZones({
                         since: moment.utc().subtract(30, 'seconds')
                     }, stocks => {
-                        debugger;
                         $ctrl.inZoneStocks = stocks;
                     });
 

@@ -28,6 +28,7 @@ angular
                     $ctrl.selectedLookback = $ctrl.lookbacks[$ctrl.lookbacks.length - 1];
                     $scope.$watch('$ctrl.selectedLevel', $ctrl.plotRatioOverTime);
                     $scope.$watch('$ctrl.selectedLookback', $ctrl.plotRatioOverTime);
+                    $scope.$on('plotNetVolume', $ctrl.plotNetVolume);
 
                     new utils.AutoRefresher(function (manual) {
                         if (manual === true) {
@@ -45,6 +46,7 @@ angular
                             $ctrl.stock.updateOrderBooks(orderBooks);
                             $ctrl.colorPrices();
                             $ctrl.plotRatioOverTime();
+                            // $ctrl.plotNetVolume();
                         });
                     }, refreshRate);
                 };
@@ -135,6 +137,58 @@ angular
                             }
 
                             Plotly.newPlot(domElement, [trace1], layout);
+                        }
+                    });
+                };
+
+
+
+                $ctrl.plotNetVolume = function () {
+                    // let netvolume = $ctrl.stock.netvolume;
+                    // let trades = $ctrl.stock.trades;
+                    // debugger;
+                    let netvolume = $ctrl.stock.getCandleChart().unpack('netVolume');// [];
+                    // for (let i=0; i < $ctrl.stock.getCandleChart().candles.length; i++){
+                    //     netvolume.push($ctrl.stock.getCandleChart().candles[i].netVolume);
+                    // }
+
+                    let trades = $ctrl.stock.getCandleChart().unpackXaxis('YYYY-MM-DD HH:mm:ss');
+                    
+                    let colors = netvolume.map(function(value, index){
+                        if (value >= 0){
+                            return '#0fa200';
+                        } else {
+                            return '#c41116';
+                        }
+                    });
+
+                    $scope.$broadcast('netVolume_plot', {
+                        plot: function(domElement){
+                        var trace1 = {
+                            x: trades,
+                            y: netvolume,
+                            marker:{
+                              color: colors
+                            },
+                            type: 'bar'
+                          };
+                          
+                          var data = [trace1];
+                          
+                          var layout = {
+                            paper_bgcolor: 'rgba(0,0,0,0)',
+                            plot_bgcolor: 'rgba(0,0,0,0)',
+                            dragmode: 'zoom',
+                            margin: {
+                                r: 0,
+                                t: 10,
+                                b: 20,
+                                l: 35
+                            },
+                            showlegend: false
+                          };
+                          
+                          Plotly.newPlot(domElement, data, layout);
                         }
                     });
                 };

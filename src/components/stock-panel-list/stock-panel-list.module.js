@@ -3,6 +3,7 @@
 angular.module('stockPanelList', [
     'models',
     'stockPanel',
-    'timePanel'
+    'timePanel',
+    'settingsPopup'
 ])
     .constant('stocksPerPage', 2);

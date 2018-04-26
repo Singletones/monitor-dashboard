@@ -46,7 +46,6 @@ angular
                             since_dt: params.since.format('YYYY-MM-DD[T]HH:mm:ss')
                         }
                     }).then(function (response) {
-                        debugger;
                     });
                 },
 

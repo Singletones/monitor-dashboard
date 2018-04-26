@@ -83,7 +83,14 @@ angular
                         }
                         $ctrl.stock.setCandlesData(candleChart);
                         $ctrl.stock.updateLatestTimestamp();
+                        $scope.$broadcast('plotNetVolume');
                         $scope.$broadcast('candleChart_plot', candleChart);
+                        // $scope.$on('candleChart_loaded', function() {
+                        //     $ctrl.stock.netvolume = $ctrl.stock.getCandleChart().unpack('netVolume');
+                        //     $ctrl.stock.trades = $ctrl.stock.getCandleChart().unpackXaxis('YYYY-MM-DD HH:mm:ss');
+                        //     debugger;
+                        //     $ctrl.plotNetVolume();
+                        //   });
                     });
                 };
 
@@ -105,7 +112,6 @@ angular
                 };
 
                 $ctrl.plotInZone = function () {
-                    debugger;
                     let activity = $ctrl.stock.getActivities()[0];
 
                     $scope.$broadcast('candleChart_loading');
@@ -115,7 +121,6 @@ angular
                         to_date: activity._toDate
                     }, function(candleChart) {
                         $scope.$broadcast('candleChart_loaded');
-
                         $ctrl.stock.setCandlesData(candleChart);
                         $ctrl.stock.updateLatestTimestamp();
 
@@ -210,7 +215,6 @@ angular
                         });
                     });
                 }
-
             }
         ],
         bindings: {

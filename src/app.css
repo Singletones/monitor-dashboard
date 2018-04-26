@@ -154,6 +154,30 @@ h5 {
     justify-content: space-between;
 }
 
+.settings-button {
+    position: fixed;
+    bottom: 4.8rem;
+    right: 1.1rem;
+    z-index: 10000;
+    cursor: pointer;
+    border-radius: 100px;
+    width: 56px;
+    text-align: center;
+    height: 56px;
+}
+
+.settings-button>a {
+    border-radius: 100px;
+    width: 56px;
+    text-align: center;
+    height: 56px;
+}
+
+.settings-button>a>i {
+    margin-top: .7rem;
+    margin-left: -0.6rem;
+}
+
 .time-panel>.material-icons {
     padding-top: .4rem;
 }

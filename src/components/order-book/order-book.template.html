@@ -47,22 +47,25 @@
                 </table>
                 <b>BID</b>
             </div>
-
         </preloader>
     </div>
-        <div class="ratio-over-time-wrapper card">
-            <div class="oerder-books-plots-buttons clearfix">
-                <div class="input-field analyze-wrapper">
-                    <select ng-model="$ctrl.selectedLevel" ng-options="item.label for item in $ctrl.levels">
-                    </select>
-                    <label style="color: black">Analyze up to:</label>
-                </div>
-                <div class="input-field lookback-wrapper">
-                    <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
-                    </select>
-                    <label style="color: black">Lookback</label>
-                </div>
+    <div class="ratio-over-time-wrapper card">
+        <div class="oerder-books-plots-buttons clearfix">
+            <div class="input-field analyze-wrapper">
+                <select ng-model="$ctrl.selectedLevel" ng-options="item.label for item in $ctrl.levels">
+                </select>
+                <label style="color: black">Analyze up to:</label>
             </div>
-            <div stock-plot="ratioOverTime"></div>
+            <div class="input-field lookback-wrapper">
+                <select ng-model="$ctrl.selectedLookback" ng-options="item.label for item in $ctrl.lookbacks">
+                </select>
+                <label style="color: black">Lookback</label>
+            </div>
         </div>
+        <div stock-plot="ratioOverTime"></div>
+    </div>
+    <div class="net-volume-wrapper card">
+        <h5>Net Volume</h5>
+        <div stock-plot="netVolume"></div>
+    </div>
 </div>

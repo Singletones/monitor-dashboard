@@ -10,42 +10,7 @@ angular
         'CandleChartModel',
         function ($http, apiDomain, apiVersion, Candle, CandleChart) {
 
-            function candlyCosine(params) {
-
-                let timeFrame = moment('01.01.2000 00:00:00', 'DD.MM.YYYY HH:mm:ss'),
-                    scale = 0.1;
-
-                function normalizeFrame(x) {
-                    let x0 = params.from_date.diff(timeFrame),
-                        x1 = params.to_date.diff(timeFrame);
-
-                    return x * scale;
-                }
-
-                let step = params.candle_type;
-                let candles = [];
-
-                for (let m = moment(params.from_date); m.isSameOrBefore(params.to_date); m.add(step)) {
-                    let timestamp = m.diff(timeFrame, 'seconds'),
-                        x = normalizeFrame(timestamp),
-                        y = (x => Math.cos(x));
-
-                    candles.push({
-                        timestamp: moment(m),
-                        open: y(x),
-                        close: y(x + step.asSeconds()*scale),
-                        high: y(x + step.asSeconds()*scale/2),
-                        low: y(x + step.asSeconds()*scale/3)
-                    });
-                }
-
-                return new CandleChart(candles, params);
-            }
-
             return {
-                getCosineMockup: function (params, callback) {
-                    return callback(candlyCosine(params));
-                },
 
                 get: function ({
                    candle_type,
@@ -79,7 +44,8 @@ angular
                                 open: candle['Open'],
                                 close: candle['Close'],
                                 high: candle['High'],
-                                low: candle['Low']
+                                low: candle['Low'],
+                                netVolume: candle['Net Volume']
                             });
                         }));
                     });
